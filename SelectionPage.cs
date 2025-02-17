@@ -2,10 +2,10 @@
 
 namespace MEMPHIS_SHARP
 {
-    public partial class SelectionPage: CommonForms.ApplicationPageBase
+    public partial class SelectionPage : CommonForms.ApplicationPageBase
     {
         public TokenEngine? TokenEngine { get; set; } = null;
-        
+
         public SelectionPage()
         {
             InitializeComponent();
@@ -27,9 +27,17 @@ namespace MEMPHIS_SHARP
             if (TokenEngine == null)
                 return;
 
-            TokenEngine.SetMasterToken(fileName);
+            //  create & split master token
+            TokenEngine.SelectMasterToken(fileName);
+
+            graphicsPanel.RootToken = TokenEngine.MasterToken;
 
             txtRenameTo.Text = TokenEngine.RenameTo;
+        }
+
+        private void btnRename_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

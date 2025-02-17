@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblOriginal = new Label();
             lblRenameTo = new Label();
             txtOriginalName = new TextBox();
             txtRenameTo = new TextBox();
             tableLayoutMain = new TableLayoutPanel();
+            btnRename = new Guna.UI2.WinForms.Guna2Button();
+            graphicsPanel = new Memphis.GraphicsPanel();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,7 +65,7 @@
             txtOriginalName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtOriginalName.Location = new Point(153, 49);
             txtOriginalName.Name = "txtOriginalName";
-            txtOriginalName.Size = new Size(1046, 31);
+            txtOriginalName.Size = new Size(808, 31);
             txtOriginalName.TabIndex = 2;
             // 
             // txtRenameTo
@@ -69,29 +73,58 @@
             txtRenameTo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtRenameTo.Location = new Point(153, 99);
             txtRenameTo.Name = "txtRenameTo";
-            txtRenameTo.Size = new Size(1046, 31);
+            txtRenameTo.Size = new Size(808, 31);
             txtRenameTo.TabIndex = 3;
             // 
             // tableLayoutMain
             // 
-            tableLayoutMain.ColumnCount = 3;
+            tableLayoutMain.ColumnCount = 4;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 220F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 48F));
             tableLayoutMain.Controls.Add(lblOriginal, 0, 1);
             tableLayoutMain.Controls.Add(txtRenameTo, 1, 2);
             tableLayoutMain.Controls.Add(lblRenameTo, 0, 2);
             tableLayoutMain.Controls.Add(txtOriginalName, 1, 1);
+            tableLayoutMain.Controls.Add(btnRename, 2, 4);
+            tableLayoutMain.Controls.Add(graphicsPanel, 1, 3);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 4;
+            tableLayoutMain.RowCount = 5;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
             tableLayoutMain.Size = new Size(1232, 670);
             tableLayoutMain.TabIndex = 4;
+            // 
+            // btnRename
+            // 
+            btnRename.CustomizableEdges = customizableEdges3;
+            btnRename.DisabledState.BorderColor = Color.DarkGray;
+            btnRename.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnRename.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnRename.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnRename.Dock = DockStyle.Fill;
+            btnRename.Font = new Font("Segoe UI", 9F);
+            btnRename.ForeColor = Color.White;
+            btnRename.Location = new Point(967, 598);
+            btnRename.Name = "btnRename";
+            btnRename.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnRename.Size = new Size(214, 69);
+            btnRename.TabIndex = 4;
+            btnRename.Text = "RENAME";
+            btnRename.Click += btnRename_Click;
+            // 
+            // graphicsPanel
+            // 
+            graphicsPanel.Location = new Point(153, 143);
+            graphicsPanel.Name = "graphicsPanel";
+            graphicsPanel.Size = new Size(808, 449);
+            graphicsPanel.TabIndex = 5;
             // 
             // SelectionPage
             // 
@@ -112,5 +145,7 @@
         private TextBox txtOriginalName;
         private TextBox txtRenameTo;
         private TableLayoutPanel tableLayoutMain;
+        private Guna.UI2.WinForms.Guna2Button btnRename;
+        private Memphis.GraphicsPanel graphicsPanel;
     }
 }

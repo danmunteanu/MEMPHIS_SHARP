@@ -19,7 +19,7 @@ namespace MEMPHIS_SHARP
 
             SetupComponents();
 
-            mTokenEngine.AddStringToRemove("(Hydr0.org)");
+            //mTokenEngine.AddStringToRemove("(Hydr0.org)");
 
             this.CenterToParent();
         }
@@ -35,7 +35,8 @@ namespace MEMPHIS_SHARP
                 Settings = new FilesListComponent.ListSettings()
                 {
                     UseProgressBar = false,
-                    TopLabel = "Add audio files to begin",
+                    TopLabel = Locale.LIST_TOP_LABEL,
+                    TopLineHeight = 55, //does not work
                     BottomLineHeight = 75
                 },
                 FileFilters = Utils.AudioFileExtensions.ToList()

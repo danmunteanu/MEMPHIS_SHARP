@@ -32,7 +32,7 @@ namespace MEMPHIS_SHARP
         {
             if (FilesList != null)
             {
-                FilesList.SelectionChangedCallback = OnFileSelected;
+                FilesList.Callback_SelectionChanged = OnFileSelected;
             }
         }
 

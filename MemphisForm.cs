@@ -22,6 +22,7 @@ namespace MEMPHIS_SHARP
             SetupComponents();
 
             mTokenEngine.AddStringToRemove("(Hydr0.org)");
+            mTokenEngine.AddStringToRemove("(by.NecKerM4nn)");
 
             this.CenterToParent();
         }

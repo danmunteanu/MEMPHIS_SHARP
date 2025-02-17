@@ -63,7 +63,7 @@
             filesListComponent1.Name = "filesListComponent1";
             filesListComponent1.Processor = null;
             filesListComponent1.Progress = 0;
-            filesListComponent1.SelectionChangedCallback = null;
+            filesListComponent1.Callback_SelectionChanged = null;
             listSettings1.AllowAddFolders = true;
             listSettings1.BottomLineHeight = 55;
             listSettings1.ButtonAddLabel = "ADD FILES";
@@ -83,8 +83,8 @@
             filesListComponent1.Size = new Size(214, 250);
             filesListComponent1.Status = "List ready.";
             filesListComponent1.TabIndex = 0;
-            filesListComponent1.UpdateProgressCallback = null;
-            filesListComponent1.UpdateUICallback = null;
+            filesListComponent1.Callback_UpdateProgress = null;
+            filesListComponent1.Callback_UpdateUI = null;
             // 
             // MemphisForm
             // 

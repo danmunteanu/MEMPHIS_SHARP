@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblOriginal = new Label();
             lblRenameTo = new Label();
             txtOriginalName = new TextBox();
             txtRenameTo = new TextBox();
             tableLayoutMain = new TableLayoutPanel();
-            btnRename = new Guna.UI2.WinForms.Guna2Button();
             graphicsPanel = new Memphis.GraphicsPanel();
+            btnRename = new Button();
+            txtSeparators = new TextBox();
+            lblDefaultSepar = new Label();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -87,8 +87,10 @@
             tableLayoutMain.Controls.Add(txtRenameTo, 1, 2);
             tableLayoutMain.Controls.Add(lblRenameTo, 0, 2);
             tableLayoutMain.Controls.Add(txtOriginalName, 1, 1);
-            tableLayoutMain.Controls.Add(btnRename, 2, 4);
             tableLayoutMain.Controls.Add(graphicsPanel, 1, 3);
+            tableLayoutMain.Controls.Add(btnRename, 2, 2);
+            tableLayoutMain.Controls.Add(txtSeparators, 2, 1);
+            tableLayoutMain.Controls.Add(lblDefaultSepar, 2, 0);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
@@ -101,30 +103,41 @@
             tableLayoutMain.Size = new Size(1232, 670);
             tableLayoutMain.TabIndex = 4;
             // 
-            // btnRename
-            // 
-            btnRename.CustomizableEdges = customizableEdges3;
-            btnRename.DisabledState.BorderColor = Color.DarkGray;
-            btnRename.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnRename.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnRename.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRename.Dock = DockStyle.Fill;
-            btnRename.Font = new Font("Segoe UI", 9F);
-            btnRename.ForeColor = Color.White;
-            btnRename.Location = new Point(967, 598);
-            btnRename.Name = "btnRename";
-            btnRename.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnRename.Size = new Size(214, 69);
-            btnRename.TabIndex = 4;
-            btnRename.Text = "RENAME";
-            btnRename.Click += btnRename_Click;
-            // 
             // graphicsPanel
             // 
             graphicsPanel.Location = new Point(153, 143);
             graphicsPanel.Name = "graphicsPanel";
+            graphicsPanel.RootToken = null;
             graphicsPanel.Size = new Size(808, 449);
             graphicsPanel.TabIndex = 5;
+            // 
+            // btnRename
+            // 
+            btnRename.Dock = DockStyle.Fill;
+            btnRename.Location = new Point(967, 93);
+            btnRename.Name = "btnRename";
+            btnRename.Size = new Size(214, 44);
+            btnRename.TabIndex = 6;
+            btnRename.Text = "RENAME";
+            btnRename.UseVisualStyleBackColor = true;
+            // 
+            // txtSeparators
+            // 
+            txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtSeparators.Location = new Point(967, 49);
+            txtSeparators.Name = "txtSeparators";
+            txtSeparators.Size = new Size(214, 31);
+            txtSeparators.TabIndex = 7;
+            // 
+            // lblDefaultSepar
+            // 
+            lblDefaultSepar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblDefaultSepar.AutoSize = true;
+            lblDefaultSepar.Location = new Point(967, 15);
+            lblDefaultSepar.Name = "lblDefaultSepar";
+            lblDefaultSepar.Size = new Size(159, 25);
+            lblDefaultSepar.TabIndex = 8;
+            lblDefaultSepar.Text = "Default Separators";
             // 
             // SelectionPage
             // 
@@ -145,7 +158,9 @@
         private TextBox txtOriginalName;
         private TextBox txtRenameTo;
         private TableLayoutPanel tableLayoutMain;
-        private Guna.UI2.WinForms.Guna2Button btnRename;
         private Memphis.GraphicsPanel graphicsPanel;
+        private Button btnRename;
+        private TextBox txtSeparators;
+        private Label lblDefaultSepar;
     }
 }

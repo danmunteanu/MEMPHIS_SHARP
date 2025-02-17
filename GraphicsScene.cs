@@ -1,15 +1,19 @@
 namespace Memphis
 {
-    using RTuple = (Rectangle, string, Color);
+    using TokenRectangleTuple = (Rectangle rect, Token token, Color color);
 
     //  SCENE
-    public class GraphicsPanel : UserControl
+    public class GraphicsScene : UserControl
     {
-        private Panel drawingPanel;
-        private List<(Rectangle rect, string text, Color color)> mRectangles = new();
+        private Panel mDrawingPanel;
+        private List<TokenRectangleTuple> mRectangles = new();
         private Font font = new Font("Arial", 12);
 
         private Token? mRootToken = null;
+
+        private Color TokenBorderColor { get; set; } = Color.White;
+        private Color TokenColor { get; set; } = Color.DarkGray;
+        private Color SelectionColor { get; set; } = Color.GreenYellow;
 
         public Token? RootToken
         {
@@ -21,23 +25,21 @@ namespace Memphis
             }
         }
 
-        public GraphicsPanel()
+        public GraphicsScene()
         {
             // Setup Form
-            this.Text = "Graphics in Panel with Click Handling";
-            this.Size = new Size(600, 700);
 
             // Setup Panel
-            drawingPanel = new Panel
+            mDrawingPanel = new Panel
             {
-                Dock = DockStyle.Bottom,
+                Dock = DockStyle.Fill,
                 BackColor = Color.White
             };
-            this.Controls.Add(drawingPanel);
+            this.Controls.Add(mDrawingPanel);
 
             // Event Handlers
-            drawingPanel.Paint += DrawingPanel_Paint;
-            drawingPanel.MouseClick += DrawingPanel_MouseClick;
+            mDrawingPanel.Paint += DrawingPanel_Paint;
+            mDrawingPanel.MouseClick += DrawingPanel_MouseClick;
 
             UpdateScene();
         }
@@ -56,13 +58,13 @@ namespace Memphis
             foreach (var token in subtoken.Subtokens)
             {
                 mRectangles.Add(
-                    new RTuple( new Rectangle(x, y, 120, 50),
-                    token.Text,
-                    Color.YellowGreen )
+                    new TokenRectangleTuple( new Rectangle(x, y, 120, 50),
+                    token,
+                    TokenColor )
                 );
                 x += 100;
             }
-            Invalidate();
+            mDrawingPanel.Invalidate();
         }
 
         private void DrawingPanel_Paint(object sender, PaintEventArgs e)
@@ -87,8 +89,9 @@ namespace Memphis
                 {
                     g.FillRectangle(brush, item.rect);
                 }
-                g.DrawRectangle(Pens.Black, item.rect);
-                g.DrawString(item.text, font, Brushes.Black, item.rect.Location);
+                
+                g.DrawRectangle(new Pen(TokenBorderColor), item.rect);
+                g.DrawString(item.token.Text, font, Brushes.Black, item.rect.Location);
             }
         }
 
@@ -99,9 +102,13 @@ namespace Memphis
                 if (mRectangles[i].rect.Contains(e.Location))
                 {
                     // Change the color of the clicked rectangle
-                    mRectangles[i] = (mRectangles[i].rect, mRectangles[i].text, Color.Yellow);
-                    drawingPanel.Invalidate(); // Redraw the panel
-                    MessageBox.Show($"You clicked {mRectangles[i].text}");
+                    mRectangles[i] = (
+                        mRectangles[i].rect, 
+                        mRectangles[i].token, 
+                        Color.Yellow
+                    );
+                    mDrawingPanel.Invalidate(); // Redraw the panel
+                    //MessageBox.Show($"You clicked {mRectangles[i].text}");
                     break;
                 }
             }

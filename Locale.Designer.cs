@@ -61,7 +61,16 @@ namespace MEMPHIS_SHARP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add files to begin .
+        ///   Looks up a localized string similar to MEMPHIS Sharp.
+        /// </summary>
+        internal static string APPLICATION_NAME {
+            get {
+                return ResourceManager.GetString("APPLICATION_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ↓↓ Add audio files to begin ↓↓ .
         /// </summary>
         internal static string LIST_TOP_LABEL {
             get {

@@ -17,9 +17,11 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
+            this.Text = Locale.APPLICATION_NAME;
+
             SetupComponents();
 
-            //mTokenEngine.AddStringToRemove("(Hydr0.org)");
+            mTokenEngine.AddStringToRemove("(Hydr0.org)");
 
             this.CenterToParent();
         }

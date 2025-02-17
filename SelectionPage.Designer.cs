@@ -33,7 +33,7 @@
             txtOriginalName = new TextBox();
             txtRenameTo = new TextBox();
             tableLayoutMain = new TableLayoutPanel();
-            graphicsPanel = new Memphis.GraphicsPanel();
+            graphicsPanel = new Memphis.GraphicsScene();
             btnRename = new Button();
             txtSeparators = new TextBox();
             lblDefaultSepar = new Label();
@@ -65,6 +65,7 @@
             txtOriginalName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtOriginalName.Location = new Point(153, 49);
             txtOriginalName.Name = "txtOriginalName";
+            txtOriginalName.ReadOnly = true;
             txtOriginalName.Size = new Size(808, 31);
             txtOriginalName.TabIndex = 2;
             // 
@@ -73,6 +74,7 @@
             txtRenameTo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtRenameTo.Location = new Point(153, 99);
             txtRenameTo.Name = "txtRenameTo";
+            txtRenameTo.ReadOnly = true;
             txtRenameTo.Size = new Size(808, 31);
             txtRenameTo.TabIndex = 3;
             // 
@@ -158,7 +160,7 @@
         private TextBox txtOriginalName;
         private TextBox txtRenameTo;
         private TableLayoutPanel tableLayoutMain;
-        private Memphis.GraphicsPanel graphicsPanel;
+        private Memphis.GraphicsScene graphicsPanel;
         private Button btnRename;
         private TextBox txtSeparators;
         private Label lblDefaultSepar;

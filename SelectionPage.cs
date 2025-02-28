@@ -6,7 +6,7 @@ namespace MEMPHIS_SHARP
     {
         private Engine? mEngine = null;
 
-        public Engine? TokenEngine {
+        public Engine? Engine {
             get => mEngine;
             set
             {
@@ -25,6 +25,7 @@ namespace MEMPHIS_SHARP
             if (mEngine == null)
                 return;
 
+            //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
         }
 

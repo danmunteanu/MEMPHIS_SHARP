@@ -6,13 +6,16 @@ namespace Memphis
     public class GraphicsScene : UserControl
     {
         private Panel mDrawingPanel;
+
         private List<TokenRectangleTuple> mRectangles = new();
+        private int mSelRectIndex = -1;
+
         private Font font = new Font("Arial", 12);
 
         private Token? mRootToken = null;
 
-        private Color TokenBorderColor { get; set; } = Color.White;
-        private Color TokenColor { get; set; } = Color.DarkGray;
+        private Color BorderColor { get; set; } = Color.White;
+        private Color NormalColor { get; set; } = Color.DarkGray;
         private Color SelectionColor { get; set; } = Color.GreenYellow;
 
         public Token? RootToken
@@ -60,14 +63,14 @@ namespace Memphis
                 mRectangles.Add(
                     new TokenRectangleTuple( new Rectangle(x, y, 120, 50),
                     token,
-                    TokenColor )
+                    NormalColor )
                 );
                 x += 100;
             }
             mDrawingPanel.Invalidate();
         }
 
-        private void DrawingPanel_Paint(object sender, PaintEventArgs e)
+        private void DrawingPanel_Paint(object? sender, PaintEventArgs e)
         {
             if (mRectangles == null)
                 return;
@@ -90,12 +93,12 @@ namespace Memphis
                     g.FillRectangle(brush, item.rect);
                 }
                 
-                g.DrawRectangle(new Pen(TokenBorderColor), item.rect);
+                g.DrawRectangle(new Pen(BorderColor), item.rect);
                 g.DrawString(item.token.Text, font, Brushes.Black, item.rect.Location);
             }
         }
 
-        private void DrawingPanel_MouseClick(object sender, MouseEventArgs e)
+        private void DrawingPanel_MouseClick(object? sender, MouseEventArgs e)
         {
             for (int i = 0; i < mRectangles.Count; i++)
             {
@@ -105,10 +108,22 @@ namespace Memphis
                     mRectangles[i] = (
                         mRectangles[i].rect, 
                         mRectangles[i].token, 
-                        Color.Yellow
+                        SelectionColor
                     );
+
+                    //  deselect previous
+                    if (mSelRectIndex != -1 && mSelRectIndex != i)
+                    {
+                        mRectangles[mSelRectIndex] = (
+                            mRectangles[mSelRectIndex].rect,
+                            mRectangles[mSelRectIndex].token,
+                            NormalColor
+                        );
+                    }
+                    //  update selected index
+                    mSelRectIndex = i;
+
                     mDrawingPanel.Invalidate(); // Redraw the panel
-                    //MessageBox.Show($"You clicked {mRectangles[i].text}");
                     break;
                 }
             }

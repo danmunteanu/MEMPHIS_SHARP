@@ -49,7 +49,7 @@ namespace MEMPHIS_SHARP
             Utils.AddUserControlToPanel(panelList, mFilesList);
 
             //  Connect pageSelection to mFilesList and mEngine
-            pageSelection.TokenEngine = mEngine;
+            pageSelection.Engine = mEngine;
             pageSelection.FilesList = mFilesList;
         }
 

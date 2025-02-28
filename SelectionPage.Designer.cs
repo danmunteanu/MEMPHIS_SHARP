@@ -107,6 +107,7 @@
             // 
             // graphicsPanel
             // 
+            graphicsPanel.Dock = DockStyle.Fill;
             graphicsPanel.Location = new Point(153, 143);
             graphicsPanel.Name = "graphicsPanel";
             graphicsPanel.RootToken = null;

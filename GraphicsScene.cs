@@ -123,10 +123,17 @@ namespace Memphis
                     //  update selected index
                     mSelRectIndex = i;
 
+                    UpdateSelection();
+
                     mDrawingPanel.Invalidate(); // Redraw the panel
                     break;
                 }
             }
+        }
+
+        private void UpdateSelection()
+        {
+            //  Load selection details
         }
 
     }

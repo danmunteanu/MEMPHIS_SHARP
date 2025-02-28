@@ -54,8 +54,8 @@ namespace Memphis
 
             int x = 25;
             int y = 50;
-            var subtoken = mRootToken.Subtokens.ElementAt(0);
-            foreach (var token in subtoken.Subtokens)
+            //var subtoken = mRootToken.Subtokens.ElementAt(0);
+            foreach (var token in mRootToken.Subtokens)
             {
                 mRectangles.Add(
                     new TokenRectangleTuple( new Rectangle(x, y, 120, 50),

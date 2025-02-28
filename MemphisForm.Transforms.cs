@@ -4,11 +4,11 @@ using Memphis.Actions;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class MemphisForm : Form, IEngineObserver
+    public partial class MainForm : Form, IEngineObserver
     {
         public void CreateDefaultTransforms()
         {
-            mTokenEngine.ApplyTransformsToToken(null);
+            mEngine.ApplyTransformsToToken(null);
 
             //  Upcase all words
             //mEngine.AddTransform(

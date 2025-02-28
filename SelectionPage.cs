@@ -4,13 +4,13 @@ namespace MEMPHIS_SHARP
 {
     public partial class SelectionPage : CommonForms.ApplicationPageBase
     {
-        TokenEngine? mTokenEngine = null;
+        private Engine? mEngine = null;
 
-        public TokenEngine? TokenEngine {
-            get => mTokenEngine;
+        public Engine? TokenEngine {
+            get => mEngine;
             set
             {
-                mTokenEngine = value;
+                mEngine = value;
                 OnEngineSet();
             }
         }
@@ -22,10 +22,10 @@ namespace MEMPHIS_SHARP
 
         private void OnEngineSet()
         {
-            if (mTokenEngine == null)
+            if (mEngine == null)
                 return;
 
-            txtSeparators.Text = mTokenEngine.DefaultSeparators;
+            txtSeparators.Text = mEngine.DefaultSeparators;
         }
 
         protected override void OnFilesListSet()
@@ -41,15 +41,15 @@ namespace MEMPHIS_SHARP
             string fileName = Path.GetFileName(fullFilePath);
             txtOriginalName.Text = fileName;
 
-            if (mTokenEngine == null)
+            if (mEngine == null)
                 return;
 
             //  create & split master token
-            mTokenEngine.SelectMasterToken(fileName);
+            mEngine.SelectMasterToken(fileName);
 
-            graphicsPanel.RootToken = mTokenEngine.MasterToken;
+            graphicsPanel.RootToken = mEngine.MasterToken;
 
-            txtRenameTo.Text = mTokenEngine.RenameTo;
+            txtRenameTo.Text = mEngine.RenameTo;
         }
 
         private void btnRename_Click(object sender, EventArgs e)

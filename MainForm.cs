@@ -5,15 +5,15 @@ using RealityFrameworks;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class MemphisForm : Form, IEngineObserver
+    public partial class MainForm : Form, IEngineObserver
     {
-        private TokenEngine mTokenEngine = new();
+        private Engine mEngine = new();
 
         private FilesProcessor? mProcessor = new();
 
         private FilesListComponent? mFilesList = null;
 
-        public MemphisForm()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -21,8 +21,8 @@ namespace MEMPHIS_SHARP
 
             SetupComponents();
 
-            mTokenEngine.AddStringToRemove("(Hydr0.org)");
-            mTokenEngine.AddStringToRemove("(by.NecKerM4nn)");
+            mEngine.AddStringToRemove("(Hydr0.org)");
+            mEngine.AddStringToRemove("(by.NecKerM4nn)");
 
             this.CenterToParent();
         }
@@ -32,7 +32,8 @@ namespace MEMPHIS_SHARP
             //  Create the FilesList
             mFilesList = new()
             {
-                //  Adding processor just bc list won't add files without an instance
+                //  Adding processor just bc list won't add files without an instance of it
+                //  unused, for now
                 Processor = mProcessor,
 
                 Settings = new FilesListComponent.ListSettings()
@@ -47,8 +48,8 @@ namespace MEMPHIS_SHARP
             mFilesList.UpdateList(SelectionMode.One, true);
             Utils.AddUserControlToPanel(panelList, mFilesList);
 
-            //  Connect pageSelection to mFilesList
-            pageSelection.TokenEngine = mTokenEngine;
+            //  Connect pageSelection to mFilesList and mEngine
+            pageSelection.TokenEngine = mEngine;
             pageSelection.FilesList = mFilesList;
         }
 

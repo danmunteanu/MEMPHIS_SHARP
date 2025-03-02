@@ -62,8 +62,8 @@ namespace MEMPHIS_SHARP
             if (mEngine == null || mEngine.SelectedSubtoken == null)
                 return;
 
-            //  load selection details
-            selectionDetails.LoadFromToken(mEngine.SelectedSubtoken);
+            //  setting the token loads selection details
+            selectionDetails.Token = mEngine.SelectedSubtoken;
         }
 
         private void btnRename_Click(object sender, EventArgs e)

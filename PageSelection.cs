@@ -18,12 +18,16 @@ namespace MEMPHIS_SHARP
         public PageSelection()
         {
             InitializeComponent();
+
+            graphicsPanel.SelectionChanged = this.OnSelectionChanged;
         }
 
         private void OnEngineSet()
         {
             if (mEngine == null)
                 return;
+
+            graphicsPanel.Engine = mEngine;
 
             //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
@@ -53,9 +57,18 @@ namespace MEMPHIS_SHARP
             txtRenameTo.Text = mEngine.RenameTo;
         }
 
+        private void OnSelectionChanged()
+        {
+            if (mEngine == null || mEngine.SelectedSubtoken == null)
+                return;
+
+            //  load selection details
+            selectionDetails.LoadFromToken(mEngine.SelectedSubtoken);
+        }
+
         private void btnRename_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

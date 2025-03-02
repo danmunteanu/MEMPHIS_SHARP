@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Memphis;
 
 namespace MEMPHIS_SHARP
 {
     public partial class SelectionDetails: UserControl
     {
+        public void LoadFromToken (Token token)
+        {
+            if (token == null)
+                return;
+
+            txtSelection.Text = token.Text;
+            chkEnabled.Checked = token.Enabled;
+            txtSeparators.Text = token.Separators;
+        }
+
         public SelectionDetails()
         {
             InitializeComponent();

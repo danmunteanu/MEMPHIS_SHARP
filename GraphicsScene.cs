@@ -5,17 +5,24 @@ namespace Memphis
     //  SCENE
     public class GraphicsScene : UserControl
     {
+        public Engine? Engine { get; set; } = null;
+
+        public delegate void Callback_SelectionChanged();
+        public Callback_SelectionChanged? SelectionChanged { get; set; } = null;
+
         private Panel mDrawingPanel;
 
         private List<TokenRectangleTuple> mRectangles = new();
-        private int mSelRectIndex = -1;
-
-        private Font font = new Font("Arial", 12);
+        private int mSelectedIndex = -1;
 
         private Token? mRootToken = null;
 
+        private Font mFont = new Font("Arial", 12);
+
         private Color BorderColor { get; set; } = Color.White;
+
         private Color NormalColor { get; set; } = Color.DarkGray;
+        
         private Color SelectionColor { get; set; } = Color.GreenYellow;
 
         public Token? RootToken
@@ -30,8 +37,6 @@ namespace Memphis
 
         public GraphicsScene()
         {
-            // Setup Form
-
             // Setup Panel
             mDrawingPanel = new Panel
             {
@@ -52,18 +57,17 @@ namespace Memphis
             //  rebuild the scene using current root token
             if (mRootToken == null)
                 return;
-
+            
             mRectangles.Clear();
-
             int x = 25;
             int y = 50;
-            //var subtoken = mRootToken.Subtokens.ElementAt(0);
-            foreach (var token in mRootToken.Subtokens)
+            for (int idx = 0; idx < mRootToken.Subtokens.Count; idx++) 
             {
+                Token token = mRootToken.Subtokens.ElementAt(idx);
                 mRectangles.Add(
-                    new TokenRectangleTuple( new Rectangle(x, y, 120, 50),
+                    new TokenRectangleTuple(new Rectangle(x, y, 120, 50),
                     token,
-                    NormalColor )
+                    NormalColor)
                 );
                 x += 100;
             }
@@ -94,16 +98,21 @@ namespace Memphis
                 }
                 
                 g.DrawRectangle(new Pen(BorderColor), item.rect);
-                g.DrawString(item.token.Text, font, Brushes.Black, item.rect.Location);
+                g.DrawString(item.token.Text, mFont, Brushes.Black, item.rect.Location);
             }
         }
 
         private void DrawingPanel_MouseClick(object? sender, MouseEventArgs e)
         {
+            if (Engine == null || mRootToken == null) 
+                return;
+
             for (int i = 0; i < mRectangles.Count; i++)
             {
                 if (mRectangles[i].rect.Contains(e.Location))
                 {
+                    Engine.SelectSubtoken(mRootToken.Subtokens.ElementAt(i));
+
                     // Change the color of the clicked rectangle
                     mRectangles[i] = (
                         mRectangles[i].rect, 
@@ -112,18 +121,18 @@ namespace Memphis
                     );
 
                     //  deselect previous
-                    if (mSelRectIndex != -1 && mSelRectIndex != i)
+                    if (mSelectedIndex != -1 && mSelectedIndex != i)
                     {
-                        mRectangles[mSelRectIndex] = (
-                            mRectangles[mSelRectIndex].rect,
-                            mRectangles[mSelRectIndex].token,
+                        mRectangles[mSelectedIndex] = (
+                            mRectangles[mSelectedIndex].rect,
+                            mRectangles[mSelectedIndex].token,
                             NormalColor
                         );
                     }
                     //  update selected index
-                    mSelRectIndex = i;
+                    mSelectedIndex = i;
 
-                    UpdateSelection();
+                    CallUpdateSelection();
 
                     mDrawingPanel.Invalidate(); // Redraw the panel
                     break;
@@ -131,9 +140,10 @@ namespace Memphis
             }
         }
 
-        private void UpdateSelection()
+        private void CallUpdateSelection()
         {
-            //  Load selection details
+            if (SelectionChanged != null)
+                SelectionChanged();
         }
 
     }

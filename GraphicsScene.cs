@@ -71,7 +71,10 @@ namespace Memphis
                 );
                 x += 100;
             }
+
             mDrawingPanel.Invalidate();
+
+            CallUpdateSelection();
         }
 
         private void DrawingPanel_Paint(object? sender, PaintEventArgs e)

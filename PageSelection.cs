@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP
 {
-    public partial class SelectionPage : CommonForms.ApplicationPageBase
+    public partial class PageSelection : CommonForms.ApplicationPageBase
     {
         private Engine? mEngine = null;
 
@@ -15,7 +15,7 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        public SelectionPage()
+        public PageSelection()
         {
             InitializeComponent();
         }

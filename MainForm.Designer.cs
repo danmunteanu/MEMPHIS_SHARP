@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             CommonForms.Components.FilesListComponent.ListSettings listSettings1 = new CommonForms.Components.FilesListComponent.ListSettings();
             panelList = new Panel();
-            pageSelection = new SelectionPage();
+            pageSelection = new PageSelection();
             filesListComponent1 = new CommonForms.Components.FilesListComponent();
             SuspendLayout();
             // 
@@ -39,23 +39,29 @@
             // 
             panelList.Dock = DockStyle.Left;
             panelList.Location = new Point(0, 0);
+            panelList.Margin = new Padding(2, 2, 2, 2);
             panelList.Name = "panelList";
-            panelList.Size = new Size(558, 749);
+            panelList.Size = new Size(478, 599);
             panelList.TabIndex = 0;
             // 
             // pageSelection
             // 
             pageSelection.Dock = DockStyle.Fill;
+            pageSelection.Engine = null;
             pageSelection.FilesList = null;
-            pageSelection.Location = new Point(558, 0);
+            pageSelection.Location = new Point(478, 0);
+            pageSelection.Margin = new Padding(2);
             pageSelection.Name = "pageSelection";
             pageSelection.Processor = null;
-            pageSelection.Size = new Size(988, 749);
+            pageSelection.Size = new Size(759, 599);
             pageSelection.TabIndex = 1;
             pageSelection.UpdateStatusCallback = null;
             // 
             // filesListComponent1
             // 
+            filesListComponent1.Callback_SelectionChanged = null;
+            filesListComponent1.Callback_UpdateProgress = null;
+            filesListComponent1.Callback_UpdateUI = null;
             filesListComponent1.FileFilters = (List<string>)resources.GetObject("filesListComponent1.FileFilters");
             filesListComponent1.FilesList = null;
             filesListComponent1.Location = new Point(0, 0);
@@ -63,7 +69,6 @@
             filesListComponent1.Name = "filesListComponent1";
             filesListComponent1.Processor = null;
             filesListComponent1.Progress = 0;
-            filesListComponent1.Callback_SelectionChanged = null;
             listSettings1.AllowAddFolders = true;
             listSettings1.BottomLineHeight = 55;
             listSettings1.ButtonAddLabel = "ADD FILES";
@@ -83,25 +88,24 @@
             filesListComponent1.Size = new Size(214, 250);
             filesListComponent1.Status = "List ready.";
             filesListComponent1.TabIndex = 0;
-            filesListComponent1.Callback_UpdateProgress = null;
-            filesListComponent1.Callback_UpdateUI = null;
             // 
-            // MemphisForm
+            // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1546, 749);
+            ClientSize = new Size(1237, 599);
             Controls.Add(pageSelection);
             Controls.Add(panelList);
-            Name = "MemphisForm";
-            Text = "Form1";
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "MainForm";
+            Text = "MEMPHIS (Sharp)";
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelList;
-        private SelectionPage pageSelection;
+        private PageSelection pageSelection;
         private CommonForms.Components.FilesListComponent filesListComponent1;
     }
 }

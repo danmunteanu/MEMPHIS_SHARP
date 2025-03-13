@@ -40,8 +40,8 @@ namespace MEMPHIS_SHARP
                 {
                     UseProgressBar = false,
                     TopLabel = Locale.LIST_TOP_LABEL,
-                    TopLineHeight = 55, //does not work
-                    BottomLineHeight = 75
+                    TopLineHeight = 60,
+                    BottomLineHeight = 60
                 },
                 FileFilters = Utils.AudioFileExtensions.ToList()
             };

@@ -5,6 +5,9 @@ namespace Memphis
     //  SCENE
     public class GraphicsScene : UserControl
     {
+        const int KInterTokenHorizontalSpace = 20;
+        const int KInterTokenVerticalSpace = 35;
+
         public Engine? Engine { get; set; } = null;
 
         public delegate void Callback_SelectionChanged();
@@ -75,6 +78,50 @@ namespace Memphis
             mDrawingPanel.Invalidate();
 
             CallUpdateSelection();
+        }
+
+        private void ReconstructScene()
+        {
+            mRectangles.Clear();
+
+            //  add the [Select A File] text to the scene
+
+            int x = 0;
+            int y = 0;
+            int w = 0;
+            int h = 0;
+
+            Graphics g = mDrawingPanel.CreateGraphics();
+            ConstructScene(g, Engine?.MasterToken, ref x, ref y, ref w, ref h);
+        }
+
+        private void ConstructScene(Graphics g, Token? token, 
+            ref int orig_x_offset, ref int orig_y_offset, ref int width, ref int height)
+        {
+            if (Engine == null)
+                return;
+
+            if (token == null)
+                return;
+
+            bool select = (Engine.SelectedSubtoken == token);
+
+            if (token.Subtokens.Count == 0)
+            {
+                //  construct the rectangle for the subtoken
+                Rectangle rect = new();
+                rect.X = orig_x_offset;
+                rect.Y = orig_y_offset;
+
+                mRectangles.Add(new TokenRectangleTuple(rect, token, NormalColor));
+
+                width = rect.Width;
+                height = rect.Height;
+            } else
+            {
+                //  create group 
+
+            }
         }
 
         private void DrawingPanel_Paint(object? sender, PaintEventArgs e)

@@ -59,9 +59,9 @@
             // 
             // filesListComponent1
             // 
-            filesListComponent1.Callback_SelectionChanged = null;
-            filesListComponent1.Callback_UpdateProgress = null;
-            filesListComponent1.Callback_UpdateUI = null;
+            filesListComponent1.SelectionChanged_Callback = null;
+            filesListComponent1.UpdateProgress_Callback = null;
+            filesListComponent1.UpdateUI_Callback = null;
             filesListComponent1.FileFilters = (List<string>)resources.GetObject("filesListComponent1.FileFilters");
             filesListComponent1.FilesList = null;
             filesListComponent1.Location = new Point(0, 0);

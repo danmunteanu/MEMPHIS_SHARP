@@ -47,6 +47,7 @@ namespace MEMPHIS_SHARP
             };
             mFilesList.UpdateList(SelectionMode.One, true);
             Utils.AddUserControlToPanel(panelList, mFilesList);
+            panelList.Padding = new Padding(10, 0, 10, 10);
 
             //  Connect pageSelection to mFilesList and mEngine
             pageSelection.Engine = mEngine;

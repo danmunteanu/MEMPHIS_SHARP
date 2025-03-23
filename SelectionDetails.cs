@@ -23,8 +23,15 @@ namespace MEMPHIS_SHARP
         public void LoadToken(Token? token)
         {
             if (token == null)
+            {
+                grpSelection.Enabled = false;
+                txtSelection.Clear();
+                chkEnabled.Checked = false;
+                txtSeparators.Clear();
                 return;
+            }
 
+            grpSelection.Enabled = true;
             txtSelection.Text = token.Text;
             chkEnabled.Checked = token.Enabled;
             txtSeparators.Text = token.Separators;

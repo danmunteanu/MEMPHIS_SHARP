@@ -37,12 +37,15 @@ namespace MEMPHIS_SHARP
         {
             if (FilesList != null)
             {
-                FilesList.Callback_SelectionChanged = OnFileSelected;
+                FilesList.SelectionChanged_Callback = OnFileSelected;
             }
         }
 
         private void OnFileSelected(string fullFilePath)
         {
+            if (string.IsNullOrEmpty(fullFilePath))
+                return;
+
             string fileName = Path.GetFileName(fullFilePath);
             txtOriginalName.Text = fileName;
 

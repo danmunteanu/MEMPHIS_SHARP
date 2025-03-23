@@ -77,7 +77,7 @@ namespace Memphis
 
             mDrawingPanel.Invalidate();
 
-            CallUpdateSelection();
+            SelectionChanged?.Invoke();
         }
 
         private void ReconstructScene()
@@ -182,18 +182,12 @@ namespace Memphis
                     //  update selected index
                     mSelectedIndex = i;
 
-                    CallUpdateSelection();
+                    SelectionChanged?.Invoke();
 
                     mDrawingPanel.Invalidate(); // Redraw the panel
                     break;
                 }
             }
-        }
-
-        private void CallUpdateSelection()
-        {
-            if (SelectionChanged != null)
-                SelectionChanged();
         }
 
     }

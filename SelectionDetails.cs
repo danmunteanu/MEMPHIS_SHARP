@@ -35,6 +35,8 @@ namespace MEMPHIS_SHARP
             txtSelection.Text = token.Text;
             chkEnabled.Checked = token.Enabled;
             txtSeparators.Text = token.Separators;
+
+            this.Enabled = token != null;
         }
 
         public SelectionDetails()

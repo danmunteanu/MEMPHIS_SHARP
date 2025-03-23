@@ -1,8 +1,9 @@
 ﻿using Memphis;
+using CommonForms;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class PageSelection : CommonForms.ApplicationPageBase
+    public partial class PageSelection : ApplicationPageBase
     {
         private Engine? mEngine = null;
 
@@ -18,6 +19,8 @@ namespace MEMPHIS_SHARP
         public PageSelection()
         {
             InitializeComponent();
+
+            selectionDetails.Enabled = false;
 
             graphicsPanel.SelectionChanged = this.OnSelectionChanged;
         }

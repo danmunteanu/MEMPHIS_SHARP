@@ -6,15 +6,17 @@ namespace MEMPHIS_SHARP
 {
     public partial class SectionTransforms : UserControl
     {
-        private TransformsContainer<Token>? mContainer = null;
+        private TransformsContainer<Token>? mTransformsContainer = null;
+
         private DialogSelectTransform<Token> mDlgTrans = new();
 
         public TransformsContainer<Token>? TransformsContainer
         {
-            get { return mContainer; }
+            get { return mTransformsContainer; }
             set
             {
-                mContainer = value;
+                mTransformsContainer = value;
+                
                 OnContainerSet();
             }
         }
@@ -24,6 +26,8 @@ namespace MEMPHIS_SHARP
             InitializeComponent();
 
             lstTransforms.HorizontalScrollbar = true;
+
+            //  TODO: Load Condition and Action names here
 
             UpdateUI();
         }
@@ -35,7 +39,7 @@ namespace MEMPHIS_SHARP
 
         public void UpdateUI()
         {
-            bool haveTransforms = mContainer?.Transforms.Count >= 0;
+            bool haveTransforms = mTransformsContainer?.Transforms.Count >= 0;
             bool haveSelection = lstTransforms.SelectedIndex != -1;
 
             btnAdd.Enabled = true;
@@ -56,13 +60,13 @@ namespace MEMPHIS_SHARP
 
         private void OnContainerSet()
         {
-            if (mContainer == null)
+            if (mTransformsContainer == null)
                 return;
 
             lstTransforms.Items.Clear();
 
             //  load the transforms from the container
-            foreach (var tr in mContainer.Transforms)
+            foreach (var tr in mTransformsContainer.Transforms)
             {
                 lstTransforms.Items.Add(tr.Description);
             }
@@ -77,10 +81,10 @@ namespace MEMPHIS_SHARP
             if (idx == -1)
                 return;
 
-            if (mContainer == null)
+            if (mTransformsContainer == null)
                 return;
 
-            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Edit, mContainer.GetTransformAt(idx));
+            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Edit, mTransformsContainer.GetTransformAt(idx));
             mDlgTrans.ShowDialog(this);
         }
 

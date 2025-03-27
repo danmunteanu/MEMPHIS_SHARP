@@ -4,6 +4,7 @@ using CommonForms.Components;
 using RealityFrameworks;
 using Memphis.Actions;
 using Memphis.Conditions;
+using RealityFrameworks.Conditions;
 
 namespace MEMPHIS_SHARP
 {
@@ -15,13 +16,18 @@ namespace MEMPHIS_SHARP
 
         private FilesListComponent? mFilesList = null;
 
+        private List<string> mConditionNames = new();
+        private List<string> mActionNames = new();
+
         public MainForm()
         {
             InitializeComponent();
 
             this.Text = Locale.APPLICATION_NAME;
 
+            RegisterCreators();
             SetupEngine();
+            LoadNames();
 
             SetupComponents();
 
@@ -31,6 +37,26 @@ namespace MEMPHIS_SHARP
             SetupEngine();
 
             this.CenterToParent();
+        }
+
+        private void RegisterCreators()
+        {
+            //  REGISTER CONDITION Creators
+            TokenConditionFactory.Register(typeof(ConditionAlways).Name, () => new ConditionAlways());
+            TokenConditionFactory.Register(typeof(ConditionEquals).Name, () => new ConditionEquals());
+            TokenConditionFactory.Register(typeof(ConditionIsFolder).Name, () => new ConditionIsNumeric());
+            TokenConditionFactory.Register(typeof(ConditionIsRoot).Name, () => new ConditionIsRoot(mEngine));
+
+            TokenActionFactory.Register(typeof(ActionChangeCase).Name, () => new ActionChangeCase(mEngine));
+            TokenActionFactory.Register(typeof(ActionEnableDisable).Name, () => new ActionEnableDisable(mEngine));
+            TokenActionFactory.Register(typeof(ActionInsertText).Name, () => new ActionInsertText());
+            TokenActionFactory.Register(typeof(ActionReplaceText).Name, () => new ActionReplaceText(mEngine));
+            TokenActionFactory.Register(typeof(ActionSetSeparators).Name, () => new ActionSetSeparators(mEngine));
+        }
+
+        private void LoadNames()
+        {
+
         }
 
         private void SetupComponents()

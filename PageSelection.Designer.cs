@@ -79,7 +79,7 @@
             txtOriginalName.Margin = new Padding(2);
             txtOriginalName.Name = "txtOriginalName";
             txtOriginalName.ReadOnly = true;
-            txtOriginalName.Size = new Size(917, 31);
+            txtOriginalName.Size = new Size(866, 31);
             txtOriginalName.TabIndex = 2;
             // 
             // txtRenameTo
@@ -89,7 +89,7 @@
             txtRenameTo.Margin = new Padding(2);
             txtRenameTo.Name = "txtRenameTo";
             txtRenameTo.ReadOnly = true;
-            txtRenameTo.Size = new Size(917, 31);
+            txtRenameTo.Size = new Size(866, 31);
             txtRenameTo.TabIndex = 3;
             // 
             // tableLayoutMain
@@ -115,13 +115,13 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutMain.Size = new Size(1294, 147);
+            tableLayoutMain.Size = new Size(1243, 147);
             tableLayoutMain.TabIndex = 4;
             // 
             // btnRename
             // 
             btnRename.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnRename.Location = new Point(1073, 76);
+            btnRename.Location = new Point(1022, 76);
             btnRename.Margin = new Padding(2);
             btnRename.Name = "btnRename";
             btnRename.Size = new Size(171, 38);
@@ -132,7 +132,7 @@
             // txtSeparators
             // 
             txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtSeparators.Location = new Point(1073, 29);
+            txtSeparators.Location = new Point(1022, 29);
             txtSeparators.Margin = new Padding(2);
             txtSeparators.Name = "txtSeparators";
             txtSeparators.Size = new Size(171, 31);
@@ -142,7 +142,7 @@
             // 
             lblDefaultSepar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblDefaultSepar.AutoSize = true;
-            lblDefaultSepar.Location = new Point(1073, 0);
+            lblDefaultSepar.Location = new Point(1022, 0);
             lblDefaultSepar.Margin = new Padding(2, 0, 2, 0);
             lblDefaultSepar.Name = "lblDefaultSepar";
             lblDefaultSepar.Size = new Size(159, 20);
@@ -168,7 +168,7 @@
             graphicsPanel.Name = "graphicsPanel";
             graphicsPanel.RootToken = null;
             graphicsPanel.SelectionChanged = null;
-            graphicsPanel.Size = new Size(1294, 197);
+            graphicsPanel.Size = new Size(1243, 197);
             graphicsPanel.TabIndex = 5;
             // 
             // compTransforms
@@ -176,7 +176,7 @@
             compTransforms.Dock = DockStyle.Fill;
             compTransforms.Location = new Point(3, 3);
             compTransforms.Name = "compTransforms";
-            compTransforms.Size = new Size(312, 902);
+            compTransforms.Size = new Size(363, 902);
             compTransforms.TabIndex = 6;
             compTransforms.TransformsContainer = null;
             // 
@@ -191,7 +191,7 @@
             tableLayoutBottom.Name = "tableLayoutBottom";
             tableLayoutBottom.RowCount = 1;
             tableLayoutBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutBottom.Size = new Size(1292, 194);
+            tableLayoutBottom.Size = new Size(1241, 194);
             tableLayoutBottom.TabIndex = 7;
             // 
             // tableLayoutRight
@@ -200,12 +200,12 @@
             tableLayoutRight.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutRight.Controls.Add(compTransforms, 0, 0);
             tableLayoutRight.Dock = DockStyle.Fill;
-            tableLayoutRight.Location = new Point(1307, 3);
+            tableLayoutRight.Location = new Point(1256, 3);
             tableLayoutRight.Name = "tableLayoutRight";
             tableLayoutRight.RowCount = 1;
             tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutRight.Size = new Size(318, 908);
+            tableLayoutRight.Size = new Size(369, 908);
             tableLayoutRight.TabIndex = 8;
             // 
             // tableLayoutLeft
@@ -223,14 +223,14 @@
             tableLayoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 201F));
             tableLayoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutLeft.Size = new Size(1298, 908);
+            tableLayoutLeft.Size = new Size(1247, 908);
             tableLayoutLeft.TabIndex = 9;
             // 
             // tableLayoutAll
             // 
             tableLayoutAll.ColumnCount = 2;
             tableLayoutAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutAll.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 324F));
+            tableLayoutAll.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 375F));
             tableLayoutAll.Controls.Add(tableLayoutRight, 1, 0);
             tableLayoutAll.Controls.Add(tableLayoutLeft, 0, 0);
             tableLayoutAll.Dock = DockStyle.Fill;
@@ -238,7 +238,6 @@
             tableLayoutAll.Name = "tableLayoutAll";
             tableLayoutAll.RowCount = 1;
             tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutAll.Size = new Size(1628, 914);
             tableLayoutAll.TabIndex = 10;
             // 

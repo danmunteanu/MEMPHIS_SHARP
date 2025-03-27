@@ -61,7 +61,9 @@ namespace MEMPHIS_SHARP
         private void OnFileSelected(string fullFilePath)
         {
             if (string.IsNullOrEmpty(fullFilePath))
+            {
                 return;
+            }
 
             string fileName = Path.GetFileName(fullFilePath);
             txtOriginalName.Text = fileName;

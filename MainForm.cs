@@ -16,9 +16,6 @@ namespace MEMPHIS_SHARP
 
         private FilesListComponent? mFilesList = null;
 
-        private List<string> mConditionNames = new();
-        private List<string> mActionNames = new();
-
         public MainForm()
         {
             InitializeComponent();
@@ -27,7 +24,6 @@ namespace MEMPHIS_SHARP
 
             RegisterCreators();
             SetupEngine();
-            LoadNames();
 
             SetupComponents();
 
@@ -52,11 +48,6 @@ namespace MEMPHIS_SHARP
             TokenActionFactory.Register(typeof(ActionInsertText).Name, () => new ActionInsertText());
             TokenActionFactory.Register(typeof(ActionReplaceText).Name, () => new ActionReplaceText(mEngine));
             TokenActionFactory.Register(typeof(ActionSetSeparators).Name, () => new ActionSetSeparators(mEngine));
-        }
-
-        private void LoadNames()
-        {
-
         }
 
         private void SetupComponents()

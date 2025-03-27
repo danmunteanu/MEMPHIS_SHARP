@@ -27,8 +27,7 @@ namespace MEMPHIS_SHARP
 
             lstTransforms.HorizontalScrollbar = true;
 
-            //  TODO: Load Condition and Action names here
-
+            
             UpdateUI();
         }
 
@@ -71,7 +70,27 @@ namespace MEMPHIS_SHARP
                 lstTransforms.Items.Add(tr.Description);
             }
 
+            LoadNames();
+
             UpdateUI();
+        }
+
+        public void LoadNames()
+        {
+            //  LOAD NAMES
+            List<string> mConditionNames = new();
+            List<string> mActionNames = new();
+
+            // Load Condition names
+            for (int idx = 0; idx < TokenConditionFactory.Count; ++idx)
+                mConditionNames.Add(TokenConditionFactory.GetNameAt(idx));
+
+            // Load Action names
+            for (int idx = 0; idx < TokenActionFactory.Count; ++idx)
+                mActionNames.Add(TokenActionFactory.GetNameAt(idx));
+
+            mDlgTrans.LoadConditionNames(mConditionNames);
+            mDlgTrans.LoadActionNames(mActionNames);
         }
 
         private void OnEditClick()

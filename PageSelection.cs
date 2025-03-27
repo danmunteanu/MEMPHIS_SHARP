@@ -1,5 +1,7 @@
 ﻿using Memphis;
 using CommonForms;
+using Memphis.Actions;
+using RealityFrameworks;
 
 namespace MEMPHIS_SHARP
 {
@@ -20,9 +22,18 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
-            selectionDetails.Enabled = false;
+            UpdateUI();
 
             graphicsPanel.SelectionChanged = this.OnSelectionChanged;
+        }
+
+        public override void UpdateUI()
+        {
+            bool haveSelection = mEngine?.MasterToken != null;
+            
+            btnRename.Enabled = haveSelection;
+            selectionDetails.Enabled = haveSelection;
+            txtSeparators.Enabled = haveSelection;
         }
 
         private void OnEngineSet()
@@ -30,10 +41,17 @@ namespace MEMPHIS_SHARP
             if (mEngine == null)
                 return;
 
+            //  pass the engine reference to all components
+            compTransforms.TransformsContainer = mEngine;
             graphicsPanel.Engine = mEngine;
 
             //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
+
+            var t = new Transform<Token>(null, new ActionInsertText());
+            mEngine.AddTransform(t);
+
+            compTransforms.Reload();
         }
 
         protected override void OnFilesListSet()
@@ -61,6 +79,8 @@ namespace MEMPHIS_SHARP
             graphicsPanel.RootToken = mEngine.MasterToken;
 
             txtRenameTo.Text = mEngine.RenameTo;
+
+            UpdateUI();
         }
 
         private void OnSelectionChanged()
@@ -70,6 +90,8 @@ namespace MEMPHIS_SHARP
 
             //  setting the token loads selection details
             selectionDetails.Token = mEngine.SelectedSubtoken;
+
+            UpdateUI();
         }
 
         private void btnRename_Click(object sender, EventArgs e)

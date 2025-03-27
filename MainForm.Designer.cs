@@ -34,10 +34,7 @@
             pageSelection = new PageSelection();
             panelList = new Panel();
             tableLayoutMain = new TableLayoutPanel();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            compTransforms = new ListTransforms();
             tableLayoutMain.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // filesListComponent1
@@ -77,11 +74,11 @@
             pageSelection.Dock = DockStyle.Fill;
             pageSelection.Engine = null;
             pageSelection.FilesList = null;
-            pageSelection.Location = new Point(465, 2);
+            pageSelection.Location = new Point(403, 2);
             pageSelection.Margin = new Padding(2);
             pageSelection.Name = "pageSelection";
             pageSelection.Processor = null;
-            pageSelection.Size = new Size(769, 745);
+            pageSelection.Size = new Size(1199, 835);
             pageSelection.TabIndex = 1;
             pageSelection.UpdateStatusCallback = null;
             // 
@@ -91,59 +88,34 @@
             panelList.Location = new Point(2, 2);
             panelList.Margin = new Padding(2);
             panelList.Name = "panelList";
-            panelList.Size = new Size(459, 745);
+            panelList.Size = new Size(397, 835);
             panelList.TabIndex = 0;
             // 
             // tableLayoutMain
             // 
-            tableLayoutMain.ColumnCount = 3;
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutMain.ColumnCount = 2;
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
             tableLayoutMain.Controls.Add(panelList, 0, 0);
             tableLayoutMain.Controls.Add(pageSelection, 1, 0);
-            tableLayoutMain.Controls.Add(tableLayoutPanel1, 2, 0);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 1;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Size = new Size(1546, 749);
+            tableLayoutMain.Size = new Size(1604, 839);
             tableLayoutMain.TabIndex = 2;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(compTransforms, 0, 1);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(1239, 3);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(304, 743);
-            tableLayoutPanel1.TabIndex = 2;
-            // 
-            // listTransforms1
-            // 
-            compTransforms.Location = new Point(3, 53);
-            compTransforms.Name = "listTransforms1";
-            compTransforms.Size = new Size(298, 315);
-            compTransforms.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1546, 749);
+            ClientSize = new Size(1604, 839);
             Controls.Add(tableLayoutMain);
             Margin = new Padding(2);
             Name = "MainForm";
             Text = "MEMPHIS (Sharp)";
             tableLayoutMain.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -152,7 +124,5 @@
         private PageSelection pageSelection;
         private Panel panelList;
         private TableLayoutPanel tableLayoutMain;
-        private TableLayoutPanel tableLayoutPanel1;
-        private ListTransforms compTransforms;
     }
 }

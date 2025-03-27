@@ -3,7 +3,6 @@ using CommonForms;
 using CommonForms.Components;
 using RealityFrameworks;
 using Memphis.Actions;
-using RealityFrameworks.Conditions;
 
 namespace MEMPHIS_SHARP
 {
@@ -45,7 +44,8 @@ namespace MEMPHIS_SHARP
                     UseProgressBar = false,
                     TopLabel = Locale.LIST_TOP_LABEL,
                     TopLineHeight = 60,
-                    BottomLineHeight = 60
+                    BottomLineHeight = 60,
+                    ParseSubfolders = true,
                 },
                 FileFilters = Utils.AudioFileExtensions.ToList()
             };
@@ -67,12 +67,7 @@ namespace MEMPHIS_SHARP
         {
             //mEngine.ApplyTransformsToToken(null);
 
-            var t = new Transform<Token>(null, new ActionInsertText());
 
-            mEngine.AddTransform(t);
-
-            compTransforms.TransformsContainer = mEngine;
-            compTransforms.Reload();
 
             //  Upcase all words
             //mEngine.AddTransform(

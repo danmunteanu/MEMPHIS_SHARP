@@ -38,7 +38,7 @@
             lblDefaultSepar = new Label();
             selectionDetails = new SelectionDetails();
             graphicsPanel = new Memphis.GraphicsScene();
-            compTransforms = new ListTransforms();
+            compTransforms = new ComponentListTransforms();
             tableLayoutBottom = new TableLayoutPanel();
             tableLayoutRight = new TableLayoutPanel();
             tableLayoutLeft = new TableLayoutPanel();
@@ -176,7 +176,7 @@
             compTransforms.Dock = DockStyle.Fill;
             compTransforms.Location = new Point(3, 3);
             compTransforms.Name = "compTransforms";
-            compTransforms.Size = new Size(312, 448);
+            compTransforms.Size = new Size(312, 902);
             compTransforms.TabIndex = 6;
             compTransforms.TransformsContainer = null;
             // 
@@ -202,9 +202,9 @@
             tableLayoutRight.Dock = DockStyle.Fill;
             tableLayoutRight.Location = new Point(1307, 3);
             tableLayoutRight.Name = "tableLayoutRight";
-            tableLayoutRight.RowCount = 2;
-            tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutRight.RowCount = 1;
+            tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutRight.Size = new Size(318, 908);
             tableLayoutRight.TabIndex = 8;
             // 
@@ -271,7 +271,7 @@
         private TextBox txtSeparators;
         private Label lblDefaultSepar;
         private SelectionDetails selectionDetails;
-        private ListTransforms compTransforms;
+        private ComponentListTransforms compTransforms;
         private TableLayoutPanel tableLayoutBottom;
         private TableLayoutPanel tableLayoutRight;
         private TableLayoutPanel tableLayoutLeft;

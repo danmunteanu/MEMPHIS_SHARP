@@ -1,6 +1,6 @@
 ﻿namespace MEMPHIS_SHARP
 {
-    partial class ListTransforms
+    partial class ComponentListTransforms
     {
         /// <summary> 
         /// Required designer variable.
@@ -36,8 +36,8 @@
             btnAdd = new Button();
             btnUp = new Button();
             btnClear = new Button();
-            btnRem = new Button();
             btnEdit = new Button();
+            btnRem = new Button();
             tableLayoutTransforms.SuspendLayout();
             tableLayoutPanelButtons.SuspendLayout();
             SuspendLayout();
@@ -78,6 +78,8 @@
             lstTransforms.Name = "lstTransforms";
             lstTransforms.Size = new Size(512, 459);
             lstTransforms.TabIndex = 1;
+            lstTransforms.SelectedIndexChanged += lstTransforms_SelectedIndexChanged;
+            lstTransforms.DoubleClick += lstTransforms_DoubleClick;
             // 
             // tableLayoutPanelButtons
             // 
@@ -147,17 +149,6 @@
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
-            // btnRem
-            // 
-            btnRem.Dock = DockStyle.Fill;
-            btnRem.Location = new Point(48, 3);
-            btnRem.Name = "btnRem";
-            btnRem.Size = new Size(39, 43);
-            btnRem.TabIndex = 1;
-            btnRem.Text = "━";
-            btnRem.UseVisualStyleBackColor = true;
-            btnRem.Click += btnRem_Click;
-            // 
             // btnEdit
             // 
             btnEdit.Dock = DockStyle.Fill;
@@ -169,12 +160,23 @@
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             // 
-            // ListTransforms
+            // btnRem
+            // 
+            btnRem.Dock = DockStyle.Fill;
+            btnRem.Location = new Point(48, 3);
+            btnRem.Name = "btnRem";
+            btnRem.Size = new Size(39, 43);
+            btnRem.TabIndex = 1;
+            btnRem.Text = "━";
+            btnRem.UseVisualStyleBackColor = true;
+            btnRem.Click += btnRem_Click;
+            // 
+            // ComponentListTransforms
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutTransforms);
-            Name = "ListTransforms";
+            Name = "ComponentListTransforms";
             Size = new Size(518, 565);
             tableLayoutTransforms.ResumeLayout(false);
             tableLayoutTransforms.PerformLayout();

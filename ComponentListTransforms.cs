@@ -1,22 +1,24 @@
-﻿using Memphis;
-using SharpCompress;
+﻿using CommonForms.Components;
+using Memphis;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class ListTransforms : UserControl
+    public partial class ComponentListTransforms : UserControl
     {
-        TransformsContainer? mContainer = null;
+        private TransformsContainer? mContainer = null;
+        private DialogSelectTransform mDlgTrans = new();
 
         public TransformsContainer? TransformsContainer
         {
             get { return mContainer; }
-            set { 
+            set
+            {
                 mContainer = value;
                 OnContainerSet();
             }
         }
 
-        public ListTransforms()
+        public ComponentListTransforms()
         {
             InitializeComponent();
 
@@ -70,6 +72,8 @@ namespace MEMPHIS_SHARP
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //  Display add transform dialog
+            mDlgTrans.LoadState(DialogSelectTransform.EditorState.Add);
+            mDlgTrans.ShowDialog(this);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -95,6 +99,19 @@ namespace MEMPHIS_SHARP
         private void btnClear_Click(object sender, EventArgs e)
         {
             //  Clear all
+        }
+
+        private void lstTransforms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void lstTransforms_DoubleClick(object sender, EventArgs e)
+        {
+            //  Display add transform dialog
+            
+            mDlgTrans.LoadState(DialogSelectTransform.EditorState.Edit);
+            mDlgTrans.ShowDialog(this);
         }
     }
 }

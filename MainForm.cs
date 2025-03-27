@@ -2,6 +2,8 @@ using Memphis;
 using CommonForms;
 using CommonForms.Components;
 using RealityFrameworks;
+using Memphis.Actions;
+using RealityFrameworks.Conditions;
 
 namespace MEMPHIS_SHARP
 {
@@ -23,6 +25,8 @@ namespace MEMPHIS_SHARP
 
             mEngine.AddStringToRemove("(Hydr0.org)");
             mEngine.AddStringToRemove("(by.NecKerM4nn)");
+
+            CreateDefaultTransforms();
 
             this.CenterToParent();
         }
@@ -57,6 +61,32 @@ namespace MEMPHIS_SHARP
         public void Notify()
         {
             //  engine has changed - reload
+        }
+
+        public void CreateDefaultTransforms()
+        {
+            //mEngine.ApplyTransformsToToken(null);
+
+            var t = new Transform<Token>(null, new ActionInsertText());
+
+            mEngine.AddTransform(t);
+
+            compTransforms.TransformsContainer = mEngine;
+            compTransforms.Reload();
+
+            //  Upcase all words
+            //mEngine.AddTransform(
+            //new ConditionAlways(),
+            //new ActionChangeCase(mEngine, true, false, true)
+            //);
+
+            //  Discard numeric tokens
+
+            //  lowcase extensions
+
+            //  upcase several strings
+
+            //  add dot after various tokens
         }
 
     }

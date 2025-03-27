@@ -6,7 +6,7 @@ namespace MEMPHIS_SHARP
     public partial class ComponentListTransforms : UserControl
     {
         private TransformsContainer? mContainer = null;
-        private DialogSelectTransform mDlgTrans = new();
+        private DialogSelectTransform<Token> mDlgTrans = new();
 
         public TransformsContainer? TransformsContainer
         {
@@ -72,7 +72,7 @@ namespace MEMPHIS_SHARP
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //  Display add transform dialog
-            mDlgTrans.LoadState(DialogSelectTransform.EditorState.Add);
+            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Add);
             mDlgTrans.ShowDialog(this);
         }
 
@@ -110,7 +110,7 @@ namespace MEMPHIS_SHARP
         {
             //  Display add transform dialog
             
-            mDlgTrans.LoadState(DialogSelectTransform.EditorState.Edit);
+            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Edit);
             mDlgTrans.ShowDialog(this);
         }
     }

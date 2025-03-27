@@ -48,11 +48,6 @@ namespace MEMPHIS_SHARP
 
             //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
-
-            var t = new Transform<Token>(new ConditionAlways(), new ActionInsertText());
-            mEngine.AddTransform(t);
-
-            compTransforms.Reload();
         }
 
         protected override void OnFilesListSet()

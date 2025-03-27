@@ -3,6 +3,7 @@ using CommonForms;
 using CommonForms.Components;
 using RealityFrameworks;
 using Memphis.Actions;
+using Memphis.Conditions;
 
 namespace MEMPHIS_SHARP
 {
@@ -20,12 +21,14 @@ namespace MEMPHIS_SHARP
 
             this.Text = Locale.APPLICATION_NAME;
 
+            SetupEngine();
+
             SetupComponents();
 
             mEngine.AddStringToRemove("(Hydr0.org)");
             mEngine.AddStringToRemove("(by.NecKerM4nn)");
 
-            CreateDefaultTransforms();
+            SetupEngine();
 
             this.CenterToParent();
         }
@@ -63,8 +66,17 @@ namespace MEMPHIS_SHARP
             //  engine has changed - reload
         }
 
-        public void CreateDefaultTransforms()
+        public void SetupEngine()
         {
+            Transform<Token> t = new (new ConditionAlways(), new ActionInsertText());
+            mEngine.AddTransform(t);
+
+            t = new(new ConditionAlways(), new ActionChangeCase(mEngine, true, false, true));
+            mEngine.AddTransform(t);
+
+            t = new(new ConditionAlways(), new ActionEnableDisable(mEngine, true));
+            mEngine.AddTransform(t);
+
             //mEngine.ApplyTransformsToToken(null);
 
 

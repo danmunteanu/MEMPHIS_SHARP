@@ -38,7 +38,7 @@
             lblDefaultSepar = new Label();
             selectionDetails = new SelectionDetails();
             graphicsPanel = new Memphis.GraphicsScene();
-            compTransforms = new ComponentListTransforms();
+            compTransforms = new SectionTransforms();
             tableLayoutBottom = new TableLayoutPanel();
             tableLayoutRight = new TableLayoutPanel();
             tableLayoutLeft = new TableLayoutPanel();
@@ -271,7 +271,7 @@
         private TextBox txtSeparators;
         private Label lblDefaultSepar;
         private SelectionDetails selectionDetails;
-        private ComponentListTransforms compTransforms;
+        private SectionTransforms compTransforms;
         private TableLayoutPanel tableLayoutBottom;
         private TableLayoutPanel tableLayoutRight;
         private TableLayoutPanel tableLayoutLeft;

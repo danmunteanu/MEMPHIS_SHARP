@@ -8,7 +8,7 @@ namespace Memphis
         const int KInterTokenHorizontalSpace = 20;
         const int KInterTokenVerticalSpace = 35;
 
-        public Engine? Engine { get; set; } = null;
+        public MemphisEngine? Engine { get; set; } = null;
 
         public delegate void Callback_SelectionChanged();
         public Callback_SelectionChanged? SelectionChanged { get; set; } = null;

@@ -1,6 +1,6 @@
 ﻿namespace MEMPHIS_SHARP
 {
-    partial class ComponentListTransforms
+    partial class SectionTransforms
     {
         /// <summary> 
         /// Required designer variable.
@@ -83,20 +83,21 @@
             // 
             // tableLayoutPanelButtons
             // 
-            tableLayoutPanelButtons.ColumnCount = 7;
+            tableLayoutPanelButtons.ColumnCount = 8;
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
-            tableLayoutPanelButtons.Controls.Add(btnDown, 4, 0);
+            tableLayoutPanelButtons.Controls.Add(btnDown, 5, 0);
             tableLayoutPanelButtons.Controls.Add(btnAdd, 0, 0);
-            tableLayoutPanelButtons.Controls.Add(btnUp, 3, 0);
-            tableLayoutPanelButtons.Controls.Add(btnClear, 6, 0);
-            tableLayoutPanelButtons.Controls.Add(btnEdit, 2, 0);
-            tableLayoutPanelButtons.Controls.Add(btnRem, 1, 0);
+            tableLayoutPanelButtons.Controls.Add(btnUp, 4, 0);
+            tableLayoutPanelButtons.Controls.Add(btnClear, 7, 0);
+            tableLayoutPanelButtons.Controls.Add(btnRem, 2, 0);
+            tableLayoutPanelButtons.Controls.Add(btnEdit, 1, 0);
             tableLayoutPanelButtons.Dock = DockStyle.Fill;
             tableLayoutPanelButtons.Location = new Point(3, 513);
             tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
@@ -108,7 +109,7 @@
             // btnDown
             // 
             btnDown.Dock = DockStyle.Fill;
-            btnDown.Location = new Point(183, 3);
+            btnDown.Location = new Point(203, 3);
             btnDown.Name = "btnDown";
             btnDown.Size = new Size(39, 43);
             btnDown.TabIndex = 4;
@@ -130,7 +131,7 @@
             // btnUp
             // 
             btnUp.Dock = DockStyle.Fill;
-            btnUp.Location = new Point(138, 3);
+            btnUp.Location = new Point(158, 3);
             btnUp.Name = "btnUp";
             btnUp.Size = new Size(39, 43);
             btnUp.TabIndex = 2;
@@ -151,8 +152,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Dock = DockStyle.Fill;
-            btnEdit.Location = new Point(93, 3);
+            btnEdit.Location = new Point(48, 3);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(39, 43);
             btnEdit.TabIndex = 5;
@@ -163,7 +163,7 @@
             // btnRem
             // 
             btnRem.Dock = DockStyle.Fill;
-            btnRem.Location = new Point(48, 3);
+            btnRem.Location = new Point(93, 3);
             btnRem.Name = "btnRem";
             btnRem.Size = new Size(39, 43);
             btnRem.TabIndex = 1;

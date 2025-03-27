@@ -8,7 +8,7 @@ namespace MEMPHIS_SHARP
 {
     public partial class MainForm : Form, IEngineObserver
     {
-        private Engine mEngine = new();
+        private MemphisEngine mEngine = new();
 
         private FilesProcessor? mProcessor = new();
 

@@ -2,15 +2,15 @@
 using CommonForms;
 using Memphis.Actions;
 using RealityFrameworks;
-using CommonForms.Components;
+using Memphis.Conditions;
 
 namespace MEMPHIS_SHARP
 {
     public partial class PageSelection : ApplicationPageBase
     {
-        private Engine? mEngine = null;
+        private MemphisEngine? mEngine = null;
                 
-        public Engine? Engine {
+        public MemphisEngine? Engine {
             get => mEngine;
             set
             {
@@ -49,7 +49,7 @@ namespace MEMPHIS_SHARP
             //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
 
-            var t = new Transform<Token>(null, new ActionInsertText());
+            var t = new Transform<Token>(new ConditionAlways(), new ActionInsertText());
             mEngine.AddTransform(t);
 
             compTransforms.Reload();

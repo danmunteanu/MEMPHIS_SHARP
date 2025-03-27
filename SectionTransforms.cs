@@ -1,14 +1,15 @@
 ﻿using CommonForms.Components;
 using Memphis;
+using RealityFrameworks;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class ComponentListTransforms : UserControl
+    public partial class SectionTransforms : UserControl
     {
-        private TransformsContainer? mContainer = null;
+        private TransformsContainer<Token>? mContainer = null;
         private DialogSelectTransform<Token> mDlgTrans = new();
 
-        public TransformsContainer? TransformsContainer
+        public TransformsContainer<Token>? TransformsContainer
         {
             get { return mContainer; }
             set
@@ -18,7 +19,7 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        public ComponentListTransforms()
+        public SectionTransforms()
         {
             InitializeComponent();
 
@@ -60,6 +61,7 @@ namespace MEMPHIS_SHARP
 
             lstTransforms.Items.Clear();
 
+            //  load the transforms from the container
             foreach (var tr in mContainer.Transforms)
             {
                 lstTransforms.Items.Add(tr.Description);
@@ -68,6 +70,19 @@ namespace MEMPHIS_SHARP
             UpdateUI();
         }
 
+        private void OnEditClick()
+        {
+            int idx = lstTransforms.SelectedIndex;
+
+            if (idx == -1)
+                return;
+
+            if (mContainer == null)
+                return;
+
+            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Edit, mContainer.GetTransformAt(idx));
+            mDlgTrans.ShowDialog(this);
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -78,7 +93,7 @@ namespace MEMPHIS_SHARP
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //  Display edit transform dialog
+            OnEditClick();
         }
 
         private void btnRem_Click(object sender, EventArgs e)
@@ -109,9 +124,8 @@ namespace MEMPHIS_SHARP
         private void lstTransforms_DoubleClick(object sender, EventArgs e)
         {
             //  Display add transform dialog
-            
-            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Edit);
-            mDlgTrans.ShowDialog(this);
+
+            OnEditClick();
         }
     }
 }

@@ -1,3 +1,5 @@
+using Memphis;
+
 namespace Memphis
 {
     using TokenRectangleTuple = (Rectangle rect, Token token, Color color);
@@ -14,6 +16,7 @@ namespace Memphis
         public Callback_SelectionChanged? SelectionChanged { get; set; } = null;
 
         private Panel mDrawingPanel;
+        private Panel mScrollContainer;
 
         private List<TokenRectangleTuple> mRectangles = new();
         private int mSelectedIndex = -1;
@@ -28,6 +31,9 @@ namespace Memphis
         
         private Color SelectionColor { get; set; } = Color.GreenYellow;
 
+        private int mTotalWidth = 0;
+        private int mTotalHeight = 0;
+
         public Token? RootToken
         {
             get { return mRootToken; }
@@ -40,19 +46,32 @@ namespace Memphis
 
         public GraphicsScene()
         {
-            // Setup Panel
-            mDrawingPanel = new Panel
+            // Setup Scroll Container
+            mScrollContainer = new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = Color.White
+                AutoScroll = true
             };
-            this.Controls.Add(mDrawingPanel);
+            this.Controls.Add(mScrollContainer);
+
+            // Setup Drawing Panel
+            mDrawingPanel = new Panel
+            {
+                BackColor = Color.White,
+                AutoSize = true
+            };
+            mScrollContainer.Controls.Add(mDrawingPanel);
 
             // Event Handlers
             mDrawingPanel.Paint += DrawingPanel_Paint;
             mDrawingPanel.MouseClick += DrawingPanel_MouseClick;
 
             UpdateScene();
+        }
+
+        private void ScrollBar_Scroll(object? sender, ScrollEventArgs e)
+        {
+            mDrawingPanel.Invalidate();
         }
 
         private void UpdateScene()
@@ -64,63 +83,98 @@ namespace Memphis
             mRectangles.Clear();
             int x = 25;
             int y = 50;
-            for (int idx = 0; idx < mRootToken.Subtokens.Count; idx++) 
-            {
-                Token token = mRootToken.Subtokens.ElementAt(idx);
-                mRectangles.Add(
-                    new TokenRectangleTuple(new Rectangle(x, y, 120, 50),
-                    token,
-                    NormalColor)
-                );
-                x += 100;
-            }
-
-            mDrawingPanel.Invalidate();
-
-            SelectionChanged?.Invoke();
-        }
-
-        private void ReconstructScene()
-        {
-            mRectangles.Clear();
-
-            //  add the [Select A File] text to the scene
-
-            int x = 0;
-            int y = 0;
             int w = 0;
             int h = 0;
 
-            Graphics g = mDrawingPanel.CreateGraphics();
-            ConstructScene(g, Engine?.MasterToken, ref x, ref y, ref w, ref h);
+            ConstructScene(mRootToken, ref x, ref y, ref w, ref h);
+
+            // Update total dimensions
+            mTotalWidth = w + 50; // Add padding
+            mTotalHeight = h + 50; // Add padding
+
+            // Update drawing panel size
+            mDrawingPanel.Size = new Size(mTotalWidth, mTotalHeight);
+
+            mDrawingPanel.Invalidate();
+            CallUpdateSelection();
         }
 
-        private void ConstructScene(Graphics g, Token? token, 
+        private void ConstructScene(Token token, 
             ref int orig_x_offset, ref int orig_y_offset, ref int width, ref int height)
         {
             if (Engine == null)
                 return;
 
-            if (token == null)
-                return;
-
             bool select = (Engine.SelectedSubtoken == token);
+            Color tokenColor = select ? SelectionColor : NormalColor;
 
             if (token.Subtokens.Count == 0)
             {
                 //  construct the rectangle for the subtoken
-                Rectangle rect = new();
-                rect.X = orig_x_offset;
-                rect.Y = orig_y_offset;
-
-                mRectangles.Add(new TokenRectangleTuple(rect, token, NormalColor));
+                Rectangle rect = new Rectangle(orig_x_offset, orig_y_offset, 120, 50);
+                mRectangles.Add(new TokenRectangleTuple(rect, token, tokenColor));
 
                 width = rect.Width;
                 height = rect.Height;
-            } else
+            }
+            else
             {
-                //  create group 
+                //  construct group widget
+                Rectangle groupRect = new Rectangle(orig_x_offset, orig_y_offset, 120, 50);
+                mRectangles.Add(new TokenRectangleTuple(groupRect, token, tokenColor));
 
+                //  local version
+                int x_offset = orig_x_offset;
+                int y_offset = orig_y_offset + groupRect.Height + KInterTokenVerticalSpace;
+                int subtoken_width = 0;
+                int subtoken_height = 0;
+
+                int group_width = 0;
+                int max_height = 0;
+
+                //  store positions for connector lines
+                Point first_subtoken_pos = new Point();
+                Point last_subtoken_pos = new Point();
+
+                //  iterate subtokens
+                for (int i = 0; i < token.Subtokens.Count; i++)
+                {
+                    Token subtoken = token.Subtokens.ElementAt(i);
+                    ConstructScene(subtoken, ref x_offset, ref y_offset, ref subtoken_width, ref subtoken_height);
+
+                    //  store first subtoken's pos for connector line
+                    if (i == 0)
+                    {
+                        first_subtoken_pos.X = x_offset + subtoken_width / 2;
+                        first_subtoken_pos.Y = y_offset - KInterTokenVerticalSpace / 2;
+                    }
+
+                    //  store last subtoken's pos for connector line
+                    if (i == token.Subtokens.Count - 1)
+                    {
+                        last_subtoken_pos.X = x_offset + subtoken_width / 2;
+                        last_subtoken_pos.Y = y_offset - KInterTokenVerticalSpace / 2;
+                    }
+
+                    //  prepare X for next subtoken
+                    x_offset += subtoken_width + KInterTokenHorizontalSpace;
+
+                    group_width += subtoken_width + KInterTokenHorizontalSpace;
+                    if (max_height < subtoken_height)
+                        max_height = subtoken_height;
+                }
+
+                //  added 1 extra inter token space, subtract it if group width is positive
+                if (group_width != 0)
+                    group_width -= KInterTokenHorizontalSpace;
+
+                //  feedback group dimensions
+                width = Math.Max(group_width, groupRect.Width);    //  pick the largest width
+                height = groupRect.Height + KInterTokenVerticalSpace + max_height;
+
+                //  center the group
+                groupRect.X = orig_x_offset + width / 2 - groupRect.Width / 2;
+                mRectangles[mRectangles.Count - 1] = new TokenRectangleTuple(groupRect, token, tokenColor);
             }
         }
 
@@ -132,13 +186,6 @@ namespace Memphis
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            // Draw connections (lines between rectangles)
-            //using (Pen linePen = new Pen(Color.Black, 2))
-            //{
-            //    g.DrawLine(linePen, GetCenter(mRectangles[0].rect), GetCenter(mRectangles[1].rect));
-            //    g.DrawLine(linePen, GetCenter(mRectangles[1].rect), GetCenter(mRectangles[2].rect));
-            //}
-
             // Draw rectangles with text
             foreach (var item in mRectangles)
             {
@@ -149,6 +196,48 @@ namespace Memphis
                 
                 g.DrawRectangle(new Pen(BorderColor), item.rect);
                 g.DrawString(item.token.Text, mFont, Brushes.Black, item.rect.Location);
+            }
+
+            // Draw connecting lines between tokens
+            using (Pen linePen = new Pen(Color.Black, 2))
+            {
+                for (int i = 0; i < mRectangles.Count; i++)
+                {
+                    var current = mRectangles[i];
+                    if (current.token.Subtokens.Count > 0)
+                    {
+                        // Draw vertical line down from parent
+                        Point parentBottom = new Point(
+                            current.rect.X + current.rect.Width / 2,
+                            current.rect.Y + current.rect.Height
+                        );
+                        Point parentBottomEnd = new Point(
+                            parentBottom.X,
+                            parentBottom.Y + KInterTokenVerticalSpace / 2
+                        );
+                        g.DrawLine(linePen, parentBottom, parentBottomEnd);
+
+                        // Draw horizontal line connecting children
+                        if (current.token.Subtokens.Count > 1)
+                        {
+                            var firstChild = mRectangles.FirstOrDefault(r => r.token == current.token.Subtokens.First());
+                            var lastChild = mRectangles.FirstOrDefault(r => r.token == current.token.Subtokens.Last());
+                            
+                            if (firstChild != default && lastChild != default)
+                            {
+                                Point lineStart = new Point(
+                                    firstChild.rect.X + firstChild.rect.Width / 2,
+                                    firstChild.rect.Y - KInterTokenVerticalSpace / 2
+                                );
+                                Point lineEnd = new Point(
+                                    lastChild.rect.X + lastChild.rect.Width / 2,
+                                    lastChild.rect.Y - KInterTokenVerticalSpace / 2
+                                );
+                                g.DrawLine(linePen, lineStart, lineEnd);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -182,12 +271,18 @@ namespace Memphis
                     //  update selected index
                     mSelectedIndex = i;
 
-                    SelectionChanged?.Invoke();
+                    CallUpdateSelection();
 
                     mDrawingPanel.Invalidate(); // Redraw the panel
                     break;
                 }
             }
+        }
+
+        private void CallUpdateSelection()
+        {
+            if (SelectionChanged != null)
+                SelectionChanged();
         }
 
     }

@@ -25,12 +25,12 @@ namespace MEMPHIS_SHARP
 
             UpdateUI();
 
-            graphicsPanel.SelectionChanged = this.OnSelectionChanged;
+            //graphicsPanel.SelectionChanged = this.OnSelectionChanged;
         }
 
         public override void UpdateUI()
         {
-            bool haveSelection = mEngine?.MasterToken != null;
+            bool haveSelection = mEngine?.RootToken != null;
             
             btnRename.Enabled = haveSelection;
             selectionDetails.Enabled = haveSelection;
@@ -44,7 +44,9 @@ namespace MEMPHIS_SHARP
 
             //  pass the engine reference to all components
             compTransforms.TransformsContainer = mEngine;
-            graphicsPanel.Engine = mEngine;
+            //graphicsPanel.Engine = mEngine;
+
+            scenePainter.Engine = mEngine;
 
             //  load settings from Engine
             txtSeparators.Text = mEngine.DefaultSeparators;
@@ -74,7 +76,7 @@ namespace MEMPHIS_SHARP
             //  create & split master token
             mEngine.SelectMasterToken(fileName);
 
-            graphicsPanel.RootToken = mEngine.MasterToken;
+            scenePainter.Engine = mEngine;
 
             txtRenameTo.Text = mEngine.RenameTo;
 

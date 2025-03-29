@@ -36,6 +36,8 @@ namespace MEMPHIS_SHARP
             mGraph.Attr.LayerDirection = LayerDirection.TB; // Top to Bottom layout
             mGraph.Attr.OptimizeLabelPositions = true;
             mViewer.Graph = mGraph;
+
+            SetupScene();
         }
 
         private void OnGraphClick(object? sender, EventArgs e)
@@ -53,10 +55,10 @@ namespace MEMPHIS_SHARP
 
             // Get the token reference from the node's UserData
             var token = clickedNode.UserData as Token;
-            if (token != null)
-            {
-                Engine.SelectSubtoken(token);
-            }
+            if (token == null)  // If no token in UserData, it's our message node
+                return;
+
+            Engine.SelectSubtoken(token);
         }
 
         private void SetupScene()
@@ -75,10 +77,15 @@ namespace MEMPHIS_SHARP
 
             if (Engine?.RootToken == null)
             {
-                System.Diagnostics.Debug.WriteLine("Engine or RootToken is null!");
+                // Make the graph viewer transparent when no file is selected
+                mViewer.BackColor = System.Drawing.Color.Transparent;
+                mViewer.Graph = null;
                 return;
             }
 
+            // Reset background color when showing graph
+            mViewer.BackColor = System.Drawing.SystemColors.Window;
+            
             var parent = mGraph.AddNode(Engine.RootToken.Text);
             parent.LabelText = Engine.RootToken.Text;
             parent.UserData = Engine.RootToken;  // Store the root token reference

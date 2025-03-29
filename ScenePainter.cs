@@ -17,6 +17,10 @@ namespace MEMPHIS_SHARP
             }
         }
 
+        public delegate void SelectionChanged_Callback();
+
+        public SelectionChanged_Callback? SelectionChanged { get; set; } = null;
+
         private GViewer mViewer = new();
         private Graph mGraph = new();
 
@@ -59,6 +63,8 @@ namespace MEMPHIS_SHARP
                 return;
 
             Engine.SelectSubtoken(token);
+
+            SelectionChanged?.Invoke();
         }
 
         private void SetupScene()

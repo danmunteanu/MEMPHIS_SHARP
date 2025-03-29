@@ -23,9 +23,9 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
-            UpdateUI();
+            scenePainter.SelectionChanged = this.OnSelectionChanged;
 
-            //graphicsPanel.SelectionChanged = this.OnSelectionChanged;
+            UpdateUI();
         }
 
         public override void UpdateUI()

@@ -24,6 +24,9 @@ namespace MEMPHIS_SHARP
         private GViewer mViewer = new();
         private Graph mGraph = new();
 
+        private bool isDragging = false;
+        private Point lastMousePosition;
+
         public ScenePainter()
         {
             InitializeComponent();
@@ -31,9 +34,13 @@ namespace MEMPHIS_SHARP
             // Create the viewer control
             mViewer.Dock = DockStyle.Fill;
             mViewer.ToolBarIsVisible = false;
+            mViewer.AutoScroll = true;
             this.Controls.Add(mViewer);
 
-            // Subscribe to click events
+            // Subscribe to mouse events
+            mViewer.MouseDown += OnMouseDown;
+            mViewer.MouseMove += OnMouseMove;
+            mViewer.MouseUp += OnMouseUp;
             mViewer.Click += OnGraphClick;
 
             // Set up the graph
@@ -134,6 +141,41 @@ namespace MEMPHIS_SHARP
             // Optional: Change border color for selected nodes
             node.Attr.Color = isSelected ? Microsoft.Msagl.Drawing.Color.Gold : Microsoft.Msagl.Drawing.Color.Black;
             node.Attr.LineWidth = isSelected ? 2 : 1;
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // Check if click is on a node
+                var hitObject = mViewer.GetObjectAt(e.X, e.Y);
+                if (hitObject is Node)
+                {
+                    isDragging = false;  // Prevent dragging for nodes
+                }
+                else
+                {
+                    isDragging = true;   // Allow dragging for background
+                    lastMousePosition = e.Location;
+                }
+            }
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging && e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                // Only handle background dragging
+                int deltaX = e.X - lastMousePosition.X;
+                int deltaY = e.Y - lastMousePosition.Y;
+                mViewer.Pan(deltaX, deltaY);
+                lastMousePosition = e.Location;
+            }
+        }
+
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
         }
     }
 }

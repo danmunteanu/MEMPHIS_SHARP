@@ -24,6 +24,7 @@ namespace MEMPHIS_SHARP
             InitializeComponent();
 
             scenePainter.SelectionChanged = this.OnSelectionChanged;
+            selectionDetails.TokenChanged = OnTokenTextChanged;
 
             UpdateUI();
         }
@@ -92,6 +93,11 @@ namespace MEMPHIS_SHARP
             selectionDetails.Token = mEngine.SelectedSubtoken;
 
             UpdateUI();
+        }
+
+        private void OnTokenTextChanged(Token token)
+        {
+            scenePainter.UpdateNode(token);
         }
 
         private void btnRename_Click(object sender, EventArgs e)

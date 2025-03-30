@@ -7,6 +7,9 @@ namespace MEMPHIS_SHARP
         //  remember the token for fast update
         private Token? mToken = null;
 
+        public delegate void TokenTextChanged_Callback(Token token);
+        public TokenTextChanged_Callback? TokenChanged { get; set; }
+
         public Token? Token
         {
             get
@@ -49,6 +52,7 @@ namespace MEMPHIS_SHARP
             if (mToken != null)
             {
                 mToken.Enabled = chkEnabled.Checked;
+                TokenChanged?.Invoke(mToken);
             }
         }
 
@@ -59,7 +63,14 @@ namespace MEMPHIS_SHARP
 
             if (e.KeyCode == Keys.Enter)
             {
+                if (string.IsNullOrEmpty(txtSelection.Text))
+                {
+                    // TODO: Show error message or handle empty text case
+                    return;
+                }
+
                 mToken.Text = txtSelection.Text;
+                TokenChanged?.Invoke(mToken);
             }
         }
     }

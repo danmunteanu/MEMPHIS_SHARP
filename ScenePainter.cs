@@ -141,6 +141,36 @@ namespace MEMPHIS_SHARP
             // Optional: Change border color for selected nodes
             node.Attr.Color = isSelected ? Microsoft.Msagl.Drawing.Color.Gold : Microsoft.Msagl.Drawing.Color.Black;
             node.Attr.LineWidth = isSelected ? 2 : 1;
+
+            // Add strikethrough for disabled tokens
+            if (node.UserData is Token token && !token.Enabled)
+            {
+                node.Label.FontStyle = Microsoft.Msagl.Drawing.FontStyle.Strikeout;
+            }
+            else
+            {
+                node.Label.FontStyle = Microsoft.Msagl.Drawing.FontStyle.Regular;
+            }
+        }
+
+        public void UpdateNode(Token token)
+        {
+            if (mGraph == null || token == null)
+                return;
+
+            // Find the node with this token
+            var node = mGraph.Nodes.FirstOrDefault(n => n.UserData == token);
+            if (node == null)
+                return;
+
+            // Update the node's text
+            node.LabelText = token.Text;
+
+            // Update the node's style based on selection and enabled state
+            SetNodeStyle(node, Engine?.SelectedSubtoken == token);
+
+            // Force graph update
+            mViewer.Graph = mGraph;
         }
 
         private void OnMouseDown(object sender, MouseEventArgs e)

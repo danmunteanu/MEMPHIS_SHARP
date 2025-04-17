@@ -8,5 +8,15 @@ namespace MEMPHIS_SHARP.ActionEditors
         {
             InitializeComponent();
         }
+
+        public override void LoadState(object item)
+        {
+            //  nothing, just to avoid exception
+        }
+
+        public override void SaveState(object item)
+        {
+            //  silence exception
+        }
     }
 }

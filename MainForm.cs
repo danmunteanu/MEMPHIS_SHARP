@@ -4,7 +4,8 @@ using CommonForms.Components;
 using RealityFrameworks;
 using Memphis.Actions;
 using Memphis.Conditions;
-using RealityFrameworks.Conditions;
+using MEMPHIS_SHARP.ConditionEditors;
+using MEMPHIS_SHARP.ActionEditors;
 
 namespace MEMPHIS_SHARP
 {
@@ -23,6 +24,7 @@ namespace MEMPHIS_SHARP
             this.Text = Locale.APPLICATION_NAME;
 
             RegisterCreators();
+
             SetupEngine();
 
             SetupComponents();
@@ -37,17 +39,31 @@ namespace MEMPHIS_SHARP
 
         private void RegisterCreators()
         {
-            //  REGISTER CONDITION Creators
+            //  Register Condition Creators
             TokenConditionFactory.Register(typeof(ConditionAlways).Name, () => new ConditionAlways());
             TokenConditionFactory.Register(typeof(ConditionEquals).Name, () => new ConditionEquals());
-            TokenConditionFactory.Register(typeof(ConditionIsFolder).Name, () => new ConditionIsNumeric());
+            TokenConditionFactory.Register(typeof(ConditionIsNumeric).Name, () => new ConditionIsNumeric());
             TokenConditionFactory.Register(typeof(ConditionIsRoot).Name, () => new ConditionIsRoot(mEngine));
 
+            //  Register Action Creators
             TokenActionFactory.Register(typeof(ActionChangeCase).Name, () => new ActionChangeCase(mEngine));
             TokenActionFactory.Register(typeof(ActionEnableDisable).Name, () => new ActionEnableDisable(mEngine));
             TokenActionFactory.Register(typeof(ActionInsertText).Name, () => new ActionInsertText());
             TokenActionFactory.Register(typeof(ActionReplaceText).Name, () => new ActionReplaceText(mEngine));
             TokenActionFactory.Register(typeof(ActionSetSeparators).Name, () => new ActionSetSeparators(mEngine));
+
+            //  Register Condition Editor Creators
+            TokenEditorFactory.Register(typeof(ConditionAlways).Name, () => new EditorAlways());
+            TokenEditorFactory.Register(typeof(ConditionEquals).Name, () => new EditorEquals());
+            TokenEditorFactory.Register(typeof(ConditionIsNumeric).Name, () => new EditorIsNumeric());
+            TokenEditorFactory.Register(typeof(ConditionIsRoot).Name, () => new EditorIsRoot());
+
+            //  Register Action Editor Creators
+            TokenEditorFactory.Register(typeof(ActionChangeCase).Name, () => new EditorChangeCase());
+            TokenEditorFactory.Register(typeof(ActionEnableDisable).Name, () => new EditorEnableDisable());
+            TokenEditorFactory.Register(typeof(ActionReplaceText).Name, () => new EditorReplaceText());
+            TokenEditorFactory.Register(typeof(ActionInsertText).Name, () => new EditorInsertText());
+            TokenEditorFactory.Register(typeof(ActionSetSeparators).Name, () => new EditorSetSeparators());
         }
 
         private void SetupComponents()

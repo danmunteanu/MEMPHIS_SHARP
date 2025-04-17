@@ -1,7 +1,6 @@
 ﻿using Memphis;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.GraphViewerGdi;
-using System.Linq;
 
 namespace MEMPHIS_SHARP
 {
@@ -143,7 +142,7 @@ namespace MEMPHIS_SHARP
             node.Attr.LineWidth = isSelected ? 2 : 1;
 
             // Add strikethrough for disabled tokens
-            if (node.UserData is Token token && !token.Enabled)
+            if (node.UserData is Token token && token.Discard)
             {
                 node.Label.FontStyle = Microsoft.Msagl.Drawing.FontStyle.Strikeout;
             }

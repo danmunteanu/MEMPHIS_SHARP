@@ -27,14 +27,14 @@ namespace MEMPHIS_SHARP
         {
             if (token == null)
             {
-                grpSelection.Enabled = false;
+                //grpSelection.Enabled = false;
                 txtSelection.Clear();
                 chkEnabled.Checked = false;
                 txtSeparators.Clear();
                 return;
             }
 
-            grpSelection.Enabled = true;
+            //grpSelection.Enabled = true;
             txtSelection.Text = token.Text;
             chkEnabled.Checked = token.Enabled;
             txtSeparators.Text = token.Separators;
@@ -58,7 +58,7 @@ namespace MEMPHIS_SHARP
 
         private void txtSelection_KeyDown(object sender, KeyEventArgs e)
         {
-            if (mToken == null) 
+            if (mToken == null)
                 return;
 
             if (e.KeyCode == Keys.Enter)

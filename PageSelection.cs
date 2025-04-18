@@ -1,14 +1,12 @@
 ﻿using Memphis;
 using CommonForms;
-using Memphis.Actions;
-using RealityFrameworks;
-using Memphis.Conditions;
 
 namespace MEMPHIS_SHARP
 {
     public partial class PageSelection : ApplicationPageBase
     {
         private MemphisEngine? mEngine = null;
+        private TransformsList<Token> mTransformsComp;
                 
         public MemphisEngine? Engine {
             get => mEngine;
@@ -22,6 +20,12 @@ namespace MEMPHIS_SHARP
         public PageSelection()
         {
             InitializeComponent();
+
+            mTransformsComp = new()
+            { 
+            };
+
+            Utils.AddUserControlToPanel(panelTransforms, mTransformsComp);
 
             scenePainter.SelectionChanged = this.OnSelectionChanged;
             selectionDetails.TokenChanged = OnTokenTextChanged;
@@ -44,7 +48,7 @@ namespace MEMPHIS_SHARP
                 return;
 
             //  pass the engine reference to all components
-            compTransforms.TransformsContainer = mEngine;
+            mTransformsComp.TransformsContainer = mEngine;
             //graphicsPanel.Engine = mEngine;
 
             scenePainter.Engine = mEngine;

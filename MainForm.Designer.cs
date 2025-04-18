@@ -74,11 +74,11 @@
             pageSelection.Dock = DockStyle.Fill;
             pageSelection.Engine = null;
             pageSelection.FilesList = null;
-            pageSelection.Location = new Point(403, 2);
+            pageSelection.Location = new Point(386, 2);
             pageSelection.Margin = new Padding(2);
             pageSelection.Name = "pageSelection";
             pageSelection.Processor = null;
-            pageSelection.Size = new Size(1199, 835);
+            pageSelection.Size = new Size(895, 667);
             pageSelection.TabIndex = 1;
             pageSelection.UpdateStatusCallback = null;
             // 
@@ -88,29 +88,30 @@
             panelList.Location = new Point(2, 2);
             panelList.Margin = new Padding(2);
             panelList.Name = "panelList";
-            panelList.Size = new Size(397, 835);
+            panelList.Size = new Size(380, 667);
             panelList.TabIndex = 0;
             // 
             // tableLayoutMain
             // 
             tableLayoutMain.ColumnCount = 2;
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
             tableLayoutMain.Controls.Add(panelList, 0, 0);
             tableLayoutMain.Controls.Add(pageSelection, 1, 0);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
+            tableLayoutMain.Margin = new Padding(2, 2, 2, 2);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 1;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Size = new Size(1604, 839);
+            tableLayoutMain.Size = new Size(1283, 671);
             tableLayoutMain.TabIndex = 2;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1604, 839);
+            ClientSize = new Size(1283, 671);
             Controls.Add(tableLayoutMain);
             Margin = new Padding(2);
             Name = "MainForm";

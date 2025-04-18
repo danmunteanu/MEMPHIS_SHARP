@@ -23,11 +23,11 @@ namespace MEMPHIS_SHARP
 
             this.Text = Locale.APPLICATION_NAME;
 
+            SetupEngine();
+
             RegisterCreators();
 
             SetupComponents();
-
-            SetupEngine();
 
             this.CenterToParent();
         }

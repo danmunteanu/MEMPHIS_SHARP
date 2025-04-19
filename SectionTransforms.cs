@@ -4,7 +4,7 @@ using RealityFrameworks;
 
 namespace MEMPHIS_SHARP
 {
-    public class TransformsList<T> : TransformsListUI
+    public class SectionTransforms<T> : TransformsListUI
     {
         private TransformsContainer<T>? mTransformsContainer = null;
 
@@ -19,11 +19,13 @@ namespace MEMPHIS_SHARP
             {
                 mTransformsContainer = value;
                 
-                OnContainerSet();
+                ReloadContainer();
+                LoadConditionActionNames();
+                UpdateUI();
             }
         }
 
-        public TransformsList()
+        public SectionTransforms()
         {
             //  Add click handlers
             btnAdd.Click += btnAdd_Click;
@@ -46,7 +48,7 @@ namespace MEMPHIS_SHARP
 
             mDlgTransform.OnModified = () =>
             {
-                OnContainerSet();
+                ReloadContainer();
                 UpdateUI();
             };
 
@@ -57,7 +59,8 @@ namespace MEMPHIS_SHARP
 
         public void Reload()
         {
-            OnContainerSet();
+            ReloadContainer();
+            UpdateUI();
         }
 
         public void UpdateUI()
@@ -150,7 +153,7 @@ namespace MEMPHIS_SHARP
             //  Update localization strings here
         }
 
-        private void OnContainerSet()
+        private void ReloadContainer()
         {
             lstTransforms.Items.Clear();
 
@@ -159,13 +162,13 @@ namespace MEMPHIS_SHARP
 
             //  load the transforms from the container
             foreach (var tr in TransformsContainer.Transforms)
-                lstTransforms.Items.Add(tr.Description);
-
-            LoadNames();
-            UpdateUI();
+                lstTransforms.Items.Add(tr.Description);                       
         }
 
-        public void LoadNames()
+        /// <summary>
+        /// Loads condition and action names into the transforms dialog
+        /// </summary>
+        public void LoadConditionActionNames()
         {
             //  LOAD NAMES
             List<string> mConditionNames = new();

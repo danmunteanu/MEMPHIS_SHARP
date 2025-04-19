@@ -6,7 +6,7 @@ namespace MEMPHIS_SHARP
     public partial class PageSelection : ApplicationPageBase
     {
         private MemphisEngine? mEngine = null;
-        private TransformsList<Token> mTransformsComp;
+        private SectionTransforms<Token> mTransformsComp;
                 
         public MemphisEngine? Engine {
             get => mEngine;

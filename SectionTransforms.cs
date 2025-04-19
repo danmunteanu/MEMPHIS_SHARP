@@ -59,7 +59,7 @@ namespace MEMPHIS_SHARP
 
         public void UpdateUI()
         {
-            bool haveTransforms = mTransformsContainer?.Transforms.Count >= 0;
+            bool haveTransforms = mTransformsContainer?.Transforms.Count > 0;
             bool haveSelection = lstTransforms.SelectedIndex != -1;
             Transform<T>? tr = null;
             if (haveSelection)
@@ -85,7 +85,6 @@ namespace MEMPHIS_SHARP
             btnReload.Enabled = TransformsContainer?.CountTransforms() > 0;
 
             btnClear.Enabled = haveTransforms;
-
         }
 
         private void LoadTooltips()
@@ -97,7 +96,6 @@ namespace MEMPHIS_SHARP
             toolTip.SetToolTip(btnReload, "Reloads list of transforms");
             toolTip.SetToolTip(btnTemplates, "Transform templates");
             toolTip.SetToolTip(btnClear, "Clear transforms list");
-
         }
 
         private void LoadTemplates()
@@ -123,7 +121,6 @@ namespace MEMPHIS_SHARP
             }
 
             LoadNames();
-
             UpdateUI();
         }
 
@@ -257,7 +254,8 @@ namespace MEMPHIS_SHARP
         private void btnClear_Click(object? sender, EventArgs e)
         {
             mTransformsContainer?.ClearTransforms();
-            Reload();
+            lstTransforms.Items.Clear();
+            UpdateUI();
         }
     }
 

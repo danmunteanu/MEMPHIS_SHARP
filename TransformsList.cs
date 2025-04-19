@@ -1,7 +1,6 @@
 ﻿using CommonForms.Components;
 using Memphis;
 using RealityFrameworks;
-using System.Reflection;
 
 namespace MEMPHIS_SHARP
 {
@@ -9,7 +8,9 @@ namespace MEMPHIS_SHARP
     {
         private TransformsContainer<T>? mTransformsContainer = null;
 
-        private DialogSelectTransform<T> mDlgTrans = new();
+        private DialogSelectTransform<T> mDlgTransform = new();
+
+        List<Func<Transform<T>>> mTemplates = new();
 
         public TransformsContainer<T>? TransformsContainer
         {
@@ -41,13 +42,16 @@ namespace MEMPHIS_SHARP
             lstTransforms.DoubleClick += lstTransforms_DoubleClick;
             lstTransforms.SelectedIndexChanged += lstTransforms_SelectedIndexChanged;
 
-            mDlgTrans.OnModified = () =>
+            //  TODO: OnContainerSet reloads the names everytime it's called!
+
+            mDlgTransform.OnModified = () =>
             {
                 OnContainerSet();
                 UpdateUI();
             };
 
             LoadTooltips();
+            LoadTemplates();
             UpdateUI();
         }
 
@@ -58,7 +62,7 @@ namespace MEMPHIS_SHARP
 
         public void UpdateUI()
         {
-            bool haveTransforms = mTransformsContainer?.Transforms.Count > 0;
+            bool haveTransforms = TransformsContainer?.CountTransforms() > 0;
             bool haveSelection = lstTransforms.SelectedIndex != -1;
             Transform<T>? tr = null;
             if (haveSelection)
@@ -77,11 +81,12 @@ namespace MEMPHIS_SHARP
                 btnLink.Text = tr.UseLastOutput ? "🧷" : "🔗";
 
             btnRem.Enabled = haveSelection;
-            btnUp.Enabled = haveSelection;
-            btnDown.Enabled = haveSelection;
+
+            btnUp.Enabled = haveSelection && lstTransforms.SelectedIndex > 0;
+            btnDown.Enabled = haveSelection && lstTransforms.SelectedIndex < lstTransforms.Items.Count - 1;
             
             btnTemplates.Enabled = true;
-            btnReload.Enabled = TransformsContainer?.CountTransforms() > 0;
+            btnReload.Enabled = haveTransforms;
 
             btnClear.Enabled = haveTransforms;
         }
@@ -99,25 +104,62 @@ namespace MEMPHIS_SHARP
 
         private void LoadTemplates()
         {
+            menuStripTemplates.Items.Clear();
+            menuStripTemplates.Items.Add("YAML/PREFIX: ADD", null, TemplateMenuItem_Click);
+            menuStripTemplates.Items.Add("YAML/PREFIX: REMOVE", null, TemplateMenuItem_Click);
+        }
+
+        private void TemplateMenuItem_Click(object? sender, EventArgs e)
+        {
+            ToolStripMenuItem? menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null || string.IsNullOrEmpty(menuItem.Text))
+                return;
+
+            //  get the index for the item
+            int idx = menuStripTemplates.Items.IndexOf(menuItem);
+
+            //  valid index?
+            if (idx == -1)
+            {
+                string title = "Template Error";
+                string message = string.Format("Menu item \"{0}\" has returned and invalid index: {1}", menuItem.Text, idx);
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //  within bounds
+            if (!(idx >= 0 && idx < mTemplates.Count()))
+            {
+                string title = "Template Error";
+                string message = string.Format("There is no template registered for \"{0}\" at position {1}", menuItem.Text, idx);
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //  create the FileTransform
+            Transform<T> tr = mTemplates.ElementAt(idx)();
+            if (tr != null)
+            {
+                Reload();
+                TransformsContainer?.AddTransform(tr);
+            }
         }
 
         public void UpdateLocale()
         {
-
+            //  Update localization strings here
         }
 
         private void OnContainerSet()
         {
             lstTransforms.Items.Clear();
 
-            if (mTransformsContainer == null)
+            if (TransformsContainer == null)
                 return;
 
             //  load the transforms from the container
-            foreach (var tr in mTransformsContainer.Transforms)
-            {
+            foreach (var tr in TransformsContainer.Transforms)
                 lstTransforms.Items.Add(tr.Description);
-            }
 
             LoadNames();
             UpdateUI();
@@ -137,8 +179,8 @@ namespace MEMPHIS_SHARP
             for (int idx = 0; idx < TokenActionFactory.Count; ++idx)
                 mActionNames.Add(TokenActionFactory.GetNameAt(idx));
 
-            mDlgTrans.LoadConditionNames(mConditionNames);
-            mDlgTrans.LoadActionNames(mActionNames);
+            mDlgTransform.LoadConditionNames(mConditionNames);
+            mDlgTransform.LoadActionNames(mActionNames);
         }
 
         private void lstTransforms_DrawItem(object? sender, DrawItemEventArgs e)
@@ -168,8 +210,8 @@ namespace MEMPHIS_SHARP
         private void btnAdd_Click(object? sender, EventArgs e)
         {
             //  Display add transform dialog
-            mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Add);
-            mDlgTrans.ShowDialog(this);
+            mDlgTransform.LoadState(DialogSelectTransform<Token>.EditorState.Add);
+            mDlgTransform.ShowDialog(this);
         }
 
         private void btnEdit_Click(object? sender, EventArgs e)
@@ -187,8 +229,8 @@ namespace MEMPHIS_SHARP
             if (mTransformsContainer == null)
                 return;
 
-            mDlgTrans.LoadState(DialogSelectTransform<T>.EditorState.Edit, mTransformsContainer.GetTransformAt(idx));
-            mDlgTrans.ShowDialog(this);
+            mDlgTransform.LoadState(DialogSelectTransform<T>.EditorState.Edit, mTransformsContainer.GetTransformAt(idx));
+            mDlgTransform.ShowDialog(this);
 
         }
 
@@ -199,12 +241,34 @@ namespace MEMPHIS_SHARP
 
         private void btnUp_Click(object? sender, EventArgs e)
         {
-            //  move transform up
+            int idxList = lstTransforms.SelectedIndex;
+            TransformsContainer?.MoveUp(idxList);
+            
+            Reload();
+
+            idxList--;
+            if (idxList >= 0 && idxList < lstTransforms.Items.Count)
+                lstTransforms.SelectedIndex = idxList;
+            else
+                lstTransforms.SelectedIndex = 0;
+
+            UpdateUI();
         }
 
         private void btnDown_Click(object? sender, EventArgs e)
         {
-            //  move transform down
+            int idxList = lstTransforms.SelectedIndex;
+            TransformsContainer?.MoveDown(lstTransforms.SelectedIndex);
+
+            Reload();
+
+            idxList++;
+            if (idxList >= 0 && idxList < lstTransforms.Items.Count)
+                lstTransforms.SelectedIndex = idxList;
+            else
+                lstTransforms.SelectedIndex = lstTransforms.Items.Count - 1;
+
+            UpdateUI();
         }
 
         private void lstTransforms_SelectedIndexChanged(object? sender, EventArgs e)
@@ -247,7 +311,8 @@ namespace MEMPHIS_SHARP
 
         private void btnTemplate_Click(object? sender, EventArgs e)
         {
-            LoadTemplates();
+            //  show a menu
+            menuStripTemplates.Show(btnTemplates, new Point(0, btnAdd.Height));
         }
 
         private void btnClear_Click(object? sender, EventArgs e)
@@ -256,25 +321,22 @@ namespace MEMPHIS_SHARP
             lstTransforms.Items.Clear();
             UpdateUI();
         }
+        
     }
 
-    public abstract partial class TransformsListUI : UserControl
+    /*
+     * TransformsListUI keeps only the desginer part of the TransformsList
+     * in order to avoid the generic class designer problem     * 
+     */
+    public partial class TransformsListUI : UserControl
     {
         public TransformsListUI()
         {
             InitializeComponent();
         }
 
-        //  Abstract event handlers - in case u need to rever back
-        //public abstract void OnAdd();
-        //public abstract void OnEdit();
-        //public abstract void OnToggle();
-        //public abstract void OnLink();
-        //public abstract void OnRemove();
-        //public abstract void OnUp();
-        //public abstract void OnDown();
-        //public abstract void OnTemplate();
-        //public abstract void OnClear();
+        //  Do NOT add any kind of event handlers in this class!
+        //  They're all defined in the generic wrapper class
 
         //  Update UI, reloads the state
         //public abstract void UpdateUI();

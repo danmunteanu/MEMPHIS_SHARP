@@ -48,7 +48,6 @@ namespace MEMPHIS_SHARP
             };
 
             LoadTooltips();
-
             UpdateUI();
         }
 

@@ -1,6 +1,7 @@
 ﻿using CommonForms.Components;
 using Memphis;
 using RealityFrameworks;
+using System.Reflection;
 
 namespace MEMPHIS_SHARP
 {
@@ -17,7 +18,7 @@ namespace MEMPHIS_SHARP
             {
                 mTransformsContainer = value;
                 
-                OnTransformsContainerSet();
+                OnContainerSet();
             }
         }
 
@@ -30,7 +31,7 @@ namespace MEMPHIS_SHARP
             btnToggle.Click += btnToggle_Click;
             btnUp.Click += btnUp_Click;
             btnDown.Click += btnDown_Click;
-            btnTemplate.Click += btnTemplate_Click;
+            btnTemplates.Click += btnTemplate_Click;
             btnClear.Click += btnClear_Click;
 
             //  List setup
@@ -40,12 +41,20 @@ namespace MEMPHIS_SHARP
             lstTransforms.DoubleClick += lstTransforms_DoubleClick;
             lstTransforms.SelectedIndexChanged += lstTransforms_SelectedIndexChanged;
 
+            mDlgTrans.OnModified = () =>
+            {
+                OnContainerSet();
+                UpdateUI();
+            };
+
+            LoadTooltips();
+
             UpdateUI();
         }
 
         public void Reload()
         {
-            OnTransformsContainerSet();
+            OnContainerSet();
         }
 
         public void UpdateUI()
@@ -72,10 +81,27 @@ namespace MEMPHIS_SHARP
             btnUp.Enabled = haveSelection;
             btnDown.Enabled = haveSelection;
             
-            btnTemplate.Enabled = true;
+            btnTemplates.Enabled = true;
+            btnReload.Enabled = TransformsContainer?.CountTransforms() > 0;
 
             btnClear.Enabled = haveTransforms;
 
+        }
+
+        private void LoadTooltips()
+        {
+            toolTip.SetToolTip(btnAdd, "Add a new Transform");
+            toolTip.SetToolTip(btnEdit, "Edit Transform");
+            toolTip.SetToolTip(btnToggle, "Disable Transform");
+            toolTip.SetToolTip(btnRem, "Remove transform");
+            toolTip.SetToolTip(btnReload, "Reloads list of transforms");
+            toolTip.SetToolTip(btnTemplates, "Transform templates");
+            toolTip.SetToolTip(btnClear, "Clear transforms list");
+
+        }
+
+        private void LoadTemplates()
+        {
         }
 
         public void UpdateLocale()
@@ -83,7 +109,7 @@ namespace MEMPHIS_SHARP
 
         }
 
-        private void OnTransformsContainerSet()
+        private void OnContainerSet()
         {
             lstTransforms.Items.Clear();
 
@@ -143,14 +169,14 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object? sender, EventArgs e)
         {
             //  Display add transform dialog
             mDlgTrans.LoadState(DialogSelectTransform<Token>.EditorState.Add);
             mDlgTrans.ShowDialog(this);
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object? sender, EventArgs e)
         {
             OnEdit();
         }
@@ -170,35 +196,32 @@ namespace MEMPHIS_SHARP
 
         }
 
-        private void btnRem_Click(object sender, EventArgs e)
+        private void btnRem_Click(object? sender, EventArgs e)
         {
+            //  remove selected transform
         }
 
-        private void btnUp_Click(object sender, EventArgs e)
+        private void btnUp_Click(object? sender, EventArgs e)
         {
+            //  move transform up
         }
 
-        private void btnDown_Click(object sender, EventArgs e)
+        private void btnDown_Click(object? sender, EventArgs e)
         {
+            //  move transform down
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            mTransformsContainer?.ClearTransforms();
-            Reload();
-        }
-
-        private void lstTransforms_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstTransforms_SelectedIndexChanged(object? sender, EventArgs e)
         {
             UpdateUI();
         }
 
-        private void lstTransforms_DoubleClick(object sender, EventArgs e)
+        private void lstTransforms_DoubleClick(object? sender, EventArgs e)
         {
             OnEdit();
         }
 
-        private void btnToggle_Click(object sender, EventArgs e)
+        private void btnToggle_Click(object? sender, EventArgs e)
         {
             Transform<T>? tr = null;
             if (lstTransforms.SelectedIndex != -1)
@@ -226,9 +249,15 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        private void btnTemplate_Click(object sender, EventArgs e)
+        private void btnTemplate_Click(object? sender, EventArgs e)
         {
-         
+            LoadTemplates();
+        }
+
+        private void btnClear_Click(object? sender, EventArgs e)
+        {
+            mTransformsContainer?.ClearTransforms();
+            Reload();
         }
     }
 
@@ -239,7 +268,7 @@ namespace MEMPHIS_SHARP
             InitializeComponent();
         }
 
-        //  Abstract event handlers
+        //  Abstract event handlers - in case u need to rever back
         //public abstract void OnAdd();
         //public abstract void OnEdit();
         //public abstract void OnToggle();

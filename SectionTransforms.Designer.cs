@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tableLayoutTransforms = new TableLayoutPanel();
             lblTrans = new Label();
             lstTransforms = new ListBox();
@@ -40,7 +41,9 @@
             btnClear = new Button();
             btnRem = new Button();
             btnEdit = new Button();
-            btnTemplate = new Button();
+            btnTemplates = new Button();
+            btnReload = new Button();
+            toolTip = new ToolTip(components);
             tableLayoutTransforms.SuspendLayout();
             tableLayoutPanelButtons.SuspendLayout();
             SuspendLayout();
@@ -70,9 +73,9 @@
             lblTrans.Location = new Point(2, 8);
             lblTrans.Margin = new Padding(2, 0, 2, 0);
             lblTrans.Name = "lblTrans";
-            lblTrans.Size = new Size(81, 20);
+            lblTrans.Size = new Size(128, 20);
             lblTrans.TabIndex = 0;
-            lblTrans.Text = "Transforms";
+            lblTrans.Text = "List of Transforms:";
             // 
             // lstTransforms
             // 
@@ -82,20 +85,21 @@
             lstTransforms.Margin = new Padding(2);
             lstTransforms.Name = "lstTransforms";
             lstTransforms.Size = new Size(410, 368);
-            lstTransforms.TabIndex = 1;      
+            lstTransforms.TabIndex = 1;
             // 
             // tableLayoutPanelButtons
             // 
-            tableLayoutPanelButtons.ColumnCount = 12;
+            tableLayoutPanelButtons.ColumnCount = 13;
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
-            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
-            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36F));
@@ -104,10 +108,11 @@
             tableLayoutPanelButtons.Controls.Add(btnDown, 7, 0);
             tableLayoutPanelButtons.Controls.Add(btnAdd, 0, 0);
             tableLayoutPanelButtons.Controls.Add(btnUp, 6, 0);
-            tableLayoutPanelButtons.Controls.Add(btnClear, 11, 0);
+            tableLayoutPanelButtons.Controls.Add(btnClear, 12, 0);
             tableLayoutPanelButtons.Controls.Add(btnRem, 4, 0);
             tableLayoutPanelButtons.Controls.Add(btnEdit, 1, 0);
-            tableLayoutPanelButtons.Controls.Add(btnTemplate, 9, 0);
+            tableLayoutPanelButtons.Controls.Add(btnTemplates, 10, 0);
+            tableLayoutPanelButtons.Controls.Add(btnReload, 9, 0);
             tableLayoutPanelButtons.Dock = DockStyle.Fill;
             tableLayoutPanelButtons.Location = new Point(2, 410);
             tableLayoutPanelButtons.Margin = new Padding(2);
@@ -142,7 +147,7 @@
             // btnDown
             // 
             btnDown.Dock = DockStyle.Fill;
-            btnDown.Location = new Point(251, 2);
+            btnDown.Location = new Point(228, 2);
             btnDown.Margin = new Padding(2);
             btnDown.Name = "btnDown";
             btnDown.Size = new Size(32, 36);
@@ -164,7 +169,7 @@
             // btnUp
             // 
             btnUp.Dock = DockStyle.Fill;
-            btnUp.Location = new Point(215, 2);
+            btnUp.Location = new Point(192, 2);
             btnUp.Margin = new Padding(2);
             btnUp.Name = "btnUp";
             btnUp.Size = new Size(32, 36);
@@ -205,16 +210,26 @@
             btnEdit.Text = "✎";
             btnEdit.UseVisualStyleBackColor = true;
             // 
-            // btnTemplate
+            // btnTemplates
             // 
-            btnTemplate.Dock = DockStyle.Fill;
-            btnTemplate.Location = new Point(307, 2);
-            btnTemplate.Margin = new Padding(2);
-            btnTemplate.Name = "btnTemplate";
-            btnTemplate.Size = new Size(32, 36);
-            btnTemplate.TabIndex = 9;
-            btnTemplate.Text = "📂";
-            btnTemplate.UseVisualStyleBackColor = true;
+            btnTemplates.Dock = DockStyle.Fill;
+            btnTemplates.Location = new Point(320, 2);
+            btnTemplates.Margin = new Padding(2);
+            btnTemplates.Name = "btnTemplates";
+            btnTemplates.Size = new Size(32, 36);
+            btnTemplates.TabIndex = 9;
+            btnTemplates.Text = "📂";
+            btnTemplates.UseVisualStyleBackColor = true;
+            // 
+            // btnReload
+            // 
+            btnReload.Dock = DockStyle.Fill;
+            btnReload.Location = new Point(285, 3);
+            btnReload.Name = "btnReload";
+            btnReload.Size = new Size(30, 34);
+            btnReload.TabIndex = 10;
+            btnReload.Text = "⭮";
+            btnReload.UseVisualStyleBackColor = true;
             // 
             // TransformsListUI
             // 
@@ -244,6 +259,8 @@
         protected Button btnEdit;
         protected Button btnToggle;
         protected Button btnLink;
-        protected Button btnTemplate;
+        protected Button btnTemplates;
+        protected ToolTip toolTip;
+        protected Button btnReload;
     }
 }

@@ -82,9 +82,7 @@
             lstTransforms.Margin = new Padding(2);
             lstTransforms.Name = "lstTransforms";
             lstTransforms.Size = new Size(410, 368);
-            lstTransforms.TabIndex = 1;
-            lstTransforms.SelectedIndexChanged += lstTransforms_SelectedIndexChanged;
-            lstTransforms.DoubleClick += lstTransforms_DoubleClick;
+            lstTransforms.TabIndex = 1;      
             // 
             // tableLayoutPanelButtons
             // 
@@ -129,7 +127,6 @@
             btnLink.TabIndex = 7;
             btnLink.Text = "🔗";
             btnLink.UseVisualStyleBackColor = true;
-            btnLink.Click += btnLink_Click;
             // 
             // btnToggle
             // 
@@ -141,7 +138,6 @@
             btnToggle.TabIndex = 6;
             btnToggle.Text = "■";
             btnToggle.UseVisualStyleBackColor = true;
-            btnToggle.Click += btnToggle_Click;
             // 
             // btnDown
             // 
@@ -153,7 +149,6 @@
             btnDown.TabIndex = 4;
             btnDown.Text = "▼";
             btnDown.UseVisualStyleBackColor = true;
-            btnDown.Click += btnDown_Click;
             // 
             // btnAdd
             // 
@@ -165,7 +160,6 @@
             btnAdd.TabIndex = 0;
             btnAdd.Text = "✚";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
             // 
             // btnUp
             // 
@@ -177,7 +171,6 @@
             btnUp.TabIndex = 2;
             btnUp.Text = "▲";
             btnUp.UseVisualStyleBackColor = true;
-            btnUp.Click += btnUp_Click;
             // 
             // btnClear
             // 
@@ -189,7 +182,6 @@
             btnClear.TabIndex = 3;
             btnClear.Text = "✖";
             btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
             // 
             // btnRem
             // 
@@ -201,7 +193,6 @@
             btnRem.TabIndex = 1;
             btnRem.Text = "━";
             btnRem.UseVisualStyleBackColor = true;
-            btnRem.Click += btnRem_Click;
             // 
             // btnEdit
             // 
@@ -213,7 +204,6 @@
             btnEdit.TabIndex = 5;
             btnEdit.Text = "✎";
             btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
             // 
             // btnTemplate
             // 
@@ -225,7 +215,6 @@
             btnTemplate.TabIndex = 9;
             btnTemplate.Text = "📂";
             btnTemplate.UseVisualStyleBackColor = true;
-            btnTemplate.Click += btnTemplate_Click;
             // 
             // TransformsListUI
             // 

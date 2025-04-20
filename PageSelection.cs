@@ -1,5 +1,6 @@
 ﻿using Memphis;
 using CommonForms;
+using CommonForms.Components;
 
 namespace MEMPHIS_SHARP
 {
@@ -7,7 +8,7 @@ namespace MEMPHIS_SHARP
     {
         private MemphisEngine? mEngine = null;
 
-        private TransformsComponent<Token> mTransformsComponent;
+        private TransformsComponent<Token> mTransformsComp;
                 
         public MemphisEngine? Engine {
             get => mEngine;
@@ -22,11 +23,10 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
-            mTransformsComponent = new() 
+            mTransformsComp = new() 
             {
             };
-
-            Utils.AddUserControlToPanel(panelTransforms, mTransformsComponent);
+            Utils.AddUserControlToPanel(panelTransforms, mTransformsComp);
 
             scenePainter.SelectionChanged = this.OnSelectionChanged;
             selectionDetails.TokenChanged = OnTokenTextChanged;
@@ -49,8 +49,11 @@ namespace MEMPHIS_SHARP
                 return;
 
             //  pass the engine reference to all components
-            mTransformsComponent.TransformsContainer = mEngine;
-            //graphicsPanel.Engine = mEngine;
+            mTransformsComp.TransformsContainer = mEngine;
+            
+            //  load the names
+            mTransformsComp.LoadConditionNames(TokenConditionFactory.CreatorKeys);
+            mTransformsComp.LoadActionNames(TokenActionFactory.CreatorKeys);
 
             scenePainter.Engine = mEngine;
 

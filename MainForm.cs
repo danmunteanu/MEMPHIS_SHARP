@@ -100,18 +100,22 @@ namespace MEMPHIS_SHARP
             mEngine.AddStringToRemove("(Hydr0.org)");
             mEngine.AddStringToRemove("(by.NecKerM4nn)");
 
-            Transform<Token> t = new(new ConditionAlways(), new ActionInsertText());
-            mEngine.AddTransform(t);
+            Transform<Token> tr = new(
+                new ConditionAlways(), 
+                new ActionInsertText()
+            );
+            mEngine.AddTransform(tr);
 
-            t = new(new ConditionAlways(), new ActionChangeCase(mEngine, true, false, true));
-            mEngine.AddTransform(t);
+            tr = new(
+                new ConditionAlways(), 
+                new ActionChangeCase(mEngine, true, false, true)
+            );
+            mEngine.AddTransform(tr);
 
             //t = new(new ConditionAlways(), new ActionEnableDisable(mEngine, true));
             //mEngine.AddTransform(t);
 
             //mEngine.ApplyTransformsToToken(null);
-
-
 
             //  Upcase all words
             //mEngine.AddTransform(

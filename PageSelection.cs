@@ -6,7 +6,8 @@ namespace MEMPHIS_SHARP
     public partial class PageSelection : ApplicationPageBase
     {
         private MemphisEngine? mEngine = null;
-        private SectionTransforms<Token> mTransformsComp;
+
+        private TransformsComponent<Token> mTransformsComponent;
                 
         public MemphisEngine? Engine {
             get => mEngine;
@@ -21,11 +22,11 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
-            mTransformsComp = new()
-            { 
+            mTransformsComponent = new() 
+            {
             };
 
-            Utils.AddUserControlToPanel(panelTransforms, mTransformsComp);
+            Utils.AddUserControlToPanel(panelTransforms, mTransformsComponent);
 
             scenePainter.SelectionChanged = this.OnSelectionChanged;
             selectionDetails.TokenChanged = OnTokenTextChanged;
@@ -48,7 +49,7 @@ namespace MEMPHIS_SHARP
                 return;
 
             //  pass the engine reference to all components
-            mTransformsComp.TransformsContainer = mEngine;
+            mTransformsComponent.TransformsContainer = mEngine;
             //graphicsPanel.Engine = mEngine;
 
             scenePainter.Engine = mEngine;

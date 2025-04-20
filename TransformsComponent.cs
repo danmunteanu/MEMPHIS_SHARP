@@ -4,8 +4,13 @@ using RealityFrameworks;
 
 namespace MEMPHIS_SHARP
 {
-    public class SectionTransforms<T> : TransformsListUI
+    public class TransformsComponent<T> : TransformsListUI
     {
+        private const string K_ENABLE_TRANSFORM = "●";
+        private const string K_DISABLE_TRANSFORM = "■";
+        private const string K_LINK_TRANSFORM = "🔗";
+        private const string K_UNLINK_TRANSFORM = "🧷";
+
         private TransformsContainer<T>? mTransformsContainer = null;
 
         private DialogSelectTransform<T> mDlgTransform = new();
@@ -19,13 +24,16 @@ namespace MEMPHIS_SHARP
             {
                 mTransformsContainer = value;
                 
-                ReloadContainer();
-                LoadConditionActionNames();
+                ReloadTransforms();
+
+                mDlgTransform.Processor = mTransformsContainer;
+                LoadConditionAndActionNames();
+
                 UpdateUI();
             }
         }
 
-        public SectionTransforms()
+        public TransformsComponent()
         {
             //  Add click handlers
             btnAdd.Click += btnAdd_Click;
@@ -48,7 +56,7 @@ namespace MEMPHIS_SHARP
 
             mDlgTransform.OnModified = () =>
             {
-                ReloadContainer();
+                ReloadTransforms();
                 UpdateUI();
             };
 
@@ -59,7 +67,7 @@ namespace MEMPHIS_SHARP
 
         public void Reload()
         {
-            ReloadContainer();
+            ReloadTransforms();
             UpdateUI();
         }
 
@@ -77,11 +85,11 @@ namespace MEMPHIS_SHARP
             
             btnToggle.Enabled = haveSelection;
             if (tr != null)
-                btnToggle.Text = tr.Enabled ? "■" : "●";
+                btnToggle.Text = tr.Enabled ? K_DISABLE_TRANSFORM : K_ENABLE_TRANSFORM;
 
             btnLink.Enabled = haveSelection;
             if (tr != null)
-                btnLink.Text = tr.UseLastOutput ? "🧷" : "🔗";
+                btnLink.Text = tr.UseLastOutput ? K_UNLINK_TRANSFORM : K_LINK_TRANSFORM;
 
             btnRem.Enabled = haveSelection;
 
@@ -153,7 +161,7 @@ namespace MEMPHIS_SHARP
             //  Update localization strings here
         }
 
-        private void ReloadContainer()
+        private void ReloadTransforms()
         {
             lstTransforms.Items.Clear();
 
@@ -168,7 +176,7 @@ namespace MEMPHIS_SHARP
         /// <summary>
         /// Loads condition and action names into the transforms dialog
         /// </summary>
-        public void LoadConditionActionNames()
+        public void LoadConditionAndActionNames()
         {
             //  LOAD NAMES
             List<string> mConditionNames = new();
@@ -293,7 +301,7 @@ namespace MEMPHIS_SHARP
             if (tr != null)
             {
                 tr.Enabled = !tr.Enabled;
-                btnToggle.Text = tr.Enabled ? "■" : "●";
+                btnToggle.Text = tr.Enabled ? K_DISABLE_TRANSFORM : K_ENABLE_TRANSFORM;
                 lstTransforms.Invalidate();
             }
         }
@@ -307,7 +315,7 @@ namespace MEMPHIS_SHARP
             if (tr != null)
             {
                 tr.UseLastOutput = !tr.UseLastOutput;
-                btnLink.Text = tr.UseLastOutput ? "🧷" : "🔗";
+                btnLink.Text = tr.UseLastOutput ? K_UNLINK_TRANSFORM : K_LINK_TRANSFORM;
                 lstTransforms.Invalidate();
             }
         }

@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP.ConditionEditors
 {
-    public partial class EditorIsNumeric: EditorBase2
+    public partial class EditorIsNumeric: EditorBase
     {
         public EditorIsNumeric()
         {

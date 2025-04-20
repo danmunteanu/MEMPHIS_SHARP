@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP.ActionEditors
 {
-    public partial class EditorSetSeparators: EditorBase2
+    public partial class EditorSetSeparators: EditorBase
     {
         public EditorSetSeparators()
         {

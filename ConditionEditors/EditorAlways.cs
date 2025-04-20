@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP.ConditionEditors
 {
-    public partial class EditorAlways: EditorBase2
+    public partial class EditorAlways: EditorBase
     {
         public EditorAlways()
         {

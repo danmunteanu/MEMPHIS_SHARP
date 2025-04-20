@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP.ActionEditors
 {
-    public partial class EditorChangeCase: EditorBase2
+    public partial class EditorChangeCase: EditorBase
     {
         public EditorChangeCase()
         {

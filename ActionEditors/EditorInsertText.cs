@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP.ActionEditors
 {
-    public partial class EditorInsertText: EditorBase2
+    public partial class EditorInsertText: EditorBase
     {
         public EditorInsertText()
         {

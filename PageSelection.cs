@@ -8,8 +8,6 @@ namespace MEMPHIS_SHARP
     {
         private MemphisEngine? mEngine = null;
 
-        private TransformsComponent<Token> mTransformsComp;
-                
         public MemphisEngine? Engine {
             get => mEngine;
             set
@@ -22,11 +20,6 @@ namespace MEMPHIS_SHARP
         public PageSelection()
         {
             InitializeComponent();
-
-            mTransformsComp = new() 
-            {
-            };
-            Utils.AddUserControlToPanel(panelTransforms, mTransformsComp);
 
             scenePainter.SelectionChanged = this.OnSelectionChanged;
             selectionDetails.TokenChanged = OnTokenTextChanged;
@@ -47,13 +40,6 @@ namespace MEMPHIS_SHARP
         {
             if (mEngine == null)
                 return;
-
-            //  pass the engine reference to all components
-            mTransformsComp.TransformsContainer = mEngine;
-            
-            //  load the names
-            mTransformsComp.LoadConditionNames(TokenConditionFactory.CreatorKeys);
-            mTransformsComp.LoadActionNames(TokenActionFactory.CreatorKeys);
 
             scenePainter.Engine = mEngine;
 

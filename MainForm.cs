@@ -16,6 +16,7 @@ namespace MEMPHIS_SHARP
         private FilesProcessor? mProcessor = new();
 
         private FilesListComponent? mFilesList = null;
+        private TransformsComponent<Token>? mTransformsComponent = null;
 
         public MainForm()
         {
@@ -87,6 +88,15 @@ namespace MEMPHIS_SHARP
             //  Connect pageSelection to mFilesList and mEngine
             pageSelection.Engine = mEngine;
             pageSelection.FilesList = mFilesList;
+
+            //  Create Transforms Component
+            mTransformsComponent = new()
+            {
+            };
+            mTransformsComponent.TransformsContainer = mEngine;
+            mTransformsComponent.LoadConditionNames(TokenConditionFactory.CreatorKeys);
+            mTransformsComponent.LoadActionNames(TokenActionFactory.CreatorKeys);
+            Utils.AddUserControlToPanel(panelTransforms, mTransformsComponent);
         }
 
         public void Notify()

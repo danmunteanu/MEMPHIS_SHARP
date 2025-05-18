@@ -172,7 +172,7 @@ namespace MEMPHIS_SHARP
             mViewer.Graph = mGraph;
         }
 
-        private void OnMouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -190,7 +190,7 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        private void OnMouseMove(object? sender, MouseEventArgs e)
         {
             if (isDragging && e.Button == System.Windows.Forms.MouseButtons.Left)
             {

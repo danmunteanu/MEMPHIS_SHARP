@@ -10,9 +10,11 @@ namespace MEMPHIS_SHARP
         public delegate void SelectionChanged_Callback();
         public SelectionChanged_Callback? SelectionChanged { get; set; } = null;
 
+        //  Fill Colors
         Microsoft.Msagl.Drawing.Color mSelectedFillColor = Microsoft.Msagl.Drawing.Color.LightGoldenrodYellow;
         Microsoft.Msagl.Drawing.Color mFillColor = Microsoft.Msagl.Drawing.Color.LightBlue;
         
+        //  Simple colors
         Microsoft.Msagl.Drawing.Color mSelectedColor = Microsoft.Msagl.Drawing.Color.Gold;
         Microsoft.Msagl.Drawing.Color mColor = Microsoft.Msagl.Drawing.Color.Black;
 
@@ -34,8 +36,6 @@ namespace MEMPHIS_SHARP
         //  various
         private bool isDragging = false;
         private Point lastMousePosition;
-
-
 
         public ScenePainter()
         {

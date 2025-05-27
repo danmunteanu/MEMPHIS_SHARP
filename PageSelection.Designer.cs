@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            selectionDetails = new ();
+            selectionDetails = new TokenSelectionEditor();
             tableLayoutLeft = new TableLayoutPanel();
             scenePainter = new ScenePainter();
             tableLayoutAll = new TableLayoutPanel();

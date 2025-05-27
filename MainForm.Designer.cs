@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            CommonForms.Components.FilesList.FilesListSettings listSettings1 = new ();
+            CommonForms.Components.FilesList.FilesListSettings listSettings1 = new CommonForms.Components.FilesList.FilesListSettings();
             filesListComponent1 = new CommonForms.Components.FilesList();
             pageSelection = new PageSelection();
             panelList = new Panel();

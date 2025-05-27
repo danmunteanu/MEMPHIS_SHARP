@@ -15,8 +15,8 @@ namespace MEMPHIS_SHARP
 
         private FilesProcessor? mProcessor = new();
 
-        private FilesListComponent? mFilesList = null;
-        private TransformsComponent<Token>? mTransformsComponent = null;
+        private FilesList? mFilesList = null;
+        private TransformsList<Token>? mTransformsComponent = null;
 
         public MainForm()
         {
@@ -71,7 +71,7 @@ namespace MEMPHIS_SHARP
                 //  unused, for now
                 Processor = mProcessor,
 
-                Settings = new FilesListComponent.ListSettings()
+                Settings = new FilesList.FilesListSettings()
                 {
                     UseProgressBar = false,
                     TopLabel = Locale.LIST_TOP_LABEL,
@@ -92,8 +92,8 @@ namespace MEMPHIS_SHARP
             //  Create Transforms Component
             mTransformsComponent = new()
             {
+                TransformsContainer = mEngine
             };
-            mTransformsComponent.TransformsContainer = mEngine;
             mTransformsComponent.LoadConditionNames(TokenConditionFactory.CreatorKeys);
             mTransformsComponent.LoadActionNames(TokenActionFactory.CreatorKeys);
             Utils.AddUserControlToPanel(panelTransforms, mTransformsComponent);

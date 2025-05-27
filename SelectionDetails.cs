@@ -73,5 +73,15 @@ namespace MEMPHIS_SHARP
                 TokenChanged?.Invoke(mToken);
             }
         }
+
+        private void btnDefaultSeparators_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClearSep_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

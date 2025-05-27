@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            CommonForms.Components.FilesListComponent.ListSettings listSettings1 = new CommonForms.Components.FilesListComponent.ListSettings();
-            filesListComponent1 = new CommonForms.Components.FilesListComponent();
+            CommonForms.Components.FilesList.FilesListSettings listSettings1 = new ();
+            filesListComponent1 = new CommonForms.Components.FilesList();
             pageSelection = new PageSelection();
             panelList = new Panel();
             tableLayoutMain = new TableLayoutPanel();
@@ -133,7 +133,7 @@
         }
 
         #endregion
-        private CommonForms.Components.FilesListComponent filesListComponent1;
+        private CommonForms.Components.FilesList filesListComponent1;
         private PageSelection pageSelection;
         private Panel panelList;
         private TableLayoutPanel tableLayoutMain;

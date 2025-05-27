@@ -1,6 +1,6 @@
 ﻿namespace MEMPHIS_SHARP
 {
-    partial class SelectionDetails
+    partial class TokenSelectionEditor
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,13 +33,13 @@
             lblText = new Label();
             tableLayoutMain = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
-            lblSepar = new Label();
-            btnClearSep = new Button();
-            btnMoveLeft = new Button();
-            btnMoveRight = new Button();
-            btnDefaultSeparators = new Button();
-            txtSeparators = new TextBox();
             tableLayoutPanel2 = new TableLayoutPanel();
+            txtSeparators = new TextBox();
+            btnDefaultSeparators = new Button();
+            btnMoveRight = new Button();
+            btnMoveLeft = new Button();
+            btnClearSep = new Button();
+            lblSepar = new Label();
             tableLayoutMain.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -115,74 +115,6 @@
             tableLayoutPanel1.Size = new Size(899, 39);
             tableLayoutPanel1.TabIndex = 12;
             // 
-            // lblSepar
-            // 
-            lblSepar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblSepar.AutoSize = true;
-            lblSepar.Location = new Point(54, 9);
-            lblSepar.Margin = new Padding(2, 0, 2, 0);
-            lblSepar.Name = "lblSepar";
-            lblSepar.Size = new Size(86, 20);
-            lblSepar.TabIndex = 7;
-            lblSepar.Text = "Separators:";
-            // 
-            // btnClearSep
-            // 
-            btnClearSep.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClearSep.Font = new Font("Segoe UI", 8F);
-            btnClearSep.Location = new Point(274, 6);
-            btnClearSep.Margin = new Padding(2);
-            btnClearSep.Name = "btnClearSep";
-            btnClearSep.Size = new Size(28, 26);
-            btnClearSep.TabIndex = 3;
-            btnClearSep.Text = "X";
-            btnClearSep.UseVisualStyleBackColor = true;
-            btnClearSep.Click += btnClearSep_Click;
-            // 
-            // btnMoveLeft
-            // 
-            btnMoveLeft.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnMoveLeft.Location = new Point(789, 6);
-            btnMoveLeft.Margin = new Padding(2);
-            btnMoveLeft.Name = "btnMoveLeft";
-            btnMoveLeft.Size = new Size(48, 26);
-            btnMoveLeft.TabIndex = 5;
-            btnMoveLeft.Text = "<<";
-            btnMoveLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnMoveRight
-            // 
-            btnMoveRight.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnMoveRight.Location = new Point(841, 6);
-            btnMoveRight.Margin = new Padding(2);
-            btnMoveRight.Name = "btnMoveRight";
-            btnMoveRight.Size = new Size(56, 26);
-            btnMoveRight.TabIndex = 6;
-            btnMoveRight.Text = ">>";
-            btnMoveRight.UseVisualStyleBackColor = true;
-            // 
-            // btnDefaultSeparators
-            // 
-            btnDefaultSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnDefaultSeparators.Font = new Font("Segoe UI", 8F);
-            btnDefaultSeparators.Location = new Point(306, 6);
-            btnDefaultSeparators.Margin = new Padding(2);
-            btnDefaultSeparators.Name = "btnDefaultSeparators";
-            btnDefaultSeparators.Size = new Size(72, 26);
-            btnDefaultSeparators.TabIndex = 4;
-            btnDefaultSeparators.Text = "Default";
-            btnDefaultSeparators.UseVisualStyleBackColor = true;
-            btnDefaultSeparators.Click += btnDefaultSeparators_Click;
-            // 
-            // txtSeparators
-            // 
-            txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtSeparators.Location = new Point(144, 6);
-            txtSeparators.Margin = new Padding(2);
-            txtSeparators.Name = "txtSeparators";
-            txtSeparators.Size = new Size(94, 27);
-            txtSeparators.TabIndex = 2;
-            // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 9;
@@ -208,6 +140,74 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Size = new Size(899, 39);
             tableLayoutPanel2.TabIndex = 12;
+            // 
+            // txtSeparators
+            // 
+            txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtSeparators.Location = new Point(144, 6);
+            txtSeparators.Margin = new Padding(2);
+            txtSeparators.Name = "txtSeparators";
+            txtSeparators.Size = new Size(94, 27);
+            txtSeparators.TabIndex = 2;
+            // 
+            // btnDefaultSeparators
+            // 
+            btnDefaultSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnDefaultSeparators.Font = new Font("Segoe UI", 8F);
+            btnDefaultSeparators.Location = new Point(306, 6);
+            btnDefaultSeparators.Margin = new Padding(2);
+            btnDefaultSeparators.Name = "btnDefaultSeparators";
+            btnDefaultSeparators.Size = new Size(72, 26);
+            btnDefaultSeparators.TabIndex = 4;
+            btnDefaultSeparators.Text = "Default";
+            btnDefaultSeparators.UseVisualStyleBackColor = true;
+            btnDefaultSeparators.Click += btnDefaultSeparators_Click;
+            // 
+            // btnMoveRight
+            // 
+            btnMoveRight.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnMoveRight.Location = new Point(841, 6);
+            btnMoveRight.Margin = new Padding(2);
+            btnMoveRight.Name = "btnMoveRight";
+            btnMoveRight.Size = new Size(56, 26);
+            btnMoveRight.TabIndex = 6;
+            btnMoveRight.Text = ">>";
+            btnMoveRight.UseVisualStyleBackColor = true;
+            // 
+            // btnMoveLeft
+            // 
+            btnMoveLeft.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnMoveLeft.Location = new Point(789, 6);
+            btnMoveLeft.Margin = new Padding(2);
+            btnMoveLeft.Name = "btnMoveLeft";
+            btnMoveLeft.Size = new Size(48, 26);
+            btnMoveLeft.TabIndex = 5;
+            btnMoveLeft.Text = "<<";
+            btnMoveLeft.UseVisualStyleBackColor = true;
+            // 
+            // btnClearSep
+            // 
+            btnClearSep.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClearSep.Font = new Font("Segoe UI", 8F);
+            btnClearSep.Location = new Point(274, 6);
+            btnClearSep.Margin = new Padding(2);
+            btnClearSep.Name = "btnClearSep";
+            btnClearSep.Size = new Size(28, 26);
+            btnClearSep.TabIndex = 3;
+            btnClearSep.Text = "X";
+            btnClearSep.UseVisualStyleBackColor = true;
+            btnClearSep.Click += btnClearSep_Click;
+            // 
+            // lblSepar
+            // 
+            lblSepar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblSepar.AutoSize = true;
+            lblSepar.Location = new Point(54, 9);
+            lblSepar.Margin = new Padding(2, 0, 2, 0);
+            lblSepar.Name = "lblSepar";
+            lblSepar.Size = new Size(86, 20);
+            lblSepar.TabIndex = 7;
+            lblSepar.Text = "Separators:";
             // 
             // SelectionDetails
             // 

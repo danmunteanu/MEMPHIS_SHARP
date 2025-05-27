@@ -6,9 +6,9 @@ namespace MEMPHIS_SHARP
 {
     public partial class PageSelection : ApplicationPageBase
     {
-        private MemphisEngine? mEngine = null;
+        private Engine? mEngine = null;
 
-        public MemphisEngine? Engine {
+        public Engine? Engine {
             get => mEngine;
             set
             {
@@ -21,7 +21,7 @@ namespace MEMPHIS_SHARP
         {
             InitializeComponent();
 
-            scenePainter.SelectionChanged = this.OnSelectionChanged;
+            scenePainter.SelectionChanged = this.OnTokenSelectionChanged;
             selectionDetails.TokenChanged = OnTokenTextChanged;
 
             UpdateUI();
@@ -78,13 +78,16 @@ namespace MEMPHIS_SHARP
             UpdateUI();
         }
 
-        private void OnSelectionChanged()
+        private void OnTokenSelectionChanged()
         {
             if (mEngine == null || mEngine.SelectedSubtoken == null)
                 return;
 
-            //  setting the token loads selection details
+            //  Set the token and force reload of selection details
             selectionDetails.Token = mEngine.SelectedSubtoken;
+
+            //  Repaint token
+            scenePainter.UpdateNode(mEngine.SelectedSubtoken);
 
             UpdateUI();
         }

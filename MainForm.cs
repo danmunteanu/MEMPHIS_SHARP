@@ -11,10 +11,8 @@ namespace MEMPHIS_SHARP
 {
     public partial class MainForm : Form, IEngineObserver
     {
-        private MemphisEngine mEngine = new();
-
+        private Engine mEngine = new();
         private FilesProcessor? mProcessor = new();
-
         private FilesList? mFilesList = null;
         private TransformsList<Token>? mTransformsComponent = null;
 
@@ -25,9 +23,7 @@ namespace MEMPHIS_SHARP
             this.Text = Locale.APPLICATION_NAME;
 
             SetupEngine();
-
             RegisterCreators();
-
             SetupComponents();
 
             this.CenterToParent();
@@ -64,7 +60,7 @@ namespace MEMPHIS_SHARP
 
         private void SetupComponents()
         {
-            //  Create the FilesList
+            //  Create Files List
             mFilesList = new()
             {
                 //  Adding processor just bc list won't add files without an instance of it
@@ -85,11 +81,13 @@ namespace MEMPHIS_SHARP
             Utils.AddUserControlToPanel(panelList, mFilesList);
             panelList.Padding = new Padding(10, 0, 10, 10);
 
-            //  Connect pageSelection to mFilesList and mEngine
+
+            //  Connect pageSelection to mEngine and mFilesList
             pageSelection.Engine = mEngine;
             pageSelection.FilesList = mFilesList;
 
-            //  Create Transforms Component
+
+            //  Transforms Component
             mTransformsComponent = new()
             {
                 TransformsContainer = mEngine
@@ -106,7 +104,7 @@ namespace MEMPHIS_SHARP
 
         public void SetupEngine()
         {
-            //  Add strings
+            //  Strings to remove - Add these to Settings
             mEngine.AddStringToRemove("(Hydr0.org)");
             mEngine.AddStringToRemove("(by.NecKerM4nn)");
 
@@ -121,25 +119,6 @@ namespace MEMPHIS_SHARP
                 new ActionChangeCase(mEngine, true, false, true)
             );
             mEngine.AddTransform(tr);
-
-            //t = new(new ConditionAlways(), new ActionEnableDisable(mEngine, true));
-            //mEngine.AddTransform(t);
-
-            //mEngine.ApplyTransformsToToken(null);
-
-            //  Upcase all words
-            //mEngine.AddTransform(
-            //new ConditionAlways(),
-            //new ActionChangeCase(mEngine, true, false, true)
-            //);
-
-            //  Discard numeric tokens
-
-            //  lowcase extensions
-
-            //  upcase several strings
-
-            //  add dot after various tokens
         }
 
     }

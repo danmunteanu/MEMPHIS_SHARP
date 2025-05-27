@@ -6,8 +6,19 @@ namespace MEMPHIS_SHARP
 {
     public partial class ScenePainter : UserControl
     {
-        private MemphisEngine? mEngine = null;
-        public MemphisEngine? Engine 
+        //  A callback for selection changed
+        public delegate void SelectionChanged_Callback();
+        public SelectionChanged_Callback? SelectionChanged { get; set; } = null;
+
+        Microsoft.Msagl.Drawing.Color mSelectedFillColor = Microsoft.Msagl.Drawing.Color.LightGoldenrodYellow;
+        Microsoft.Msagl.Drawing.Color mFillColor = Microsoft.Msagl.Drawing.Color.LightBlue;
+        
+        Microsoft.Msagl.Drawing.Color mSelectedColor = Microsoft.Msagl.Drawing.Color.Gold;
+        Microsoft.Msagl.Drawing.Color mColor = Microsoft.Msagl.Drawing.Color.Black;
+
+        //  Engine reference
+        private Engine? mEngine = null;
+        public Engine? Engine 
         {
             get { return mEngine; }
             set { 
@@ -15,16 +26,16 @@ namespace MEMPHIS_SHARP
                 SetupScene();
             }
         }
-
-        public delegate void SelectionChanged_Callback();
-
-        public SelectionChanged_Callback? SelectionChanged { get; set; } = null;
-
+        
+        //  Graph viewer and actual graph
         private GViewer mViewer = new();
         private Graph mGraph = new();
 
+        //  various
         private bool isDragging = false;
         private Point lastMousePosition;
+
+
 
         public ScenePainter()
         {
@@ -52,24 +63,25 @@ namespace MEMPHIS_SHARP
 
         private void OnGraphClick(object? sender, EventArgs e)
         {
+            //  We need an Engine
+            if (Engine == null) return;
+
+            //  Have selection?
             var clickedObject = mViewer.SelectedObject;
-            if (clickedObject == null)
-                return;
+            if (clickedObject == null) return;
 
+            //  Selection is Node?
             var clickedNode = clickedObject as Node;
-            if (clickedNode == null)
-                return;
-
-            if (Engine == null)
-                return;
+            if (clickedNode == null) return;
 
             // Get the token reference from the node's UserData
             var token = clickedNode.UserData as Token;
-            if (token == null)  // If no token in UserData, it's our message node
-                return;
+            if (token == null) return;
 
+            //  Select token
             Engine.SelectSubtoken(token);
 
+            //  Notify of selection changed
             SelectionChanged?.Invoke();
         }
 
@@ -83,9 +95,7 @@ namespace MEMPHIS_SHARP
 
             // Clear the existing graph
             foreach (var node in mGraph.Nodes.ToList())
-            {
                 mGraph.RemoveNode(node);
-            }
 
             if (Engine?.RootToken == null)
             {
@@ -101,7 +111,7 @@ namespace MEMPHIS_SHARP
             var parent = mGraph.AddNode(Engine.RootToken.Text);
             parent.LabelText = Engine.RootToken.Text;
             parent.UserData = Engine.RootToken;  // Store the root token reference
-            SetNodeStyle(parent);
+              SetNodeStyle(parent);
 
             AddSubtokens(Engine.RootToken, mGraph);
 
@@ -131,36 +141,37 @@ namespace MEMPHIS_SHARP
         private void SetNodeStyle(Node node, bool isSelected = false)
         {
             node.Attr.Shape = Shape.Box;
-            node.Attr.FillColor = isSelected ? Microsoft.Msagl.Drawing.Color.LightGoldenrodYellow : Microsoft.Msagl.Drawing.Color.LightBlue;
+
+            node.Attr.FillColor = isSelected ? mSelectedFillColor : mFillColor;
             node.Attr.LabelMargin = 5;
             node.Attr.XRadius = 3;
             node.Attr.YRadius = 3;
             node.Label.FontSize = 12;
 
             // Optional: Change border color for selected nodes
-            node.Attr.Color = isSelected ? Microsoft.Msagl.Drawing.Color.Gold : Microsoft.Msagl.Drawing.Color.Black;
+            node.Attr.Color = isSelected ? mSelectedColor : mColor;
             node.Attr.LineWidth = isSelected ? 2 : 1;
 
             // Add strikethrough for disabled tokens
             if (node.UserData is Token token && token.Discard)
-            {
                 node.Label.FontStyle = Microsoft.Msagl.Drawing.FontStyle.Strikeout;
-            }
             else
-            {
                 node.Label.FontStyle = Microsoft.Msagl.Drawing.FontStyle.Regular;
-            }
         }
 
         public void UpdateNode(Token token)
         {
             if (mGraph == null || token == null)
                 return;
-
+            
             // Find the node with this token
-            var node = mGraph.Nodes.FirstOrDefault(n => n.UserData == token);
-            if (node == null)
-                return;
+            var node = mGraph.Nodes.FirstOrDefault(n => (n.UserData == token));
+            if (node == null) return;
+
+            //  Find the previously selected node and fill it with regular color
+            var selectedNode = mGraph.Nodes.FirstOrDefault(n => (n.Attr.FillColor == mSelectedFillColor));
+            if (selectedNode != null)
+                SetNodeStyle(selectedNode, false);
 
             // Update the node's text
             node.LabelText = token.Text;
@@ -202,7 +213,7 @@ namespace MEMPHIS_SHARP
             }
         }
 
-        private void OnMouseUp(object sender, MouseEventArgs e)
+        private void OnMouseUp(object? sender, MouseEventArgs e)
         {
             isDragging = false;
         }

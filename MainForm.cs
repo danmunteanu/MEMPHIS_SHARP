@@ -109,17 +109,22 @@ namespace MEMPHIS_SHARP
             mEngine.AddStringToRemove("(by.NecKerM4nn)");
 
             Transform<Token> tr = new(
-                new ConditionAlways(), 
+                new ConditionAlways(),
                 new ActionInsertText()
             );
             mEngine.AddTransform(tr);
 
             tr = new(
-                new ConditionAlways(), 
+                new ConditionAlways(),
                 new ActionChangeCase(mEngine, true, false, true)
             );
             mEngine.AddTransform(tr);
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //  save settings
+            
+        }
     }
 }

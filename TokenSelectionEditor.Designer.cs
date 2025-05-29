@@ -32,7 +32,6 @@
             chkEnabled = new CheckBox();
             lblText = new Label();
             tableLayoutMain = new TableLayoutPanel();
-            tableLayoutPanelText = new TableLayoutPanel();
             tableLayoutPanelSeparators = new TableLayoutPanel();
             txtSeparators = new TextBox();
             btnDefaultSeparators = new Button();
@@ -40,9 +39,10 @@
             btnMoveLeft = new Button();
             btnClearSep = new Button();
             lblSepar = new Label();
+            tableLayoutPanelText = new TableLayoutPanel();
             tableLayoutMain.SuspendLayout();
-            tableLayoutPanelText.SuspendLayout();
             tableLayoutPanelSeparators.SuspendLayout();
+            tableLayoutPanelText.SuspendLayout();
             SuspendLayout();
             // 
             // txtSelection
@@ -96,25 +96,6 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutMain.Size = new Size(498, 125);
             tableLayoutMain.TabIndex = 11;
-            // 
-            // tableLayoutPanelText
-            // 
-            tableLayoutPanelText.ColumnCount = 4;
-            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
-            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 257F));
-            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 101F));
-            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelText.Controls.Add(lblText, 0, 0);
-            tableLayoutPanelText.Controls.Add(chkEnabled, 3, 0);
-            tableLayoutPanelText.Controls.Add(txtSelection, 1, 0);
-            tableLayoutPanelText.Dock = DockStyle.Fill;
-            tableLayoutPanelText.Location = new Point(19, 20);
-            tableLayoutPanelText.Name = "tableLayoutPanelText";
-            tableLayoutPanelText.RowCount = 1;
-            tableLayoutPanelText.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelText.Size = new Size(460, 39);
-            tableLayoutPanelText.TabIndex = 12;
             // 
             // tableLayoutPanelSeparators
             // 
@@ -174,6 +155,7 @@
             btnMoveRight.TabIndex = 6;
             btnMoveRight.Text = "❯❯ ";
             btnMoveRight.UseVisualStyleBackColor = true;
+            btnMoveRight.Click += btnMoveRight_Click;
             // 
             // btnMoveLeft
             // 
@@ -186,6 +168,7 @@
             btnMoveLeft.TabIndex = 5;
             btnMoveLeft.Text = "❮❮";
             btnMoveLeft.UseVisualStyleBackColor = true;
+            btnMoveLeft.Click += btnMoveLeft_Click;
             // 
             // btnClearSep
             // 
@@ -211,6 +194,25 @@
             lblSepar.TabIndex = 7;
             lblSepar.Text = "Separators:";
             // 
+            // tableLayoutPanelText
+            // 
+            tableLayoutPanelText.ColumnCount = 4;
+            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 257F));
+            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 101F));
+            tableLayoutPanelText.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelText.Controls.Add(lblText, 0, 0);
+            tableLayoutPanelText.Controls.Add(chkEnabled, 3, 0);
+            tableLayoutPanelText.Controls.Add(txtSelection, 1, 0);
+            tableLayoutPanelText.Dock = DockStyle.Fill;
+            tableLayoutPanelText.Location = new Point(19, 20);
+            tableLayoutPanelText.Name = "tableLayoutPanelText";
+            tableLayoutPanelText.RowCount = 1;
+            tableLayoutPanelText.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelText.Size = new Size(460, 39);
+            tableLayoutPanelText.TabIndex = 12;
+            // 
             // TokenSelectionEditor
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -220,10 +222,10 @@
             Name = "TokenSelectionEditor";
             Size = new Size(498, 125);
             tableLayoutMain.ResumeLayout(false);
-            tableLayoutPanelText.ResumeLayout(false);
-            tableLayoutPanelText.PerformLayout();
             tableLayoutPanelSeparators.ResumeLayout(false);
             tableLayoutPanelSeparators.PerformLayout();
+            tableLayoutPanelText.ResumeLayout(false);
+            tableLayoutPanelText.PerformLayout();
             ResumeLayout(false);
         }
 

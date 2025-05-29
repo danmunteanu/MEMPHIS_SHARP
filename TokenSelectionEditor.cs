@@ -7,8 +7,9 @@ namespace MEMPHIS_SHARP
         //  remember the token for fast update
         private Token? mToken = null;
 
-        public delegate void TokenTextChanged_Callback(Token token);
-        public TokenTextChanged_Callback? TokenChanged { get; set; }
+        //  The event being called when the token has changed
+        public delegate void TokenChanged_Callback(Token token);
+        public TokenChanged_Callback? TokenChanged { get; set; }
 
         public Token? Token
         {
@@ -18,6 +19,7 @@ namespace MEMPHIS_SHARP
             {
                 mToken = value;
                 LoadToken(mToken);
+                txtSelection.Focus();
             }
         }
 
@@ -74,12 +76,32 @@ namespace MEMPHIS_SHARP
 
         private void btnDefaultSeparators_Click(object sender, EventArgs e)
         {
+            if (mToken == null)
+                return;
 
+            //mToken.Separators = ;
+
+            TokenChanged?.Invoke(mToken);
         }
 
         private void btnClearSep_Click(object sender, EventArgs e)
         {
+            if (mToken == null)
+                return;
 
+            mToken.Separators = string.Empty;
+
+            TokenChanged?.Invoke(mToken);
+        }
+
+        private void btnMoveLeft_Click(object sender, EventArgs e)
+        {
+            //  move token left
+        }
+
+        private void btnMoveRight_Click(object sender, EventArgs e)
+        {
+            //  move token right
         }
     }
 }

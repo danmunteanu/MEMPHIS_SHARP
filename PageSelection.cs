@@ -22,7 +22,7 @@ namespace MEMPHIS_SHARP
             InitializeComponent();
 
             scenePainter.SelectionChanged = this.OnTokenSelectionChanged;
-            selectionDetails.TokenChanged = OnTokenTextChanged;
+            selectionDetails.TokenChanged = OnTokenChanged;
 
             UpdateUI();
         }
@@ -83,6 +83,8 @@ namespace MEMPHIS_SHARP
             if (mEngine == null || mEngine.SelectedSubtoken == null)
                 return;
 
+            
+
             //  Set the token and force reload of selection details
             selectionDetails.Token = mEngine.SelectedSubtoken;
 
@@ -92,9 +94,16 @@ namespace MEMPHIS_SHARP
             UpdateUI();
         }
 
-        private void OnTokenTextChanged(Token token)
+        private void OnTokenChanged(Token token)
         {
             scenePainter.UpdateNode(token);
+            
+            //  Reconstruct output
+            if (Engine != null)
+            {
+                string renameTo = Engine.ReconstructOutput(Engine.RootToken);
+                txtRenameTo.Text = renameTo;
+            }
         }
 
         private void btnRename_Click(object sender, EventArgs e)

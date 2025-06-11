@@ -1,6 +1,7 @@
 ## Overview
+**MemphisSharp** is a tool to help with renaming mp3 files in a visual way.
 
-**MemphisSharp** is a tool to help renaming mp3 files in a visual way.
+![Memphis Sharp Preview](assets/memphis_sharp.png)
 
 The basic idea is this: 
 - **Add a folder** with music files (mp3 only for now)
@@ -33,5 +34,4 @@ No guarantees, though.
 - WindowsForms - good ol' WindowsForms
 - Msagl - library for displaying graphs
 
-![Memphis Sharp Preview](assets/memphis_sharp.png)
 

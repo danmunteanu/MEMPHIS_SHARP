@@ -33,5 +33,5 @@ No guarantees, though.
 - WindowsForms - good ol' WindowsForms
 - Msagl - library for displaying graphs
 
-![[memphis_sharp.png]]
+![Memphis Sharp Preview](assets/memphis_sharp.png)
 

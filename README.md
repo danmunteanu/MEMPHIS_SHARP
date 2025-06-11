@@ -30,5 +30,5 @@ Alright, if you stumble upon this code and find it interesting, do what you want
 - WindowsForms
 - Msagl
 
-![[memphis_sharp.png]]
+![[_assets/memphis_sharp.png]]
 

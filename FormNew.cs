@@ -7,7 +7,6 @@ using Memphis.Conditions;
 using MEMPHIS_SHARP.ConditionEditors;
 using MEMPHIS_SHARP.ActionEditors;
 
-
 namespace MEMPHIS_SHARP
 {
     public partial class FormNew: Form
@@ -25,17 +24,13 @@ namespace MEMPHIS_SHARP
             RegisterCreators();
             SetupComponents();
 
-            
-
-            scenePainter.SelectionChanged = this.OnTokenSelectionChanged;
             scenePainter.Engine = mEngine;
+            scenePainter.SelectionChanged = this.OnTokenSelectionChanged;
 
             selectionDetails.TokenChanged = OnTokenChanged;
 
             this.Text = Locale.APPLICATION_NAME;
-
             this.CenterToParent();
-
         }
 
         private void RegisterCreators()

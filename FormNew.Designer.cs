@@ -34,6 +34,7 @@
             selectionDetails = new SelectionDetails();
             tableLayoutPanelMain = new TableLayoutPanel();
             tableLayoutPanelRight = new TableLayoutPanel();
+            tableLayoutPanelSelectionTransforms = new TableLayoutPanel();
             tableLayoutRename = new TableLayoutPanel();
             lblOriginalName = new Label();
             txtRenameTo = new TextBox();
@@ -44,6 +45,7 @@
             tableLayoutPanelLeft = new TableLayoutPanel();
             tableLayoutPanelMain.SuspendLayout();
             tableLayoutPanelRight.SuspendLayout();
+            tableLayoutPanelSelectionTransforms.SuspendLayout();
             tableLayoutRename.SuspendLayout();
             tableLayoutPanelLeft.SuspendLayout();
             SuspendLayout();
@@ -53,15 +55,15 @@
             panelList.Dock = DockStyle.Fill;
             panelList.Location = new Point(3, 3);
             panelList.Name = "panelList";
-            panelList.Size = new Size(488, 551);
+            panelList.Size = new Size(488, 851);
             panelList.TabIndex = 0;
             // 
             // panelTransforms
             // 
             panelTransforms.Dock = DockStyle.Fill;
-            panelTransforms.Location = new Point(3, 560);
+            panelTransforms.Location = new Point(487, 3);
             panelTransforms.Name = "panelTransforms";
-            panelTransforms.Size = new Size(488, 294);
+            panelTransforms.Size = new Size(244, 188);
             panelTransforms.TabIndex = 1;
             // 
             // scenePainter
@@ -73,17 +75,17 @@
             scenePainter.Margin = new Padding(3, 4, 3, 4);
             scenePainter.Name = "scenePainter";
             scenePainter.SelectionChanged = null;
-            scenePainter.Size = new Size(681, 252);
+            scenePainter.Size = new Size(734, 252);
             scenePainter.TabIndex = 2;
             // 
             // selectionDetails
             // 
             selectionDetails.BorderStyle = BorderStyle.FixedSingle;
             selectionDetails.Dock = DockStyle.Fill;
-            selectionDetails.Location = new Point(2, 307);
+            selectionDetails.Location = new Point(2, 2);
             selectionDetails.Margin = new Padding(2);
             selectionDetails.Name = "selectionDetails";
-            selectionDetails.Size = new Size(683, 132);
+            selectionDetails.Size = new Size(460, 190);
             selectionDetails.TabIndex = 3;
             selectionDetails.Token = null;
             selectionDetails.TokenChanged = null;
@@ -100,15 +102,15 @@
             tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             tableLayoutPanelMain.RowCount = 1;
             tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.Size = new Size(1193, 863);
+            tableLayoutPanelMain.Size = new Size(1246, 863);
             tableLayoutPanelMain.TabIndex = 7;
             // 
             // tableLayoutPanelRight
             // 
             tableLayoutPanelRight.ColumnCount = 1;
             tableLayoutPanelRight.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelRight.Controls.Add(tableLayoutPanelSelectionTransforms, 0, 2);
             tableLayoutPanelRight.Controls.Add(scenePainter, 0, 1);
-            tableLayoutPanelRight.Controls.Add(selectionDetails, 0, 2);
             tableLayoutPanelRight.Controls.Add(tableLayoutRename, 0, 4);
             tableLayoutPanelRight.Dock = DockStyle.Fill;
             tableLayoutPanelRight.Location = new Point(503, 3);
@@ -116,11 +118,27 @@
             tableLayoutPanelRight.RowCount = 5;
             tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 260F));
-            tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 136F));
+            tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 169F));
-            tableLayoutPanelRight.Size = new Size(687, 857);
+            tableLayoutPanelRight.RowStyles.Add(new RowStyle(SizeType.Absolute, 130F));
+            tableLayoutPanelRight.Size = new Size(740, 857);
             tableLayoutPanelRight.TabIndex = 8;
+            // 
+            // tableLayoutPanelSelectionTransforms
+            // 
+            tableLayoutPanelSelectionTransforms.ColumnCount = 3;
+            tableLayoutPanelSelectionTransforms.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tableLayoutPanelSelectionTransforms.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelSelectionTransforms.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tableLayoutPanelSelectionTransforms.Controls.Add(panelTransforms, 2, 0);
+            tableLayoutPanelSelectionTransforms.Controls.Add(selectionDetails, 0, 0);
+            tableLayoutPanelSelectionTransforms.Dock = DockStyle.Fill;
+            tableLayoutPanelSelectionTransforms.Location = new Point(3, 308);
+            tableLayoutPanelSelectionTransforms.Name = "tableLayoutPanelSelectionTransforms";
+            tableLayoutPanelSelectionTransforms.RowCount = 1;
+            tableLayoutPanelSelectionTransforms.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelSelectionTransforms.Size = new Size(734, 194);
+            tableLayoutPanelSelectionTransforms.TabIndex = 8;
             // 
             // tableLayoutRename
             // 
@@ -129,29 +147,29 @@
             tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F));
             tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutRename.Controls.Add(lblOriginalName, 0, 0);
-            tableLayoutRename.Controls.Add(txtRenameTo, 1, 1);
-            tableLayoutRename.Controls.Add(lblRenameTo, 0, 1);
-            tableLayoutRename.Controls.Add(txtOriginalName, 1, 0);
-            tableLayoutRename.Controls.Add(btnRename, 2, 1);
-            tableLayoutRename.Controls.Add(txtSeparators, 2, 0);
+            tableLayoutRename.Controls.Add(lblOriginalName, 0, 1);
+            tableLayoutRename.Controls.Add(txtRenameTo, 1, 2);
+            tableLayoutRename.Controls.Add(lblRenameTo, 0, 2);
+            tableLayoutRename.Controls.Add(txtOriginalName, 1, 1);
+            tableLayoutRename.Controls.Add(btnRename, 2, 2);
+            tableLayoutRename.Controls.Add(txtSeparators, 2, 1);
             tableLayoutRename.Dock = DockStyle.Fill;
-            tableLayoutRename.Location = new Point(2, 691);
+            tableLayoutRename.Location = new Point(2, 730);
             tableLayoutRename.Margin = new Padding(2, 3, 2, 3);
             tableLayoutRename.Name = "tableLayoutRename";
-            tableLayoutRename.RowCount = 2;
+            tableLayoutRename.RowCount = 4;
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutRename.Size = new Size(683, 163);
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutRename.Size = new Size(736, 124);
             tableLayoutRename.TabIndex = 5;
             // 
             // lblOriginalName
             // 
             lblOriginalName.Anchor = AnchorStyles.Right;
             lblOriginalName.AutoSize = true;
-            lblOriginalName.Location = new Point(9, 10);
+            lblOriginalName.Location = new Point(9, 32);
             lblOriginalName.Margin = new Padding(2, 0, 2, 0);
             lblOriginalName.Name = "lblOriginalName";
             lblOriginalName.Size = new Size(109, 20);
@@ -161,18 +179,18 @@
             // txtRenameTo
             // 
             txtRenameTo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtRenameTo.Location = new Point(122, 88);
+            txtRenameTo.Location = new Point(122, 68);
             txtRenameTo.Margin = new Padding(2, 3, 2, 3);
             txtRenameTo.Name = "txtRenameTo";
             txtRenameTo.ReadOnly = true;
-            txtRenameTo.Size = new Size(399, 27);
+            txtRenameTo.Size = new Size(452, 27);
             txtRenameTo.TabIndex = 3;
             // 
             // lblRenameTo
             // 
             lblRenameTo.Anchor = AnchorStyles.Right;
             lblRenameTo.AutoSize = true;
-            lblRenameTo.Location = new Point(32, 91);
+            lblRenameTo.Location = new Point(32, 72);
             lblRenameTo.Margin = new Padding(2, 0, 2, 0);
             lblRenameTo.Name = "lblRenameTo";
             lblRenameTo.Size = new Size(86, 20);
@@ -182,17 +200,17 @@
             // txtOriginalName
             // 
             txtOriginalName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtOriginalName.Location = new Point(122, 6);
+            txtOriginalName.Location = new Point(122, 28);
             txtOriginalName.Margin = new Padding(2, 3, 2, 3);
             txtOriginalName.Name = "txtOriginalName";
             txtOriginalName.ReadOnly = true;
-            txtOriginalName.Size = new Size(399, 27);
+            txtOriginalName.Size = new Size(452, 27);
             txtOriginalName.TabIndex = 2;
             // 
             // btnRename
             // 
             btnRename.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnRename.Location = new Point(525, 87);
+            btnRename.Location = new Point(578, 67);
             btnRename.Margin = new Padding(2, 3, 2, 3);
             btnRename.Name = "btnRename";
             btnRename.Size = new Size(136, 29);
@@ -203,7 +221,7 @@
             // txtSeparators
             // 
             txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtSeparators.Location = new Point(525, 6);
+            txtSeparators.Location = new Point(578, 28);
             txtSeparators.Margin = new Padding(2, 3, 2, 3);
             txtSeparators.Name = "txtSeparators";
             txtSeparators.Size = new Size(136, 27);
@@ -213,15 +231,12 @@
             // 
             tableLayoutPanelLeft.ColumnCount = 1;
             tableLayoutPanelLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanelLeft.Controls.Add(panelList, 0, 0);
-            tableLayoutPanelLeft.Controls.Add(panelTransforms, 0, 1);
             tableLayoutPanelLeft.Dock = DockStyle.Fill;
             tableLayoutPanelLeft.Location = new Point(3, 3);
             tableLayoutPanelLeft.Name = "tableLayoutPanelLeft";
-            tableLayoutPanelLeft.RowCount = 2;
-            tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 65F));
-            tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanelLeft.RowCount = 1;
+            tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelLeft.Size = new Size(494, 857);
             tableLayoutPanelLeft.TabIndex = 8;
@@ -230,12 +245,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1193, 863);
+            ClientSize = new Size(1246, 863);
             Controls.Add(tableLayoutPanelMain);
             Name = "FormNew";
             Text = "FormNew";
             tableLayoutPanelMain.ResumeLayout(false);
             tableLayoutPanelRight.ResumeLayout(false);
+            tableLayoutPanelSelectionTransforms.ResumeLayout(false);
             tableLayoutRename.ResumeLayout(false);
             tableLayoutRename.PerformLayout();
             tableLayoutPanelLeft.ResumeLayout(false);
@@ -258,5 +274,6 @@
         private TextBox txtOriginalName;
         private Button btnRename;
         private TextBox txtSeparators;
+        private TableLayoutPanel tableLayoutPanelSelectionTransforms;
     }
 }

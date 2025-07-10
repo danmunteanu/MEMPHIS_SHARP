@@ -87,12 +87,6 @@ namespace MEMPHIS_SHARP
             Utils.AddUserControlToPanel(panelList, mFilesList);
             panelList.Padding = new Padding(10, 0, 10, 10);
 
-
-            //  Connect pageSelection to mEngine and mFilesList
-            //pageSelection.Engine = mEngine;
-            //pageSelection.FilesList = mFilesList;
-
-
             //  Transforms Component
             mTransformsComponent = new()
             {
@@ -105,7 +99,6 @@ namespace MEMPHIS_SHARP
 
         private void UpdateUI()
         {
-
         }
 
         private void OnFileSelected(string fullFilePath)
@@ -116,7 +109,7 @@ namespace MEMPHIS_SHARP
             }
 
             string fileName = Path.GetFileName(fullFilePath);
-            txtOriginalName.Text = fileName;
+            panelRename.OriginalName = fileName;
 
             if (mEngine == null)
                 return;
@@ -126,7 +119,7 @@ namespace MEMPHIS_SHARP
 
             scenePainter.Engine = mEngine;
 
-            txtRenameTo.Text = mEngine.RenameTo;
+            panelRename.RenameTo = mEngine.RenameTo;
 
             UpdateUI();
         }
@@ -153,7 +146,7 @@ namespace MEMPHIS_SHARP
             if (mEngine != null)
             {
                 string renameTo = mEngine.ReconstructOutput(mEngine.RootToken);
-                txtRenameTo.Text = renameTo;
+                panelRename.RenameTo = renameTo;
             }
         }
 

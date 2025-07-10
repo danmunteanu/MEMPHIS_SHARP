@@ -59,7 +59,7 @@
             // 
             chkEnabled.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             chkEnabled.AutoSize = true;
-            chkEnabled.Location = new Point(361, 7);
+            chkEnabled.Location = new Point(456, 7);
             chkEnabled.Margin = new Padding(2);
             chkEnabled.Name = "chkEnabled";
             chkEnabled.Size = new Size(97, 24);
@@ -90,11 +90,11 @@
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 4;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutMain.Size = new Size(498, 125);
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutMain.Size = new Size(593, 140);
             tableLayoutMain.TabIndex = 11;
             // 
             // tableLayoutPanelSeparators
@@ -116,11 +116,11 @@
             tableLayoutPanelSeparators.Controls.Add(btnClearSep, 4, 0);
             tableLayoutPanelSeparators.Controls.Add(lblSepar, 1, 0);
             tableLayoutPanelSeparators.Dock = DockStyle.Fill;
-            tableLayoutPanelSeparators.Location = new Point(19, 65);
+            tableLayoutPanelSeparators.Location = new Point(19, 58);
             tableLayoutPanelSeparators.Name = "tableLayoutPanelSeparators";
             tableLayoutPanelSeparators.RowCount = 1;
             tableLayoutPanelSeparators.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelSeparators.Size = new Size(460, 39);
+            tableLayoutPanelSeparators.Size = new Size(555, 39);
             tableLayoutPanelSeparators.TabIndex = 12;
             // 
             // txtSeparators
@@ -148,7 +148,7 @@
             // btnMoveRight
             // 
             btnMoveRight.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnMoveRight.Location = new Point(416, 6);
+            btnMoveRight.Location = new Point(511, 6);
             btnMoveRight.Margin = new Padding(2);
             btnMoveRight.Name = "btnMoveRight";
             btnMoveRight.Size = new Size(42, 26);
@@ -161,7 +161,7 @@
             // 
             btnMoveLeft.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnMoveLeft.Font = new Font("Segoe UI", 8F);
-            btnMoveLeft.Location = new Point(376, 6);
+            btnMoveLeft.Location = new Point(471, 6);
             btnMoveLeft.Margin = new Padding(2);
             btnMoveLeft.Name = "btnMoveLeft";
             btnMoveLeft.Size = new Size(36, 26);
@@ -206,11 +206,11 @@
             tableLayoutPanelText.Controls.Add(chkEnabled, 3, 0);
             tableLayoutPanelText.Controls.Add(txtSelection, 1, 0);
             tableLayoutPanelText.Dock = DockStyle.Fill;
-            tableLayoutPanelText.Location = new Point(19, 20);
+            tableLayoutPanelText.Location = new Point(19, 13);
             tableLayoutPanelText.Name = "tableLayoutPanelText";
             tableLayoutPanelText.RowCount = 1;
             tableLayoutPanelText.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelText.Size = new Size(460, 39);
+            tableLayoutPanelText.Size = new Size(555, 39);
             tableLayoutPanelText.TabIndex = 12;
             // 
             // TokenSelectionEditor
@@ -220,7 +220,7 @@
             Controls.Add(tableLayoutMain);
             Margin = new Padding(2);
             Name = "TokenSelectionEditor";
-            Size = new Size(498, 125);
+            Size = new Size(593, 140);
             tableLayoutMain.ResumeLayout(false);
             tableLayoutPanelSeparators.ResumeLayout(false);
             tableLayoutPanelSeparators.PerformLayout();

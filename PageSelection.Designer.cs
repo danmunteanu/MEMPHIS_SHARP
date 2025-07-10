@@ -29,81 +29,63 @@
         private void InitializeComponent()
         {
             selectionDetails = new TokenSelectionEditor();
-            tableLayoutAll = new TableLayoutPanel();
-            tableLayoutMain = new TableLayoutPanel();
+            tableLayoutRename = new TableLayoutPanel();
             lblOriginalName = new Label();
             txtRenameTo = new TextBox();
             lblRenameTo = new Label();
             txtOriginalName = new TextBox();
             btnRename = new Button();
             txtSeparators = new TextBox();
-            lblDefaultSepar = new Label();
             scenePainter = new ScenePainter();
-            tableLayoutAll.SuspendLayout();
-            tableLayoutMain.SuspendLayout();
+            tableLayoutPanelMain = new TableLayoutPanel();
+            tableLayoutPanelBottom = new TableLayoutPanel();
+            tableLayoutRename.SuspendLayout();
+            tableLayoutPanelMain.SuspendLayout();
+            tableLayoutPanelBottom.SuspendLayout();
             SuspendLayout();
             // 
             // selectionDetails
             // 
-            selectionDetails.Location = new Point(2, 574);
+            selectionDetails.BorderStyle = BorderStyle.FixedSingle;
+            selectionDetails.Dock = DockStyle.Fill;
+            selectionDetails.Location = new Point(819, 3);
             selectionDetails.Margin = new Padding(2, 3, 2, 3);
             selectionDetails.Name = "selectionDetails";
-            selectionDetails.Size = new Size(553, 150);
+            selectionDetails.Size = new Size(436, 382);
             selectionDetails.TabIndex = 0;
             selectionDetails.Token = null;
             selectionDetails.TokenChanged = null;
             // 
-            // tableLayoutAll
+            // tableLayoutRename
             // 
-            tableLayoutAll.ColumnCount = 1;
-            tableLayoutAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutAll.Controls.Add(selectionDetails, 0, 4);
-            tableLayoutAll.Controls.Add(tableLayoutMain, 0, 1);
-            tableLayoutAll.Controls.Add(scenePainter, 0, 3);
-            tableLayoutAll.Dock = DockStyle.Fill;
-            tableLayoutAll.Location = new Point(0, 0);
-            tableLayoutAll.Margin = new Padding(2, 3, 2, 3);
-            tableLayoutAll.Name = "tableLayoutAll";
-            tableLayoutAll.RowCount = 5;
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Absolute, 350F));
-            tableLayoutAll.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
-            tableLayoutAll.Size = new Size(1302, 731);
-            tableLayoutAll.TabIndex = 9;
-            // 
-            // tableLayoutMain
-            // 
-            tableLayoutMain.ColumnCount = 4;
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
-            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 38F));
-            tableLayoutMain.Controls.Add(lblOriginalName, 0, 1);
-            tableLayoutMain.Controls.Add(txtRenameTo, 1, 2);
-            tableLayoutMain.Controls.Add(lblRenameTo, 0, 2);
-            tableLayoutMain.Controls.Add(txtOriginalName, 1, 1);
-            tableLayoutMain.Controls.Add(btnRename, 2, 2);
-            tableLayoutMain.Controls.Add(txtSeparators, 2, 1);
-            tableLayoutMain.Controls.Add(lblDefaultSepar, 2, 0);
-            tableLayoutMain.Dock = DockStyle.Fill;
-            tableLayoutMain.Location = new Point(2, 33);
-            tableLayoutMain.Margin = new Padding(2, 3, 2, 3);
-            tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 4;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            tableLayoutMain.Size = new Size(1298, 114);
-            tableLayoutMain.TabIndex = 4;
+            tableLayoutRename.ColumnCount = 4;
+            tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
+            tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F));
+            tableLayoutRename.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutRename.Controls.Add(lblOriginalName, 0, 0);
+            tableLayoutRename.Controls.Add(txtRenameTo, 1, 1);
+            tableLayoutRename.Controls.Add(lblRenameTo, 0, 1);
+            tableLayoutRename.Controls.Add(txtOriginalName, 1, 0);
+            tableLayoutRename.Controls.Add(btnRename, 2, 1);
+            tableLayoutRename.Controls.Add(txtSeparators, 2, 0);
+            tableLayoutRename.Dock = DockStyle.Fill;
+            tableLayoutRename.Location = new Point(2, 3);
+            tableLayoutRename.Margin = new Padding(2, 3, 2, 3);
+            tableLayoutRename.Name = "tableLayoutRename";
+            tableLayoutRename.RowCount = 2;
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutRename.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutRename.Size = new Size(1259, 105);
+            tableLayoutRename.TabIndex = 4;
             // 
             // lblOriginalName
             // 
             lblOriginalName.Anchor = AnchorStyles.Right;
             lblOriginalName.AutoSize = true;
-            lblOriginalName.Location = new Point(9, 26);
+            lblOriginalName.Location = new Point(9, 10);
             lblOriginalName.Margin = new Padding(2, 0, 2, 0);
             lblOriginalName.Name = "lblOriginalName";
             lblOriginalName.Size = new Size(109, 20);
@@ -113,18 +95,18 @@
             // txtRenameTo
             // 
             txtRenameTo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtRenameTo.Location = new Point(122, 62);
+            txtRenameTo.Location = new Point(122, 59);
             txtRenameTo.Margin = new Padding(2, 3, 2, 3);
             txtRenameTo.Name = "txtRenameTo";
             txtRenameTo.ReadOnly = true;
-            txtRenameTo.Size = new Size(997, 27);
+            txtRenameTo.Size = new Size(975, 27);
             txtRenameTo.TabIndex = 3;
             // 
             // lblRenameTo
             // 
             lblRenameTo.Anchor = AnchorStyles.Right;
             lblRenameTo.AutoSize = true;
-            lblRenameTo.Location = new Point(32, 66);
+            lblRenameTo.Location = new Point(32, 62);
             lblRenameTo.Margin = new Padding(2, 0, 2, 0);
             lblRenameTo.Name = "lblRenameTo";
             lblRenameTo.Size = new Size(86, 20);
@@ -134,20 +116,20 @@
             // txtOriginalName
             // 
             txtOriginalName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtOriginalName.Location = new Point(122, 22);
+            txtOriginalName.Location = new Point(122, 6);
             txtOriginalName.Margin = new Padding(2, 3, 2, 3);
             txtOriginalName.Name = "txtOriginalName";
             txtOriginalName.ReadOnly = true;
-            txtOriginalName.Size = new Size(997, 27);
+            txtOriginalName.Size = new Size(975, 27);
             txtOriginalName.TabIndex = 2;
             // 
             // btnRename
             // 
             btnRename.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnRename.Location = new Point(1123, 61);
+            btnRename.Location = new Point(1101, 58);
             btnRename.Margin = new Padding(2, 3, 2, 3);
             btnRename.Name = "btnRename";
-            btnRename.Size = new Size(135, 29);
+            btnRename.Size = new Size(136, 29);
             btnRename.TabIndex = 6;
             btnRename.Text = "RENAME";
             btnRename.UseVisualStyleBackColor = true;
@@ -155,45 +137,67 @@
             // txtSeparators
             // 
             txtSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtSeparators.Location = new Point(1123, 22);
+            txtSeparators.Location = new Point(1101, 6);
             txtSeparators.Margin = new Padding(2, 3, 2, 3);
             txtSeparators.Name = "txtSeparators";
-            txtSeparators.Size = new Size(135, 27);
+            txtSeparators.Size = new Size(136, 27);
             txtSeparators.TabIndex = 7;
-            // 
-            // lblDefaultSepar
-            // 
-            lblDefaultSepar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblDefaultSepar.AutoSize = true;
-            lblDefaultSepar.Location = new Point(1123, 0);
-            lblDefaultSepar.Margin = new Padding(2, 0, 2, 0);
-            lblDefaultSepar.Name = "lblDefaultSepar";
-            lblDefaultSepar.Size = new Size(133, 16);
-            lblDefaultSepar.TabIndex = 8;
-            lblDefaultSepar.Text = "Default Separators";
             // 
             // scenePainter
             // 
+            scenePainter.BorderStyle = BorderStyle.FixedSingle;
             scenePainter.Dock = DockStyle.Fill;
             scenePainter.Engine = null;
-            scenePainter.Location = new Point(3, 226);
+            scenePainter.Location = new Point(3, 5);
             scenePainter.Margin = new Padding(3, 5, 3, 5);
             scenePainter.Name = "scenePainter";
             scenePainter.SelectionChanged = null;
-            scenePainter.Size = new Size(1296, 340);
+            scenePainter.Size = new Size(811, 378);
             scenePainter.TabIndex = 8;
+            // 
+            // tableLayoutPanelMain
+            // 
+            tableLayoutPanelMain.ColumnCount = 1;
+            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelMain.Controls.Add(tableLayoutPanelBottom, 0, 1);
+            tableLayoutPanelMain.Controls.Add(tableLayoutRename, 0, 0);
+            tableLayoutPanelMain.Dock = DockStyle.Fill;
+            tableLayoutPanelMain.Location = new Point(0, 0);
+            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            tableLayoutPanelMain.RowCount = 2;
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 21.9801979F));
+            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 78.0198F));
+            tableLayoutPanelMain.Size = new Size(1263, 505);
+            tableLayoutPanelMain.TabIndex = 9;
+            // 
+            // tableLayoutPanelBottom
+            // 
+            tableLayoutPanelBottom.ColumnCount = 2;
+            tableLayoutPanelBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tableLayoutPanelBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tableLayoutPanelBottom.Controls.Add(scenePainter, 0, 0);
+            tableLayoutPanelBottom.Controls.Add(selectionDetails, 1, 0);
+            tableLayoutPanelBottom.Dock = DockStyle.Fill;
+            tableLayoutPanelBottom.Location = new Point(3, 114);
+            tableLayoutPanelBottom.Name = "tableLayoutPanelBottom";
+            tableLayoutPanelBottom.RowCount = 1;
+            tableLayoutPanelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelBottom.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelBottom.Size = new Size(1257, 388);
+            tableLayoutPanelBottom.TabIndex = 10;
             // 
             // PageSelection
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutAll);
+            Controls.Add(tableLayoutPanelMain);
             Margin = new Padding(2, 3, 2, 3);
             Name = "PageSelection";
-            Size = new Size(1302, 731);
-            tableLayoutAll.ResumeLayout(false);
-            tableLayoutMain.ResumeLayout(false);
-            tableLayoutMain.PerformLayout();
+            Size = new Size(1263, 505);
+            tableLayoutRename.ResumeLayout(false);
+            tableLayoutRename.PerformLayout();
+            tableLayoutPanelMain.ResumeLayout(false);
+            tableLayoutPanelBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -201,13 +205,14 @@
         private TokenSelectionEditor selectionDetails;
         private TableLayoutPanel tableLayoutAll;
         private ScenePainter scenePainter;
-        private TableLayoutPanel tableLayoutMain;
+        private TableLayoutPanel tableLayoutRename;
         private Label lblOriginalName;
         private TextBox txtRenameTo;
         private Label lblRenameTo;
         private TextBox txtOriginalName;
         private Button btnRename;
         private TextBox txtSeparators;
-        private Label lblDefaultSepar;
+        private TableLayoutPanel tableLayoutPanelMain;
+        private TableLayoutPanel tableLayoutPanelBottom;
     }
 }

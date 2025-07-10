@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            selectionDetails = new TokenSelectionEditor();
+            selectionDetails = new SelectionDetails();
             tableLayoutRename = new TableLayoutPanel();
             lblOriginalName = new Label();
             txtRenameTo = new TextBox();
@@ -202,7 +202,7 @@
         }
 
         #endregion
-        private TokenSelectionEditor selectionDetails;
+        private SelectionDetails selectionDetails;
         private TableLayoutPanel tableLayoutAll;
         private ScenePainter scenePainter;
         private TableLayoutPanel tableLayoutRename;

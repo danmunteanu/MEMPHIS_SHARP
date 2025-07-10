@@ -1,4 +1,4 @@
-using Memphis;
+﻿using Memphis;
 using CommonForms;
 using CommonForms.Components;
 using RealityFrameworks;
@@ -7,26 +7,35 @@ using Memphis.Conditions;
 using MEMPHIS_SHARP.ConditionEditors;
 using MEMPHIS_SHARP.ActionEditors;
 
+
 namespace MEMPHIS_SHARP
 {
-    public partial class MainForm : Form, IEngineObserver
+    public partial class FormNew: Form
     {
-        private Memphis.Engine mEngine = new();
+        private Engine mEngine = new();
         private FilesProcessor? mProcessor = new();
         private FilesList? mFilesList = null;
         private TransformsList<Token>? mTransformsComponent = null;
 
-        public MainForm()
+        public FormNew()
         {
             InitializeComponent();
-
-            this.Text = Locale.APPLICATION_NAME;
 
             SetupEngine();
             RegisterCreators();
             SetupComponents();
 
+            
+
+            scenePainter.SelectionChanged = this.OnTokenSelectionChanged;
+            scenePainter.Engine = mEngine;
+
+            selectionDetails.TokenChanged = OnTokenChanged;
+
+            this.Text = Locale.APPLICATION_NAME;
+
             this.CenterToParent();
+
         }
 
         private void RegisterCreators()
@@ -79,13 +88,14 @@ namespace MEMPHIS_SHARP
                 FileFilters = Utils.AudioFileExtensions.ToList()
             };
             mFilesList.UpdateList(SelectionMode.One, true);
+            mFilesList.SelectionChanged_Callback = OnFileSelected;
             Utils.AddUserControlToPanel(panelList, mFilesList);
             panelList.Padding = new Padding(10, 0, 10, 10);
 
 
             //  Connect pageSelection to mEngine and mFilesList
-            pageSelection.Engine = mEngine;
-            pageSelection.FilesList = mFilesList;
+            //pageSelection.Engine = mEngine;
+            //pageSelection.FilesList = mFilesList;
 
 
             //  Transforms Component
@@ -98,9 +108,58 @@ namespace MEMPHIS_SHARP
             Utils.AddUserControlToPanel(panelTransforms, mTransformsComponent);
         }
 
-        public void Notify()
+        private void UpdateUI()
         {
-            //  engine has changed - reload
+
+        }
+
+        private void OnFileSelected(string fullFilePath)
+        {
+            if (string.IsNullOrEmpty(fullFilePath))
+            {
+                return;
+            }
+
+            string fileName = Path.GetFileName(fullFilePath);
+            txtOriginalName.Text = fileName;
+
+            if (mEngine == null)
+                return;
+
+            //  create & split master token
+            mEngine.SelectMasterToken(fileName);
+
+            scenePainter.Engine = mEngine;
+
+            txtRenameTo.Text = mEngine.RenameTo;
+
+            UpdateUI();
+        }
+
+        private void OnTokenSelectionChanged()
+        {
+            if (mEngine == null || mEngine.SelectedSubtoken == null)
+                return;
+
+            //  Set the token and force reload of selection details
+            selectionDetails.Token = mEngine.SelectedSubtoken;
+
+            //  Repaint token
+            scenePainter.UpdateNode(mEngine.SelectedSubtoken);
+
+            UpdateUI();
+        }
+
+        private void OnTokenChanged(Token token)
+        {
+            scenePainter.UpdateNode(token);
+
+            //  Reconstruct output
+            if (mEngine != null)
+            {
+                string renameTo = mEngine.ReconstructOutput(mEngine.RootToken);
+                txtRenameTo.Text = renameTo;
+            }
         }
 
         public void SetupEngine()
@@ -122,10 +181,5 @@ namespace MEMPHIS_SHARP
             mEngine.AddTransform(tr);
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //  save settings
-            
-        }
     }
 }

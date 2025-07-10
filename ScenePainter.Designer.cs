@@ -32,9 +32,11 @@
             // 
             // ScenePainter
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ScenePainter";
+            Size = new Size(171, 200);
             ResumeLayout(false);
         }
 

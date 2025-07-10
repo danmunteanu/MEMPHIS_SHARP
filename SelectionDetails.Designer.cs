@@ -1,6 +1,6 @@
 ﻿namespace MEMPHIS_SHARP
 {
-    partial class TokenSelectionEditor
+    partial class SelectionDetails
     {
         /// <summary> 
         /// Required designer variable.

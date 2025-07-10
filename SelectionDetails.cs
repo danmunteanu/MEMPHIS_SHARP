@@ -2,7 +2,7 @@
 
 namespace MEMPHIS_SHARP
 {
-    public partial class TokenSelectionEditor : UserControl
+    public partial class SelectionDetails : UserControl
     {
         //  remember the token for fast update
         private Token? mToken = null;
@@ -42,7 +42,7 @@ namespace MEMPHIS_SHARP
             this.Enabled = token != null;
         }
 
-        public TokenSelectionEditor()
+        public SelectionDetails()
         {
             InitializeComponent();
         }

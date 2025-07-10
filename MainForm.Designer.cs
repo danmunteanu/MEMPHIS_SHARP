@@ -51,7 +51,7 @@
             filesListComponent1.Progress = 0;
             filesListComponent1.SelectionChanged_Callback = null;
             filesListSettings1.AllowAddFolders = true;
-            filesListSettings1.BottomLineHeight = 55;
+            filesListSettings1.ButtonLineHeight = 55;
             filesListSettings1.ButtonAddLabel = "ADD FILES";
             filesListSettings1.FontFamily = "Segoe UI";
             filesListSettings1.FontSize = 8;
@@ -61,7 +61,7 @@
             filesListSettings1.SettingsButtonVisible = true;
             filesListSettings1.StatusBarLineHeight = 33;
             filesListSettings1.TopLabel = "↓↓ Add Files To Merge ↓↓";
-            filesListSettings1.TopLineHeight = 45;
+            filesListSettings1.LabelLineHeight = 45;
             filesListSettings1.UseProgressBar = true;
             filesListSettings1.UseSearchBar = false;
             filesListSettings1.UseStatus = true;

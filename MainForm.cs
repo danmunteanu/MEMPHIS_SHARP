@@ -71,9 +71,10 @@ namespace MEMPHIS_SHARP
                 {
                     UseProgressBar = false,
                     TopLabel = Locale.LIST_TOP_LABEL,
-                    TopLineHeight = 60,
-                    BottomLineHeight = 60,
+                    LabelLineHeight = 45,
+                    ButtonLineHeight = 50,
                     ParseSubfolders = true,
+                    ButtonRowTop = false,   //  move buttons to top?
                 },
                 FileFilters = Utils.AudioFileExtensions.ToList()
             };

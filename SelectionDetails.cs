@@ -45,6 +45,7 @@ namespace MEMPHIS_SHARP
         public SelectionDetails()
         {
             InitializeComponent();
+            LoadToken(null);
         }
 
         private void chkEnabled_CheckedChanged(object sender, EventArgs e)

@@ -90,10 +90,10 @@
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 4;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutMain.Size = new Size(593, 140);
             tableLayoutMain.TabIndex = 11;
             // 
@@ -116,7 +116,7 @@
             tableLayoutPanelSeparators.Controls.Add(btnClearSep, 4, 0);
             tableLayoutPanelSeparators.Controls.Add(lblSepar, 1, 0);
             tableLayoutPanelSeparators.Dock = DockStyle.Fill;
-            tableLayoutPanelSeparators.Location = new Point(19, 58);
+            tableLayoutPanelSeparators.Location = new Point(19, 73);
             tableLayoutPanelSeparators.Name = "tableLayoutPanelSeparators";
             tableLayoutPanelSeparators.RowCount = 1;
             tableLayoutPanelSeparators.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -206,20 +206,20 @@
             tableLayoutPanelText.Controls.Add(chkEnabled, 3, 0);
             tableLayoutPanelText.Controls.Add(txtSelection, 1, 0);
             tableLayoutPanelText.Dock = DockStyle.Fill;
-            tableLayoutPanelText.Location = new Point(19, 13);
+            tableLayoutPanelText.Location = new Point(19, 28);
             tableLayoutPanelText.Name = "tableLayoutPanelText";
             tableLayoutPanelText.RowCount = 1;
             tableLayoutPanelText.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelText.Size = new Size(555, 39);
             tableLayoutPanelText.TabIndex = 12;
             // 
-            // TokenSelectionEditor
+            // SelectionDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutMain);
             Margin = new Padding(2);
-            Name = "TokenSelectionEditor";
+            Name = "SelectionDetails";
             Size = new Size(593, 140);
             tableLayoutMain.ResumeLayout(false);
             tableLayoutPanelSeparators.ResumeLayout(false);

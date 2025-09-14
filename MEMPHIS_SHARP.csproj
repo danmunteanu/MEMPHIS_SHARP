@@ -16,7 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\COMMON_FORMS\COMMON_FORMS.csproj" />
     <ProjectReference Include="..\MEMPHIS_DLL\MEMPHIS.csproj" />
-    <ProjectReference Include="..\REALITY_FRAMEWORKS_DLL\REALITY_FRAMEWORKS.csproj" />
+    <ProjectReference Include="..\REALITY_FRAMEWORKS\REALITY_FRAMEWORKS.csproj" />
   </ItemGroup>
 
   <ItemGroup>

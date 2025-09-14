@@ -9,7 +9,7 @@ using MEMPHIS_SHARP.ActionEditors;
 
 namespace MEMPHIS_SHARP
 {
-    public partial class FormNew: Form
+    public partial class FormNew : Form
     {
         private Engine mEngine = new();
         private FilesProcessor? mProcessor = new();
@@ -169,5 +169,19 @@ namespace MEMPHIS_SHARP
             mEngine.AddTransform(tr);
         }
 
+        private void scenePainter_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormNew_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

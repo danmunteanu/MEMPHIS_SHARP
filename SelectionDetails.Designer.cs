@@ -36,7 +36,7 @@
             txtSeparators = new TextBox();
             btnMoveRight = new Button();
             btnMoveLeft = new Button();
-            btnClearSep = new Button();
+            btnClearSeparators = new Button();
             lblSepar = new Label();
             btnDefaultSeparators = new Button();
             tableLayoutPanelText = new TableLayoutPanel();
@@ -113,7 +113,7 @@
             tableLayoutPanelSeparators.Controls.Add(txtSeparators, 1, 0);
             tableLayoutPanelSeparators.Controls.Add(btnMoveRight, 7, 0);
             tableLayoutPanelSeparators.Controls.Add(btnMoveLeft, 6, 0);
-            tableLayoutPanelSeparators.Controls.Add(btnClearSep, 3, 0);
+            tableLayoutPanelSeparators.Controls.Add(btnClearSeparators, 3, 0);
             tableLayoutPanelSeparators.Controls.Add(lblSepar, 0, 0);
             tableLayoutPanelSeparators.Controls.Add(btnDefaultSeparators, 2, 0);
             tableLayoutPanelSeparators.Dock = DockStyle.Fill;
@@ -161,16 +161,16 @@
             // 
             // btnClearSep
             // 
-            btnClearSep.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClearSep.Font = new Font("Segoe UI", 8F);
-            btnClearSep.Location = new Point(302, 8);
-            btnClearSep.Margin = new Padding(2);
-            btnClearSep.Name = "btnClearSep";
-            btnClearSep.Size = new Size(36, 32);
-            btnClearSep.TabIndex = 3;
-            btnClearSep.Text = "✖";
-            btnClearSep.UseVisualStyleBackColor = true;
-            btnClearSep.Click += btnClearSep_Click;
+            btnClearSeparators.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClearSeparators.Font = new Font("Segoe UI", 8F);
+            btnClearSeparators.Location = new Point(302, 8);
+            btnClearSeparators.Margin = new Padding(2);
+            btnClearSeparators.Name = "btnClearSep";
+            btnClearSeparators.Size = new Size(36, 32);
+            btnClearSeparators.TabIndex = 3;
+            btnClearSeparators.Text = "✖";
+            btnClearSeparators.UseVisualStyleBackColor = true;
+            btnClearSeparators.Click += btnClearSep_Click;
             // 
             // lblSepar
             // 
@@ -243,7 +243,7 @@
         private Button btnDefaultSeparators;
         private Button btnMoveRight;
         private Button btnMoveLeft;
-        private Button btnClearSep;
+        private Button btnClearSeparators;
         private Label lblSepar;
     }
 }

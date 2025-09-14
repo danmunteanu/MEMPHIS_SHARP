@@ -48,16 +48,16 @@
             panelList.Location = new Point(4, 4);
             panelList.Margin = new Padding(4);
             panelList.Name = "panelList";
-            panelList.Size = new Size(546, 421);
+            panelList.Size = new Size(546, 457);
             panelList.TabIndex = 0;
             // 
             // panelTransforms
             // 
             panelTransforms.Dock = DockStyle.Fill;
-            panelTransforms.Location = new Point(4, 433);
+            panelTransforms.Location = new Point(4, 469);
             panelTransforms.Margin = new Padding(4);
             panelTransforms.Name = "panelTransforms";
-            panelTransforms.Size = new Size(546, 278);
+            panelTransforms.Size = new Size(546, 302);
             panelTransforms.TabIndex = 1;
             // 
             // scenePainter
@@ -69,7 +69,7 @@
             scenePainter.Margin = new Padding(4, 5, 4, 5);
             scenePainter.Name = "scenePainter";
             scenePainter.SelectionChanged = null;
-            scenePainter.Size = new Size(573, 327);
+            scenePainter.Size = new Size(642, 327);
             scenePainter.TabIndex = 2;
             scenePainter.Load += scenePainter_Load;
             // 
@@ -77,10 +77,11 @@
             // 
             selectionDetails.BorderStyle = BorderStyle.FixedSingle;
             selectionDetails.Dock = DockStyle.Fill;
+            selectionDetails.Enabled = false;
             selectionDetails.Location = new Point(2, 384);
             selectionDetails.Margin = new Padding(2);
             selectionDetails.Name = "selectionDetails";
-            selectionDetails.Size = new Size(577, 147);
+            selectionDetails.Size = new Size(646, 147);
             selectionDetails.TabIndex = 3;
             selectionDetails.Token = null;
             selectionDetails.TokenChanged = null;
@@ -88,12 +89,10 @@
             // panelRename
             // 
             panelRename.Dock = DockStyle.Fill;
-            panelRename.Location = new Point(5, 599);
+            panelRename.Location = new Point(5, 580);
             panelRename.Margin = new Padding(5);
             panelRename.Name = "panelRename";
-            panelRename.OriginalName = "";
-            panelRename.RenameTo = "";
-            panelRename.Size = new Size(571, 111);
+            panelRename.Size = new Size(640, 190);
             panelRename.TabIndex = 9;
             // 
             // tableLayoutLeft
@@ -108,7 +107,7 @@
             tableLayoutLeft.RowCount = 2;
             tableLayoutLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tableLayoutLeft.Size = new Size(554, 715);
+            tableLayoutLeft.Size = new Size(554, 775);
             tableLayoutLeft.TabIndex = 10;
             // 
             // tableLayoutPanelTop
@@ -128,10 +127,9 @@
             tableLayoutPanelTop.RowStyles.Add(new RowStyle(SizeType.Absolute, 151F));
             tableLayoutPanelTop.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelTop.RowStyles.Add(new RowStyle(SizeType.Absolute, 210F));
-            tableLayoutPanelTop.RowStyles.Add(new RowStyle(SizeType.Absolute, 121F));
-            tableLayoutPanelTop.Size = new Size(581, 715);
+            tableLayoutPanelTop.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
+            tableLayoutPanelTop.Size = new Size(650, 775);
             tableLayoutPanelTop.TabIndex = 11;
-            tableLayoutPanelTop.Paint += tableLayoutPanel1_Paint;
             // 
             // lblScene
             // 
@@ -155,19 +153,18 @@
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 1;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Size = new Size(1147, 721);
+            tableLayoutMain.Size = new Size(1216, 781);
             tableLayoutMain.TabIndex = 12;
             // 
             // FormNew
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1147, 721);
+            ClientSize = new Size(1216, 781);
             Controls.Add(tableLayoutMain);
             Margin = new Padding(4);
             Name = "FormNew";
             Text = "FormNew";
-            Load += FormNew_Load;
             tableLayoutLeft.ResumeLayout(false);
             tableLayoutPanelTop.ResumeLayout(false);
             tableLayoutPanelTop.PerformLayout();

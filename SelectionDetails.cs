@@ -14,38 +14,38 @@ namespace MEMPHIS_SHARP
         public Token? Token
         {
             get => mToken;
-
             set
             {
                 mToken = value;
-                LoadToken(mToken);
+                LoadTokenDetails(mToken);
                 txtSelection.Focus();
             }
         }
 
-        public void LoadToken(Token? token)
+        public void LoadTokenDetails(Token? token)
         {
+            bool enabled = token != null;
             if (token == null)
             {
-                //grpSelection.Enabled = false;
                 txtSelection.Clear();
                 chkEnabled.Checked = false;
                 txtSeparators.Clear();
-                return;
+            }
+            else
+            {
+                //grpSelection.Enabled = true;
+                txtSelection.Text = token.Text;
+                chkEnabled.Checked = token.Enabled;
+                txtSeparators.Text = token.Separators;
             }
 
-            //grpSelection.Enabled = true;
-            txtSelection.Text = token.Text;
-            chkEnabled.Checked = token.Enabled;
-            txtSeparators.Text = token.Separators;
-
-            this.Enabled = token != null;
+            this.Enabled = enabled;
         }
 
         public SelectionDetails()
         {
             InitializeComponent();
-            LoadToken(null);
+            LoadTokenDetails(null);
         }
 
         private void chkEnabled_CheckedChanged(object sender, EventArgs e)

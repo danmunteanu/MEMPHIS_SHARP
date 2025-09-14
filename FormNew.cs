@@ -29,6 +29,8 @@ namespace MEMPHIS_SHARP
 
             selectionDetails.TokenChanged = OnTokenChanged;
 
+            panelRename.Engine = mEngine;
+
             this.Text = Locale.APPLICATION_NAME;
             this.CenterToParent();
         }
@@ -104,12 +106,12 @@ namespace MEMPHIS_SHARP
         private void OnFileSelected(string fullFilePath)
         {
             if (string.IsNullOrEmpty(fullFilePath))
-            {
                 return;
-            }
 
             string fileName = Path.GetFileName(fullFilePath);
-            panelRename.OriginalName = fileName;
+
+            //  Setup original rename
+            panelRename.UpdateUI();
 
             if (mEngine == null)
                 return;
@@ -117,9 +119,13 @@ namespace MEMPHIS_SHARP
             //  create & split master token
             mEngine.SelectMasterToken(fileName);
 
+            //  Force re-setup 
             scenePainter.Engine = mEngine;
 
-            panelRename.RenameTo = mEngine.RenameTo;
+            panelRename.UpdateUI();
+
+            //  Clear selection
+            selectionDetails.LoadTokenDetails(null);
 
             UpdateUI();
         }
@@ -146,7 +152,7 @@ namespace MEMPHIS_SHARP
             if (mEngine != null)
             {
                 string renameTo = mEngine.ReconstructOutput(mEngine.RootToken);
-                panelRename.RenameTo = renameTo;
+                panelRename.UpdateUI();
             }
         }
 
@@ -170,16 +176,6 @@ namespace MEMPHIS_SHARP
         }
 
         private void scenePainter_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormNew_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

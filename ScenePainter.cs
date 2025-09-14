@@ -20,6 +20,8 @@ namespace MEMPHIS_SHARP
 
         //  Engine reference
         private Engine? mEngine = null;
+
+        //  Engine setters/getters
         public Engine? Engine 
         {
             get { return mEngine; }
@@ -187,6 +189,9 @@ namespace MEMPHIS_SHARP
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                if (mViewer.Graph == null) 
+                    return;
+
                 // Check if click is on a node
                 var hitObject = mViewer.GetObjectAt(e.X, e.Y);
                 if (hitObject is Node)
